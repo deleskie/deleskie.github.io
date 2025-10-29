@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blog | James DeLeskie</title>
+<link rel="canonical" href="https://deleskie.com/blog/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a13;
+    --card: #121a2b;
+    --accent: #8b5cf6;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --max-width: 860px;
+  }
+  body {
+    background: linear-gradient(180deg, rgba(11,17,32,1) 0%, rgba(7,11,21,1) 45%, rgba(5,8,16,1) 100%);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 48px 20px 80px;
+  }
+  header {
+    max-width: var(--max-width);
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 12px;
+    font-size: clamp(2.2rem, 4vw, 2.7rem);
+  }
+  header p {
+    margin: 0;
+    color: var(--muted);
+  }
+  .post-list {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    gap: 28px;
+  }
+  .post-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 32px;
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    box-shadow: 0 22px 40px rgba(5, 8, 16, 0.55);
+  }
+  .post-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+  }
+  .post-card p {
+    margin: 0 0 18px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .post-card a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .post-card a:hover {
+    text-decoration: underline;
+  }
+  footer {
+    max-width: var(--max-width);
+    margin: 50px auto 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Blog Archive</h1>
+  <p>Route tales, war stories and the riffs that keep the packets flowing.</p>
+</header>
+
+<main class="post-list">
+  <article class="post-card">
+    <h2><a href="/blog/routing-chaos-with-a-soundtrack.html">Routing Chaos with a Soundtrack</a></h2>
+    <p>BGP, FlowSpec and IRR hygiene, told through Faith No More riffs and late-night incident bridges from the dial-up era to today.</p>
+    <a href="/blog/routing-chaos-with-a-soundtrack.html">Read the blog →</a>
+  </article>
+  <article class="post-card">
+    <h2><a href="/blog/the-quiet-professionals-of-tech.html">The Quiet Professionals of Tech</a></h2>
+    <p>Why the best engineers aren’t minted—they’re forged in high-stakes environments. Veterans bring the resilience and discipline the tech world needs.</p>
+    <a href="/blog/the-quiet-professionals-of-tech.html">Read the blog →</a>
+  </article>
+</main>
+
+<footer>
+  <a href="/" style="color: var(--accent); text-decoration:none;">← Back to Home</a>
+</footer>
+</body>
+</html>
