@@ -369,6 +369,11 @@ section h2 {
   border: 1px solid rgba(139, 92, 246, 0.2);
   padding: 30px;
 }
+.blog-grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
 .blog-card h3 {
   font-size: 1.2rem;
 }
@@ -600,10 +605,17 @@ footer {
 <section id="writing">
   <h2>Latest Writing</h2>
   <p class="section-intro">Long-form reflections, field notes and playbooks for operators who balance uptime, security and team sanity.</p>
-  <div class="blog-card">
-    <h3>The Quiet Professionals of Tech</h3>
-    <p>Why the best engineers aren’t minted—they’re forged in high-stakes environments. Veterans bring the resilience and discipline the tech world needs.</p>
-    <a href="/blog/the-quiet-professionals-of-tech.html">Read the essay →</a>
+  <div class="blog-grid">
+    <div class="blog-card">
+      <h3>The Quiet Professionals of Tech</h3>
+      <p>Why the best engineers aren’t minted—they’re forged in high-stakes environments. Veterans bring the resilience and discipline the tech world needs.</p>
+      <a href="/blog/the-quiet-professionals-of-tech.html">Read the essay →</a>
+    </div>
+    <div class="blog-card">
+      <h3>Routing Chaos with a Soundtrack</h3>
+      <p>BGP, FlowSpec and IRR hygiene, told through Faith No More riffs and late-night incident bridges from the dial-up era to today.</p>
+      <a href="/blog/routing-chaos-with-a-soundtrack.html">Read the essay →</a>
+    </div>
   </div>
 </section>
 

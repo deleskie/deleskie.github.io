@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Routing Chaos with a Soundtrack: BGP, FlowSpec, and the Faith No More Approach to Control</title>
+<link rel="canonical" href="https://deleskie.com/blog/routing-chaos-with-a-soundtrack.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1019;
+    --card: #141c2d;
+    --accent: #f97316;
+    --accent-soft: rgba(249, 115, 22, 0.18);
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --max-width: 780px;
+  }
+  body {
+    background: radial-gradient(circle at top left, rgba(249,115,22,0.08), transparent 55%),
+                linear-gradient(160deg, #060912 0%, #0f172a 55%, #05070e 100%);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 40px 20px 80px;
+    line-height: 1.7;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header {
+    max-width: var(--max-width);
+    margin: auto;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(249, 115, 22, 0.35);
+  }
+  header h1 {
+    margin: 0 0 12px;
+    font-size: clamp(2.1rem, 4vw, 2.6rem);
+  }
+  header p.meta {
+    color: var(--muted);
+    font-size: 0.92rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  article {
+    max-width: var(--max-width);
+    margin: 40px auto;
+    background: var(--card);
+    padding: 42px;
+    border-radius: 12px;
+    box-shadow: 0 24px 48px rgba(4, 7, 14, 0.55);
+  }
+  article h2 {
+    margin-top: 36px;
+    margin-bottom: 12px;
+    color: var(--accent);
+    font-size: 1.4rem;
+  }
+  article p {
+    margin: 18px 0;
+  }
+  .callout {
+    margin: 34px 0;
+    padding: 18px;
+    background: var(--accent-soft);
+    border-radius: 10px;
+    border: 1px solid rgba(249, 115, 22, 0.25);
+    text-align: center;
+  }
+  .callout img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 14px 32px rgba(4, 7, 14, 0.65);
+  }
+  .callout figcaption {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+  }
+  footer {
+    max-width: var(--max-width);
+    margin: 60px auto 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  @media (max-width: 600px) {
+    article {
+      padding: 30px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Routing Chaos with a Soundtrack: BGP, FlowSpec, and the Faith No More Approach to Control</h1>
+  <p class="meta">Faith No More riffs, late-night BGP saves, and the tooling that keeps the amps humming.</p>
+</header>
+
+<article>
+<h2>1989: When Two Revolutions Plugged In</h2>
+<p>In 1989, I graduated high school, bought my first 1200-baud modem, and joined a generation discovering that the world could be connected—line by line, byte by byte. The same year, two other revolutions hit their respective stages. One was <em>Faith No More’s</em> <strong>The Real Thing</strong>, an album that shattered the idea of what rock could be. The other was the Border Gateway Protocol (BGP), which did the same for the internet.</p>
+
+<p>Both rewired their industries. Both refused to be boxed in. <em>Epic</em> didn’t sound like anything else—part metal, part funk, part chaos. BGP didn’t act like the static routing protocols that came before it. It didn’t just move packets—it gave the internet autonomy, scale, and self-determination. And just like Faith No More, BGP’s genius wasn’t perfection—it was adaptability.</p>
+
+<h2>The Unsung Roadie of the Internet</h2>
+<p>If the global internet is a massive rock festival, BGP is the roadie who makes sure the lights come on and every band hits the right stage. It doesn’t get applause, but without it, the show doesn’t happen.</p>
+
+<p>Before BGP, the internet looked more like a loose collection of regional garage bands—each playing their own small gigs, rarely crossing paths. Then came BGP (RFC 1105, courtesy of Yakov Rekhter and Kirk Lougheed). Suddenly, networks could peer, exchange routes, and scale globally. It was the tour manager the internet never knew it needed.</p>
+
+<p>BGP’s stayed relevant because it was designed to evolve. It’s modular. Extensible. A protocol that can take a punch and still keep the tour on schedule. But like any roadie, BGP has one tragic flaw: it trusts too easily. It believes what it’s told, even when the source is shady. That blind trust has cost the internet dearly—from misconfigurations that blackhole entire regions to hijacks that redirect global traffic through rogue ASes.</p>
+
+<h2>The Early Days: Hand-Written Configs and Chaos</h2>
+<p>When I started working on the Internet in 1994, the entire network felt small enough that you could hold it in your head. We were still hand-editing BGP configs, updating route filters line by line, and managing DNS zone files with nothing but a text editor and caffeine. Every announcement, every peer, every filter—typed by hand. There was no automation, no safety net, and no rollback. If you pushed a bad config, you didn’t just break a link—you broke the Internet for entire regions.</p>
+
+<p>We ran everything from dial-up access servers to BGP speakers that could barely keep a routing table in memory. We’d check routes with <code>show ip bgp</code> and pray it didn’t hang. And yet, that fragility made us meticulous. You didn’t just type commands—you <em>composed</em> them, the way a guitarist tunes before a live set.</p>
+
+<p>Back then, trust wasn’t cryptographic—it was personal. We knew who ran which AS by name. If something broke, you’d call them directly. There was no ticket system or escalation path. Just one engineer talking to another, trying to bring order back from chaos.</p>
+
+<figure class="callout">
+  <img src="/assets/nstn.jpeg" alt="Distribution of global Internet users in 1995">
+  <figcaption>NSTN’s world in 1995: the global Internet was still small enough to tape to a NOC wall.</figcaption>
+</figure>
+
+<p>In 1995, when total Internet users barely crossed the 16-million mark, it still felt like a small town. I was working for NSTN, one of the early regional backbones in Canada, wiring up universities and government offices. We were building the Internet with duct tape, BGP, and blind faith.</p>
+
+<h2>FlowSpec: The Firepower I Once Feared</h2>
+<p>I didn’t trust FlowSpec when I first saw it. On paper, it sounded reckless—injecting ACL-like rules across routers in real time? One typo and you could nuke a /8. I’d seen automation blow up enough times to be wary of anything that reached into the control plane.</p>
+
+<p>I first saw FlowSpec taking shape in the late 2000s—RFC 5575 hit in 2009, and my gut reaction was, <em>absolutely not.</em> I respected the hell out of Danny McPherson—one of the original authors—but I’d seen too many “automation miracles” turn into outages. The idea of pushing dynamic filters across routers in real time felt like handing the pyro crew a flamethrower mid-set. One typo and you’re taking down an entire /8.</p>
+
+<p>For years, I kept it at arm’s length. I’d read the drafts, listen to Danny and Barry Greene explain the use cases, and still think, <em>no way I’m running that on a live backbone.</em> But then came the volumetric DDoS era—the kind that eats routers for breakfast. Suddenly, static ACLs and scrubbing centers couldn’t keep up. We needed a way to inject precision defenses at line speed.</p>
+
+<p>Around that time, we started pairing FlowSpec with peer validation, controlled propagation, and strict policy domains. The difference was night and day. When you limit the blast radius and validate every update, FlowSpec stops being a risk and starts being a weapon—a scalpel that can carve out attack traffic without killing production.</p>
+
+<p>It took me years—and a lot of midnight incident bridges—to finally trust it. But when you watch a FlowSpec rule drop an attack in seconds instead of minutes, it changes your religion a bit.</p>
+
+<p>FlowSpec wraps up generically in this story because it’s still evolving. The real takeaway isn’t a feature—it’s that trust, automation, and precision can coexist when built with discipline.</p>
+
+<h2>IRR Hygiene: Cleaning Up the Old Scene</h2>
+<p>Internet Routing Registries (IRRs) have always been a mess. Outdated objects, unverifiable claims, stale filters—it was like finding old setlists scribbled on beer-stained napkins. But the concept was never broken; the discipline was.</p>
+
+<p>When I was at Teleglobe, I remember arguing with multinational carriers about IRR data. We’d explain why it mattered—why accuracy and updates were essential for stability—and they’d shrug it off as unnecessary overhead. Some thought automation was a luxury; others didn’t trust the data itself. Fast-forward to 2025, and we’re still fighting the same battle.</p>
+
+<p>Modern tooling changed the tune. IRRd4 brought structured validation. CI/CD pipelines turned route-object management into versioned, testable code. When you align IRR data with RPKI-signed objects, you get something BGP desperately needs: predictability.</p>
+
+<p>That’s the secret: treat routing policy as code. Version it. Test it. Audit it. Because the second your registry diverges from reality, you’ve got chaos masquerading as order—and that’s how blackouts happen.</p>
+
+<h2>BGP Hijacking: When the Show Gets Stolen</h2>
+<p>Hijacking isn’t rare. It’s when an AS advertises prefixes it doesn’t own—like a cover band taking the stage and convincing the crowd they’re Metallica. Sometimes it’s malice. Sometimes it’s fat-finger. Either way, it reroutes traffic, leaks data, and breaks trust.</p>
+
+<p>The 2008 YouTube incident—when Pakistan Telecom accidentally announced a /24 meant to block YouTube domestically and instead took it offline globally—was the canary in the coal mine. Later attacks turned that accident into an art form: crypto-theft via route redirection, espionage cloaked as transit.</p>
+
+<p>The answer wasn’t panic. It was validation.</p>
+
+<h2>RPKI: Keeping the Setlist Honest</h2>
+<p>Resource Public Key Infrastructure (RPKI) is the backstage security pass for BGP. It proves who’s authorized to announce what. When it first hit the scene, I was skeptical. ROAs felt brittle, validators added moving parts, and trust anchors were still a work in progress. But over time—and thanks to operators like Job Snijders and the NLnet Labs team behind Routinator and Krill—it grew up.</p>
+
+<p>RPKI didn’t just add cryptographic signatures; it added accountability. It gave operators the power to say, “This prefix belongs to me—and here’s the proof.” That alone changed the tone of global routing.</p>
+
+<p>Today, RPKI origin validation is deployed at major backbones and IXPs. It’s not perfect—validators need high availability, and key management is still a human hazard—but it’s the best defense we have against origin hijacks. And when paired with automation, it’s transformative.</p>
+
+<p>RPKI doesn’t solve everything—it locks the front door, but the rest of the venue still needs guards who know when to step in. That’s where disciplined ops and automation finish the job.</p>
+
+<h2>The Human Side of Trust</h2>
+<p>For all our talk about validation, automation, and cryptography, trust is still human. It’s still the engineer on the other end of the line saying, “Yeah, I see it too.” The community isn’t as tight as it used to be—the mailing lists are quieter, the conference hallway tracks thinner—but when things break, engineers still talk to engineers. That’s how the Internet heals itself.</p>
+
+<p>When you’re chasing a route leak across continents, you don’t care about job titles or company logos. You care about who picks up the phone at 2 a.m. That kind of trust doesn’t scale, but it’s still the fastest protocol we’ve got.</p>
+
+<p>The tools may change, but the culture that built the Internet—hands-on, peer-to-peer, brutally honest—still beats beneath the layers of automation. It’s quieter now, but it’s still there.</p>
+
+<h2>The Modern Setlist: Control, Clarity, and Confidence</h2>
+<p>Modern routing isn’t about trust—it’s about verification. It’s about:</p>
+<ul>
+  <li><strong>Origin validation (RPKI)</strong> — verifying who can announce a prefix.</li>
+  <li><strong>Real-time mitigation (FlowSpec)</strong> — pushing live countermeasures without breaking production.</li>
+  <li><strong>Routing hygiene (IRR automation)</strong> — keeping intent and reality aligned.</li>
+</ul>
+
+<p>Each plays a role in transforming BGP from a handshake agreement into a living, resilient control system. We’ve moved from trusting peers to trusting math. That’s progress.</p>
+
+<p>But it’s not just tech. It’s culture. The operators who build and defend the backbone are part roadie, part surgeon, part chaos wrangler. They live in the noise—tuning, filtering, tightening—so the world’s packets keep moving.</p>
+
+<h2>The Legacy of the Roadies</h2>
+<p>Thirty-plus years later, <em>The Real Thing</em> still hits. So does BGP. Both were born of experimentation and defiance. Both evolved through pain, learning, and sheer necessity.</p>
+
+<p>The Internet’s loudest heroes aren’t on stage. They’re gray-bearded engineers who still remember what it felt like to hand-edit configs, rebuild routing tables, and debug BGP sessions from a console port. When things melt down, it’s still those same people who get the call. Experience doesn’t scale—but it still saves the show.</p>
+
+<p>Data centers hum like amps before the lights come up. The roadies check the cables, watch the metrics, and keep the beat steady. The rhythm of the Internet—steady, unseen, relentless—comes from them.</p>
+
+<p>So yeah—crank the amps. Validate your ROAs. Tune your prefixes. And when the routing storms hit, remember: the show only goes on because someone’s still out there, hauling gear and fighting chaos with a clipboard and a command line.</p>
+
+<p>Keep the horns raised—and the packets flowing.</p>
+</article>
+
+<footer>
+  &copy; 2025 James&nbsp;DeLeskie – All rights reserved. <a href="/">Back to Home</a>
+</footer>
+</body>
+</html>
