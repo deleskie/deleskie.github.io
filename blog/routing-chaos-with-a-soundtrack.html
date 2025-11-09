@@ -5,72 +5,150 @@
 <title>Routing Chaos with a Soundtrack: BGP, FlowSpec, and the Faith No More Approach to Control</title>
 <link rel="canonical" href="https://deleskie.com/blog/routing-chaos-with-a-soundtrack.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b1019;
-    --card: #141c2d;
-    --accent: #f97316;
-    --accent-soft: rgba(249, 115, 22, 0.18);
-    --text: #f8fafc;
+    --bg: #05070c;
+    --card: rgba(11, 18, 27, 0.9);
+    --primary: #0ea5e9;
+    --accent: #22d3ee;
+    --highlight: #f97316;
+    --text: #e5e7eb;
     --muted: #94a3b8;
-    --max-width: 780px;
+    --radius: 18px;
+    --max-width: 860px;
+    --transition: 220ms ease;
   }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: radial-gradient(circle at top left, rgba(249,115,22,0.08), transparent 55%),
-                linear-gradient(160deg, #060912 0%, #0f172a 55%, #05070e 100%);
-    color: var(--text);
     font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 40px 20px 80px;
-    line-height: 1.7;
+    background: radial-gradient(circle at top, rgba(8, 47, 73, 0.45), transparent 45%), var(--bg);
+    color: var(--text);
+    min-height: 100vh;
   }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  header {
-    max-width: var(--max-width);
-    margin: auto;
-    padding-bottom: 30px;
-    border-bottom: 1px solid rgba(249, 115, 22, 0.35);
+  body::after, body::before {
+    content: '';
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    filter: blur(30px);
+    z-index: -1;
   }
-  header h1 {
-    margin: 0 0 12px;
-    font-size: clamp(2.1rem, 4vw, 2.6rem);
+  body::before {
+    inset: -20% auto auto -10%;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.25), transparent 65%);
   }
-  header p.meta {
-    color: var(--muted);
-    font-size: 0.92rem;
-    letter-spacing: 0.04em;
+  body::after {
+    inset: auto -10% -25% auto;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.3), transparent 70%);
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+    background: rgba(5, 7, 12, 0.75);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
     text-transform: uppercase;
+    text-decoration: none;
   }
-  article {
+  .nav-links { display: flex; gap: 26px; font-size: 0.95rem; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .pill:hover {
+    background: rgba(34, 211, 238, 0.15);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+  main {
     max-width: var(--max-width);
-    margin: 40px auto;
+    margin: 0 auto;
+    padding: 120px 20px 80px;
+  }
+  header.hero {
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 24px;
+  }
+  header.hero h1 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  header.hero p.meta {
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.88rem;
+  }
+  .hero-media {
+    margin: 30px 0 10px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 45px rgba(2, 6, 23, 0.7);
+  }
+  .hero-media img {
+    width: 100%; height: 360px; object-fit: cover; display: block;
+  }
+  .article-card {
     background: var(--card);
     padding: 42px;
-    border-radius: 12px;
-    box-shadow: 0 24px 48px rgba(4, 7, 14, 0.55);
+    border-radius: var(--radius);
+    box-shadow: 0 24px 48px rgba(2, 6, 23, 0.65);
   }
-  article h2 {
+  .article-card h2 {
     margin-top: 36px;
     margin-bottom: 12px;
-    color: var(--accent);
-    font-size: 1.4rem;
+    color: var(--highlight);
+    font-size: 1.45rem;
   }
-  article p {
-    margin: 18px 0;
-  }
+  .article-card p { margin: 18px 0; }
   .callout {
     margin: 34px 0;
     padding: 18px;
-    background: var(--accent-soft);
-    border-radius: 10px;
-    border: 1px solid rgba(249, 115, 22, 0.25);
+    background: rgba(249, 115, 22, 0.12);
+    border-radius: var(--radius);
+    border: 1px solid rgba(249, 115, 22, 0.35);
     text-align: center;
   }
   .callout img {
     max-width: 100%;
-    border-radius: 8px;
+    border-radius: var(--radius);
     box-shadow: 0 14px 32px rgba(4, 7, 14, 0.65);
   }
   .callout figcaption {
@@ -79,27 +157,77 @@
     font-size: 0.85rem;
     letter-spacing: 0.03em;
   }
-  footer {
-    max-width: var(--max-width);
-    margin: 60px auto 0;
+  .cta-panel {
+    margin-top: 40px;
+    padding: 28px 32px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(2, 6, 23, 0.8));
+  }
+  .cta-panel h3 { margin-bottom: 12px; font-size: 1.4rem; }
+  .cta-panel a { color: var(--accent); font-weight: 600; }
+  .footer {
+    margin-top: 70px;
     text-align: center;
     color: var(--muted);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 30px;
   }
-  @media (max-width: 600px) {
-    article {
-      padding: 30px;
-    }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .floating-cta {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: linear-gradient(120deg, var(--accent), var(--highlight));
+    color: #05070e;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 18px 40px rgba(249,115,22,0.35);
+  }
+  .floating-cta:hover { transform: translateY(-3px); }
+  .footer a:hover { text-decoration: underline; }
+  @media (max-width: 640px) {
+    .article-card { padding: 28px; }
+    .nav-inner { flex-direction: column; align-items: flex-start; }
+    .nav-links { flex-wrap: wrap; }
   }
 </style>
 </head>
 <body>
-<header>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">Jim DeLeskie</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#approach">Method</a>
+      <a href="/#why-us">Why Jim</a>
+      <a href="/#field-notes">Field Notes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#bio">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a class="pill" href="mailto:hello@deleskie.com">Book an Intro</a>
+  </div>
+</nav>
+<main>
+<header class="hero">
   <h1>Routing Chaos with a Soundtrack: BGP, FlowSpec, and the Faith No More Approach to Control</h1>
   <p class="meta">Faith No More riffs, late-night BGP saves, and the tooling that keeps the amps humming.</p>
 </header>
-
-<article>
+<figure class="hero-media">
+  <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80" alt="Engineer reviewing networking telemetry on stage lighting background">
+</figure>
+<article class="article-card">
 <h2>1989: When Two Revolutions Plugged In</h2>
 <p>In 1989, I graduated high school, bought my first 1200-baud modem, and joined a generation discovering that the world could be connected—line by line, byte by byte. The same year, two other revolutions hit their respective stages. One was <em>Faith No More’s</em> <strong>The Real Thing</strong>, an album that shattered the idea of what rock could be. The other was the Border Gateway Protocol (BGP), which did the same for the internet.</p>
 
@@ -108,7 +236,7 @@
 <h2>The Unsung Roadie of the Internet</h2>
 <p>If the global internet is a massive rock festival, BGP is the roadie who makes sure the lights come on and every band hits the right stage. It doesn’t get applause, but without it, the show doesn’t happen.</p>
 
-<p>Before BGP, the internet looked more like a loose collection of regional garage bands—each playing their own small gigs, rarely crossing paths. Then came BGP (RFC 1105, courtesy of Yakov Rekhter and Kirk Lougheed). Suddenly, networks could peer, exchange routes, and scale globally. It was the tour manager the internet never knew it needed.</p>
+<p>Before BGP, the internet looked more like a loose collection of regional garage bands—each playing their own small gigs, rarely crossing paths. Then came BGP (<a href="https://www.rfc-editor.org/rfc/rfc1105" target="_blank" rel="noopener">RFC 1105</a>, courtesy of Yakov Rekhter and Kirk Lougheed). Suddenly, networks could peer, exchange routes, and scale globally. It was the tour manager the internet never knew it needed.</p>
 
 <p>BGP’s stayed relevant because it was designed to evolve. It’s modular. Extensible. A protocol that can take a punch and still keep the tour on schedule. But like any roadie, BGP has one tragic flaw: it trusts too easily. It believes what it’s told, even when the source is shady. That blind trust has cost the internet dearly—from misconfigurations that blackhole entire regions to hijacks that redirect global traffic through rogue ASes.</p>
 
@@ -120,7 +248,7 @@
 <p>Back then, trust wasn’t cryptographic—it was personal. We knew who ran which AS by name. If something broke, you’d call them directly. There was no ticket system or escalation path. Just one engineer talking to another, trying to bring order back from chaos.</p>
 
 <figure class="callout">
-  <img src="/assets/nstn.jpg" alt="Distribution of global Internet users in 1995">
+  <img src="../assets/nstn.jpg" alt="NSTN network map taped to a NOC wall, 1995">
   <figcaption>NSTN’s world in 1995: the global Internet was still small enough to tape to a NOC wall.</figcaption>
 </figure>
 
@@ -129,7 +257,7 @@
 <h2>FlowSpec: The Firepower I Once Feared</h2>
 <p>I didn’t trust FlowSpec when I first saw it. On paper, it sounded reckless—injecting ACL-like rules across routers in real time? One typo and you could nuke a /8. I’d seen automation blow up enough times to be wary of anything that reached into the control plane.</p>
 
-<p>I first saw FlowSpec taking shape in the late 2000s—RFC 5575 hit in 2009, and my gut reaction was, <em>absolutely not.</em> I respected the hell out of Danny McPherson—one of the original authors—but I’d seen too many “automation miracles” turn into outages. The idea of pushing dynamic filters across routers in real time felt like handing the pyro crew a flamethrower mid-set. One typo and you’re taking down an entire /8.</p>
+<p>I first saw FlowSpec taking shape in the late 2000s—<a href="https://www.rfc-editor.org/rfc/rfc5575" target="_blank" rel="noopener">RFC 5575</a> hit in 2009, and my gut reaction was, <em>absolutely not.</em> I respected the hell out of Danny McPherson—one of the original authors—but I’d seen too many “automation miracles” turn into outages. The idea of pushing dynamic filters across routers in real time felt like handing the pyro crew a flamethrower mid-set. One typo and you’re taking down an entire /8.</p>
 
 <p>For years, I kept it at arm’s length. I’d read the drafts, listen to Danny and Barry Greene explain the use cases, and still think, <em>no way I’m running that on a live backbone.</em> But then came the volumetric DDoS era—the kind that eats routers for breakfast. Suddenly, static ACLs and scrubbing centers couldn’t keep up. We needed a way to inject precision defenses at line speed.</p>
 
@@ -156,7 +284,7 @@
 <p>The answer wasn’t panic. It was validation.</p>
 
 <h2>RPKI: Keeping the Setlist Honest</h2>
-<p>Resource Public Key Infrastructure (RPKI) is the backstage security pass for BGP. It proves who’s authorized to announce what. When it first hit the scene, I was skeptical. ROAs felt brittle, validators added moving parts, and trust anchors were still a work in progress. But over time—and thanks to operators like Job Snijders and the NLnet Labs team behind Routinator and Krill—it grew up.</p>
+<p>Resource Public Key Infrastructure (<a href="https://www.rfc-editor.org/rfc/rfc6480" target="_blank" rel="noopener">RPKI, RFC 6480</a>) is the backstage security pass for BGP. It proves who’s authorized to announce what. When it first hit the scene, I was skeptical. ROAs felt brittle, validators added moving parts, and trust anchors were still a work in progress. But over time—and thanks to operators like Job Snijders and the NLnet Labs team behind Routinator and Krill—it grew up.</p>
 
 <p>RPKI didn’t just add cryptographic signatures; it added accountability. It gave operators the power to say, “This prefix belongs to me—and here’s the proof.” That alone changed the tone of global routing.</p>
 
@@ -194,9 +322,26 @@
 
 <p>Keep the horns raised—and the packets flowing.</p>
 </article>
-
-<footer>
-  &copy; 2025 James&nbsp;DeLeskie – All rights reserved. <a href="/">Back to Home</a>
+<div class="cta-panel">
+  <h3>Need calmer BGP war rooms?</h3>
+  <p>Jim DeLeskie helps teams modernize routing, FlowSpec, and incident response playbooks with battle-tested patterns.</p>
+  <p><a href="mailto:hello@deleskie.com">hello@deleskie.com</a> · <a href="https://www.linkedin.com/in/jimdeleskie" target="_blank" rel="noopener">LinkedIn</a></p>
+</div>
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/#services">Services</a>
+    <a href="/#approach">Method</a>
+    <a href="/#why-us">Why Jim</a>
+    <a href="/#field-notes">Field Notes</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#bio">About</a>
+    <a href="/#contact">Contact</a>
+    <a href="/blog/routing-chaos-with-a-soundtrack.html">Routing Chaos</a>
+    <a href="/blog/the-quiet-professionals-of-tech.html">Quiet Professionals</a>
+  </div>
+  <p>© 2025 Jim DeLeskie — Secure automation and AI programs with confidence.</p>
 </footer>
+</main>
+<a class="floating-cta" href="/#contact">Talk to Jim →</a>
 </body>
 </html>

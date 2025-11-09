@@ -1,100 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Blog | James DeLeskie</title>
-<link rel="canonical" href="https://deleskie.com/blog/">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<title>Field Notes – Jim DeLeskie</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Field notes from Jim DeLeskie covering routing resilience, DDoS response, and applied AI." />
+<link rel="canonical" href="https://deleskie.com/blog/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #060a13;
-    --card: #121a2b;
-    --accent: #8b5cf6;
-    --text: #f8fafc;
-    --muted: #94a3b8;
-    --max-width: 860px;
+    --bg: #03030a;
+    --card: rgba(18,16,32,0.92);
+    --stroke: rgba(255,255,255,0.08);
+    --accent: #a855f7;
+    --highlight: #f472b6;
+    --text: #f1f5f9;
+    --muted: #9ca3af;
+    --radius: 18px;
+    --transition: 220ms ease;
+    --max-width: 1040px;
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
   body {
-    background: linear-gradient(180deg, rgba(11,17,32,1) 0%, rgba(7,11,21,1) 45%, rgba(5,8,16,1) 100%);
-    color: var(--text);
     font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 48px 20px 80px;
+    background: radial-gradient(circle at 20% 10%, rgba(168,85,247,0.25), transparent 45%), #03030a;
+    color: var(--text);
+    min-height: 100vh;
   }
-  header {
+  nav {
+    position: sticky; top:0; z-index:20;
+    backdrop-filter: blur(12px);
+    background: rgba(3,3,10,0.9);
+    border-bottom: 1px solid var(--stroke);
+  }
+  .nav-inner {
     max-width: var(--max-width);
-    margin: 0 auto 40px;
-    text-align: center;
+    margin:0 auto;
+    padding:18px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
   }
-  header h1 {
-    margin: 0 0 12px;
-    font-size: clamp(2.2rem, 4vw, 2.7rem);
-  }
-  header p {
-    margin: 0;
-    color: var(--muted);
-  }
-  .post-list {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    display: grid;
-    gap: 28px;
-  }
+  .logo { font-family:'Space Grotesk',sans-serif; letter-spacing:0.12em; color:var(--highlight); text-decoration:none; text-transform:uppercase; }
+  .nav-links { display:flex; gap:20px; flex-wrap:wrap; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; font-size:0.8rem; }
+  .nav-links a:hover { color:var(--highlight); }
+  .pill { display:inline-flex; align-items:center; padding:10px 18px; border-radius:999px; border:1px solid var(--stroke); color:var(--text); text-decoration:none; font-weight:600; }
+  main { max-width: var(--max-width); margin:0 auto; padding:120px 24px 100px; }
+  header.hero { margin-bottom:40px; }
+  header.hero p.meta { font-family:'IBM Plex Mono',monospace; letter-spacing:0.14em; text-transform:uppercase; color:var(--highlight); margin-bottom:12px; }
+  header.hero h1 { font-size: clamp(2.4rem, 4vw, 3.2rem); font-weight:900; margin-bottom:16px; }
+  header.hero p.desc { color: var(--muted); max-width:720px; }
+  .posts { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:26px; margin-top:40px; }
   .post-card {
     background: var(--card);
-    border-radius: 14px;
-    padding: 32px;
-    border: 1px solid rgba(139, 92, 246, 0.18);
-    box-shadow: 0 22px 40px rgba(5, 8, 16, 0.55);
+    border-radius: var(--radius);
+    border:1px solid var(--stroke);
+    padding:30px;
+    box-shadow: 0 25px 45px rgba(3,3,10,0.65);
+    transition: transform var(--transition), border-color var(--transition);
   }
-  .post-card h2 {
-    margin: 0 0 10px;
-    font-size: 1.4rem;
-  }
-  .post-card p {
-    margin: 0 0 18px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .post-card a {
-    color: var(--accent);
-    font-weight: 600;
+  .post-card:hover { transform: translateY(-6px); border-color: rgba(244,114,182,0.35); }
+  .post-card span { font-family:'IBM Plex Mono',monospace; font-size:0.78rem; letter-spacing:0.08em; color:var(--muted); text-transform:uppercase; }
+  .post-card h2 { margin:10px 0; font-size:1.35rem; color:var(--accent); }
+  .post-card p { color:var(--text); margin-bottom:16px; }
+  .post-card a { color:var(--highlight); text-decoration:none; font-weight:600; }
+  .footer { margin-top:90px; text-align:center; color:var(--muted); border-top:1px solid var(--stroke); padding:30px 0; }
+  .footer-links { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; margin-bottom:14px; }
+  .footer a { color:var(--highlight); text-decoration:none; font-weight:600; font-size:0.9rem; }
+  .floating-cta {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: linear-gradient(120deg, var(--accent), var(--highlight));
+    color: #05070e;
+    padding: 12px 22px;
+    border-radius: 999px;
     text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 18px 40px rgba(168,85,247,0.35);
   }
-  .post-card a:hover {
-    text-decoration: underline;
-  }
-  footer {
-    max-width: var(--max-width);
-    margin: 50px auto 0;
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
+  .floating-cta:hover { transform: translateY(-3px); }
 </style>
 </head>
 <body>
-<header>
-  <h1>Blog Archive</h1>
-  <p>Route tales, war stories and the riffs that keep the packets flowing.</p>
-</header>
-
-<main class="post-list">
-  <article class="post-card">
-    <h2><a href="/blog/routing-chaos-with-a-soundtrack.html">Routing Chaos with a Soundtrack</a></h2>
-    <p>BGP, FlowSpec and IRR hygiene, told through Faith No More riffs and late-night incident bridges from the dial-up era to today.</p>
-    <a href="/blog/routing-chaos-with-a-soundtrack.html">Read the blog →</a>
-  </article>
-  <article class="post-card">
-    <h2><a href="/blog/the-quiet-professionals-of-tech.html">The Quiet Professionals of Tech</a></h2>
-    <p>Why the best engineers aren’t minted—they’re forged in high-stakes environments. Veterans bring the resilience and discipline the tech world needs.</p>
-    <a href="/blog/the-quiet-professionals-of-tech.html">Read the blog →</a>
-  </article>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">Jim DeLeskie</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#approach">Method</a>
+      <a href="/#field-notes">Field Notes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#bio">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a class="pill" href="mailto:hello@deleskie.com">Book an intro</a>
+  </div>
+</nav>
+<main>
+  <header class="hero">
+    <p class="meta">Field notes</p>
+    <h1>Dispatches from three decades of routing & response.</h1>
+    <p class="desc">Long-form riffs on BGP chaos, FlowSpec redemption arcs, automation lessons, and the quiet professionals who keep the Internet standing. Expect more entries soon.</p>
+  </header>
+  <section class="posts">
+    <article class="post-card">
+      <span>Routing • FlowSpec • IRR</span>
+      <h2>Routing Chaos with a Soundtrack</h2>
+      <p>BGP, FlowSpec, and IRR hygiene told through late-night incident bridges and Faith No More riffs.</p>
+      <a href="/blog/routing-chaos-with-a-soundtrack.html">Read the post →</a>
+    </article>
+    <article class="post-card">
+      <span>Leadership • Veterans</span>
+      <h2>The Quiet Professionals of Tech</h2>
+      <p>Why veteran engineers are the backbone of dependable teams — and how to lead like them.</p>
+      <a href="/blog/the-quiet-professionals-of-tech.html">Read the post →</a>
+    </article>
+  </section>
 </main>
-
-<footer>
-  <a href="/" style="color: var(--accent); text-decoration:none;">← Back to Home</a>
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/#services">Services</a>
+    <a href="/#approach">Method</a>
+    <a href="/#field-notes">Field Notes</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#bio">About</a>
+    <a href="/#contact">Contact</a>
+  </div>
+  <p>© 2025 Jim DeLeskie — Secure automation and AI programs with confidence.</p>
 </footer>
+<a class="floating-cta" href="/#contact">Talk to Jim →</a>
 </body>
 </html>

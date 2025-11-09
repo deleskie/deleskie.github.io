@@ -5,41 +5,135 @@
 <title>The Quiet Professionals of Tech</title>
 <link rel="canonical" href="https://deleskie.com/blog/the-quiet-professionals-of-tech.html">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f141b;
-    --card: #171f29;
+    --bg: #05070c;
+    --card: rgba(11, 18, 27, 0.9);
+    --primary: #0ea5e9;
     --accent: #8ab4f8;
-    --text: #e8eaed;
+    --highlight: #22d3ee;
+    --text: #e5e7eb;
     --muted: #9aa0a6;
-    --max-width: 780px;
+    --radius: 18px;
+    --max-width: 860px;
+    --transition: 220ms ease;
   }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: var(--bg);
-    color: var(--text);
     font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 40px 20px;
-    line-height: 1.6;
+    background: radial-gradient(circle at top, rgba(58, 99, 205, 0.35), transparent 45%), var(--bg);
+    color: var(--text);
+    min-height: 100vh;
   }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  header { max-width: var(--max-width); margin: auto; padding-bottom: 30px; border-bottom: 1px solid #2f3b51; }
-  header h1 { margin: 0 0 10px; font-size: 2em; }
-  header p.meta { color: var(--muted); font-size: 0.9em; }
-  article { max-width: var(--max-width); margin: 40px auto; background: var(--card); padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-  article h2 { margin-top: 30px; color: var(--accent); }
-  footer { max-width: var(--max-width); margin: 40px auto; text-align: center; color: var(--muted); font-size: 0.8em; }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+    background: rgba(5, 7, 12, 0.75);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 26px; font-size: 0.95rem; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .pill:hover { background: rgba(138, 180, 248, 0.15); color: var(--accent); transform: translateY(-2px); }
+  main { max-width: var(--max-width); margin: 0 auto; padding: 120px 20px 80px; }
+  header.hero { margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 24px; }
+  header.hero h1 { font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+  header.hero p.meta { color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.88rem; }
+  .hero-media { margin: 30px 0 10px; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 25px 45px rgba(2,6,23,0.7); }
+  .hero-media img { width: 100%; height: 360px; object-fit: cover; display: block; }
+  .article-card { background: var(--card); padding: 42px; border-radius: var(--radius); box-shadow: 0 24px 48px rgba(2,6,23,0.65); }
+  .article-card h2 { margin-top: 36px; margin-bottom: 12px; color: var(--accent); font-size: 1.45rem; }
+  .article-card p { margin: 18px 0; color: var(--text); }
+  .cta-panel { margin-top: 40px; padding: 28px 32px; border-radius: var(--radius); border: 1px solid rgba(34, 211, 238, 0.35); background: linear-gradient(135deg, rgba(138, 180, 248, 0.18), rgba(2, 6, 23, 0.8)); }
+  .cta-panel h3 { margin-bottom: 12px; font-size: 1.4rem; }
+  .cta-panel a { color: var(--accent); font-weight: 600; }
+  .footer { margin-top: 70px; text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 30px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 14px; }
+  .footer a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .footer a:hover { text-decoration: underline; }
+  .floating-cta {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: linear-gradient(120deg, var(--accent), var(--highlight));
+    color: #05070e;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 18px 40px rgba(168,85,247,0.35);
+  }
+  .floating-cta:hover { transform: translateY(-3px); }
+  @media (max-width: 640px) {
+    .article-card { padding: 28px; }
+    .nav-inner { flex-direction: column; align-items: flex-start; }
+    .nav-links { flex-wrap: wrap; }
+  }
 </style>
 </head>
 <body>
-<header>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">Jim DeLeskie</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#approach">Method</a>
+      <a href="/#why-us">Why Jim</a>
+      <a href="/#field-notes">Field Notes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#bio">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a class="pill" href="mailto:hello@deleskie.com">Book an Intro</a>
+  </div>
+</nav>
+<main>
+<header class="hero">
   <h1>The Quiet Professionals of Tech</h1>
   <p class="meta">On why the best engineers aren’t minted — they’re forged.</p>
 </header>
-
-<article>
+<figure class="hero-media">
+  <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1600&q=80" alt="Veteran engineers collaborating in a dark operations center">
+</figure>
+<article class="article-card">
 <p>In the last decade, every tech conference and boardroom conversation has danced around the same problem: there aren’t enough engineers. Not the kind you can retrain with a two‑week certification, but the kind who can walk into a datacenter outage, smell the burnt ozone of an overloaded PSU, and know instinctively which part of the network is lying to them. Those engineers, the ones who keep calm when everything else is burning, are vanishing.</p>
 
 <p>It’s an industry‑wide vacuum. We’ve built a digital civilization on people who remember what BGP really does, how packets actually traverse, and why DDoS isn’t just a cost center. And those people? They’re aging out. The graybeards are still showing up, still carrying pagers they refuse to give up, but their replacements are few and far between. Most universities don’t mint network engineers anymore. They mint “cloud architects” who’ve never racked a switch. That’s not a dig. It’s evolution. But we’ve lost a generation of builders in the middle.</p>
@@ -84,9 +178,26 @@
 
 <p>If you run teams that defend, deliver or design—whether at scale or inside your own enterprise—hire the people who already know how to hold the line when the storm hits. They’re the ones who keep the lights on.</p>
 </article>
-
-<footer>
-  &copy; 2025 James DeLeskie – All rights reserved. <a href="/">Back to Home</a>
+<div class="cta-panel">
+  <h3>Build your own quiet professional bench.</h3>
+  <p>Jim DeLeskie helps leadership teams tap veteran engineers, codify runbooks, and mentor the next generation of steady hands.</p>
+  <p><a href="mailto:hello@deleskie.com">hello@deleskie.com</a> · <a href="https://www.linkedin.com/in/jimdeleskie" target="_blank" rel="noopener">LinkedIn</a></p>
+</div>
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/#services">Services</a>
+    <a href="/#approach">Method</a>
+    <a href="/#why-us">Why Jim</a>
+    <a href="/#field-notes">Field Notes</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#bio">About</a>
+    <a href="/#contact">Contact</a>
+    <a href="/blog/routing-chaos-with-a-soundtrack.html">Routing Chaos</a>
+    <a href="/blog/the-quiet-professionals-of-tech.html">Quiet Professionals</a>
+  </div>
+  <p>© 2025 Jim DeLeskie — Secure automation and AI programs with confidence.</p>
 </footer>
+</main>
+<a class="floating-cta" href="/#contact">Talk to Jim →</a>
 </body>
 </html>
