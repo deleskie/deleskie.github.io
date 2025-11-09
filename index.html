@@ -104,82 +104,97 @@ header::before {
   opacity: 0.55;
   mix-blend-mode: screen;
 }
-.hero-inner {
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 48px;
+  align-items: start;
   position: relative;
-  max-width: 980px;
-  margin: 0 auto;
-  text-align: center;
+  z-index: 1;
 }
-.hero-inner h1 {
-  font-size: clamp(2.8rem, 5vw, 3.8rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  margin-bottom: 18px;
-}
-.hero-inner p {
-  font-size: 1.2rem;
-  color: var(--muted);
-  max-width: 720px;
-  margin: 0 auto 28px;
-}
-.hero-tags {
+.hero-chip {
   display: inline-flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 32px;
-}
-.hero-tags span {
-  border: 1px solid rgba(139, 92, 246, 0.35);
-  padding: 8px 16px;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
   border-radius: 999px;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  border: 1px solid rgba(139, 92, 246, 0.35);
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
   color: var(--accent);
   background: rgba(17, 26, 46, 0.7);
 }
-.hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: linear-gradient(120deg, var(--primary), var(--accent));
-  border-radius: 999px;
-  padding: 15px 36px;
-  color: #fff;
-  font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  box-shadow: var(--shadow);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.hero-subhead {
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  color: var(--highlight);
+  margin: 12px 0 8px;
 }
-.hero-cta:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.35);
+.hero-tagline {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.cta-primary,
+.cta-secondary {
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cta-primary {
+  background: linear-gradient(120deg, var(--primary), var(--accent));
+  color: #05070e;
+  box-shadow: 0 12px 30px rgba(139, 92, 246, 0.35);
+}
+.cta-secondary {
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: var(--text);
+}
+.cta-primary:hover,
+.cta-secondary:hover {
+  transform: translateY(-3px);
 }
 .hero-stats {
-  margin-top: 54px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: 14px;
 }
-.stat {
-  background: rgba(20, 27, 46, 0.9);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+.data-card {
+  background: rgba(20, 27, 46, 0.88);
+  border: 1px solid rgba(139, 92, 246, 0.25);
   border-radius: var(--radius);
-  padding: 22px 20px;
-  text-align: left;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
 }
-.stat strong {
+.data-card span {
   display: block;
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.stat span {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  text-transform: uppercase;
   color: var(--muted);
+}
+.data-card p {
+  margin-top: 4px;
   font-size: 0.95rem;
+  color: var(--text);
+}
+.data-card strong {
+  font-size: 1.5rem;
+  color: #fff;
+  white-space: nowrap;
 }
 section {
   padding: 80px 22px;
@@ -457,29 +472,53 @@ footer {
 </nav>
 
 <header>
-  <div class="hero-inner">
-    <h1>Network Resilience Meets Responsible AI</h1>
-    <p>Veteran network architect, security engineer and heavy-metal lifer who has spent three decades building carriers, leading global DDoS defenses and now fusing AI with rock-solid infrastructure—always with the gain knob at eleven.</p>
-    <div class="hero-tags">
-      <span>Internet Backbone</span>
-      <span>DDoS Defense</span>
-      <span>AI Automation</span>
-      <span>Leadership</span>
-      <span>Heavy Metal</span>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-chip">Network Security & Applied AI</div>
+      <p class="hero-subhead">Thirty years of pager scars</p>
+      <h1>Keep the lights on, the amps hot, and the packets flowing.</h1>
+      <p>I design resilient routing, DDoS response programs, and private AI workflows for teams who can’t afford chaos. Every playbook comes from decades of carrying the pager for carriers, clouds, and large-scale events.</p>
+      <p class="hero-tagline">Built early ISPs, ran global DDoS defense, still chasing the perfect route.</p>
+      <div class="hero-actions">
+        <a class="cta-primary" href="#contact">Talk to Jim →</a>
+        <a class="cta-secondary" href="#services">See capabilities</a>
+      </div>
     </div>
-    <a class="hero-cta" href="mailto:info@deleskie.com">Let’s Build Something Resilient →</a>
     <div class="hero-stats">
-      <div class="stat">
-        <strong>30+</strong>
-        <span>years keeping global networks online</span>
+      <div class="data-card">
+        <div>
+          <span>Tier 1 builds shipped</span>
+          <p>Carrier and national backbone programs architected end-to-end.</p>
+        </div>
+        <strong>60+</strong>
       </div>
-      <div class="stat">
-        <strong>Dozens</strong>
-        <span>internet-scale outages resolved and dissected</span>
+      <div class="data-card">
+        <div>
+          <span>Bandwidth protected</span>
+          <p>DDoS mitigation covering tens of Tbps of live traffic.</p>
+        </div>
+        <strong>10s&nbsp;Tbps</strong>
       </div>
-      <div class="stat">
-        <strong>2</strong>
-        <span>AI-driven network protection patent families filed</span>
+      <div class="data-card">
+        <div>
+          <span>AI & automation launches</span>
+          <p>Private LLM labs, assistants, and orchestration programs.</p>
+        </div>
+        <strong>120+</strong>
+      </div>
+      <div class="data-card">
+        <div>
+          <span>Customers steadied</span>
+          <p>From hyperscale operators to thousands of SMBs.</p>
+        </div>
+        <strong>1,000+</strong>
+      </div>
+      <div class="data-card">
+        <div>
+          <span>War-room response</span>
+          <p>Detection-to-mitigation windows for Tier Zero events.</p>
+        </div>
+        <strong>&lt;1&nbsp;min</strong>
       </div>
     </div>
   </div>
