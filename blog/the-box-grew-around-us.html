@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Box Grew Around Us: Security from Floppies to AI</title>
+<link rel="canonical" href="https://deleskie.com/blog/the-box-grew-around-us.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How security evolved from yellowed floppy boxes and locked rooms to cloud perimeters, AI-era defense, and the constant need to control access.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05030d;
+    --card: rgba(15, 13, 28, 0.92);
+    --primary: #8b5cf6;
+    --accent: #c084fc;
+    --highlight: #f472b6;
+    --text: #f4f3ff;
+    --muted: #a7a3c2;
+    --radius: 18px;
+    --max-width: 860px;
+    --transition: 220ms ease;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at 18% 12%, rgba(139, 92, 246, 0.25), transparent 45%), radial-gradient(circle at 80% 0%, rgba(244, 114, 182, 0.16), transparent 40%), var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+    background: rgba(5, 6, 12, 0.85);
+    border-bottom: 1px solid rgba(192, 132, 252, 0.16);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 26px; font-size: 0.95rem; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .pill:hover { background: rgba(192, 132, 252, 0.18); color: var(--accent); transform: translateY(-2px); }
+  main { max-width: var(--max-width); margin: 0 auto; padding: 120px 20px 80px; }
+  header.hero { margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 24px; }
+  header.hero h1 { font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 900; line-height: 1.2; margin-bottom: 12px; }
+  header.hero p.meta { color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.88rem; }
+  .hero-media { margin: 30px 0 10px; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(192,132,252,0.25); box-shadow: 0 25px 45px rgba(6,7,20,0.75); }
+  .hero-media img { width: 100%; height: 360px; object-fit: cover; display: block; }
+  .article-card { background: var(--card); padding: 42px; border-radius: var(--radius); box-shadow: 0 24px 48px rgba(6,7,20,0.7); }
+  .article-card h2 { margin-top: 36px; margin-bottom: 12px; color: var(--accent); font-size: 1.45rem; }
+  .article-card p { margin: 18px 0; color: var(--text); }
+  .cta-panel { margin-top: 40px; padding: 28px 32px; border-radius: var(--radius); border: 1px solid rgba(192,132,252,0.35); background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(8,10,24,0.92)); }
+  .cta-panel h3 { margin-bottom: 12px; font-size: 1.4rem; }
+  .cta-panel a { color: var(--accent); font-weight: 600; }
+  .footer { margin-top: 70px; text-align: center; color: var(--muted); font-size: 0.85rem; border-top: 1px solid rgba(192,132,252,0.16); padding-top: 30px; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 14px; }
+  .footer a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .footer a:hover { text-decoration: underline; }
+  .floating-cta {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: linear-gradient(120deg, var(--accent), var(--highlight));
+    color: #05070e;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 18px 40px rgba(168,85,247,0.35);
+  }
+  .floating-cta:hover { transform: translateY(-3px); }
+  @media (max-width: 640px) {
+    .article-card { padding: 28px; }
+    .nav-inner { flex-direction: column; align-items: flex-start; }
+    .nav-links { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">Jim DeLeskie</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#approach">Method</a>
+      <a href="/#why-us">Why Jim</a>
+      <a href="/#field-notes">Field Notes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#bio">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a class="pill" href="mailto:deleskie@gmail.com">Book an Intro</a>
+  </div>
+</nav>
+<main>
+<header class="hero">
+  <h1>The Box Grew Around Us: Security from Floppies to AI</h1>
+  <p class="meta">From yellowed floppy boxes to AI defense, the mission never changed—control access and keep the door small.</p>
+</header>
+<figure class="hero-media">
+  <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1600&q=80" alt="Vintage computer workstation glowing in a dark room">
+</figure>
+<article class="article-card">
+<h2>When security was a room you could stand in</h2>
+<p>There is a photograph that shows up online every now and then. You know the one. A smoky plastic floppy box that faded to the same yellow you would see on an old kitchen phone. Inside it are neat stacks of disks. On the front is a tiny lock that probably never stopped anyone. Under the image someone wrote, “Laugh all you want, but the information on those floppies cannot be hacked from half a world away.”</p>
+
+<p>It works as a joke, but it also lands as something quieter. It takes you back to a time when life moved slower. When the biggest problems were the people you shared apartments with and the turns your early friendships took. Nothing felt simple back then, but it was. The world was smaller. The technology was smaller. That plastic box belonged to a version of life we are never getting back.</p>
+
+<p>In the early days of the commercial internet, security was a physical thing. If you wanted to keep something safe, you put it somewhere and made sure only the right people could reach it. The threat surface was whatever room you were standing in. Your perimeter was the building. If the door was locked and the server lights were on, it felt like that was enough.</p>
+
+<p>I remember those rooms. I had one of those smoky floppy boxes myself. Everyone did. It yellowed faster than I could replace the disks. I lost it during one of the moves between early jobs, when everything I owned fit in a small car. I remember the CRTs humming. The heat from racks that had no airflow planning. The hiss and chirp of a 1200 baud modem fighting to hold a connection. A data breach meant someone lifted a laptop or walked away with a printout. The stakes were real, but the battlefield was small. You could stand in it, look around, and understand the risks.</p>
+
+<p>Security worked because everything was close.</p>
+
+<h2>When distance disappeared</h2>
+<p>Then we connected everything, and “close” lost its meaning.</p>
+
+<p>Networks started to stretch across cities. Then across countries. Then across oceans. The floppy box era ended without ceremony. It shifted one step at a time. A new router here. A 56k frame relay circuit there. A firewall added by someone who barely had documentation. Then the worms hit. Not politely. Not gradually. They hit hard enough that the industry had to grow up.</p>
+
+<p>What had been a physical problem turned into a mathematical one. Attackers no longer needed a key or a story to get past a receptionist. They only needed an open port.</p>
+
+<p>The mistakes now look obvious. Weak passwords. Machines nobody patched. Flat networks that trusted anything inside them. Anyone who lived through that period remembers the first time a worm hit their environment. It felt like the walls fell away. Because they did.</p>
+
+<p>By the time the cloud arrived, the idea of a perimeter was already fading. The internet became the network. Applications ran in places no one could point to on a map. People logged in from homes and airports. The tools had to evolve. Identity became the center. Encryption became the default. Logging became the only real visibility anyone had.</p>
+
+<p>The complexity grew, but it was still something a human could understand.</p>
+
+<h2>When machine speed rewrote the rules</h2>
+<p>Then AI arrived, and the scale shifted again.</p>
+
+<p>Security stopped being physical. It stopped being only mathematical. It became statistical. Behavioral. Predictive. It started running at machine speed. It paid more attention to patterns than ports. It responded based on probability instead of certainty. It defended systems that moved faster than any person could keep up with.</p>
+
+<p>A network is no longer a place. It behaves like something alive. A frontier model is not a single asset. It is a wide surface with countless angles. A cluster is not a rack. It is a fabric where one bad moment can drag everything down if you do not design around failure.</p>
+
+<p>In that context, the floppy box looks almost honest. It shows a time when security felt understandable. When you could point at the thing you were protecting and know exactly how someone would have to get to it.</p>
+
+<p>We cannot return to that simplicity. The systems we rely on now are too large and too connected.</p>
+
+<h2>What still matters</h2>
+<p>But the lesson still holds. Control matters. Isolation matters. Knowing your own exposure matters more than any tool you run.</p>
+
+<p>When I look at that old photograph, I do not see nostalgia. I see the pattern that shows up every time the world changes. Every generation thinks its security model is solid until something bigger arrives. The floppy box gave way to the firewall. The firewall gave way to the cloud. The cloud gave way to AI. Something will come after that as well.</p>
+
+<p>Security is not a fixed point. It is a direction. The best we can do is move toward it while the ground shifts under us.</p>
+
+<p>The floppy box would not survive today. But it captured something we should not forget. Threats do not begin as technology. They begin as access. And access always starts with a door.</p>
+
+<p>The shape of the door changes. The principle does not.</p>
+
+<p>This is what the evolution of security really has been. A long walk from a yellowed plastic lid with a tiny key to systems that defend themselves through models that keep learning as they run.</p>
+
+<p>Different tools. Same mission.</p>
+
+<p>We are still trying to lock the box. The box just grew around us.</p>
+</article>
+<div class="cta-panel">
+  <h3>Need a calmer security architecture?</h3>
+  <p>Jim DeLeskie helps teams build controls that hold up—whether you’re guarding racks, clouds, or frontier models.</p>
+  <p><a href="mailto:deleskie@gmail.com">deleskie@gmail.com</a> · <a href="https://www.linkedin.com/in/user1138" target="_blank" rel="noopener">LinkedIn</a></p>
+</div>
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/#services">Services</a>
+    <a href="/#approach">Method</a>
+    <a href="/#why-us">Why Jim</a>
+    <a href="/#field-notes">Field Notes</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#bio">About</a>
+    <a href="/#contact">Contact</a>
+    <a href="/blog/routing-chaos-with-a-soundtrack.html">Routing Chaos</a>
+    <a href="/blog/the-quiet-professionals-of-tech.html">Quiet Professionals</a>
+    <a href="/blog/ghosts.html">Ghosts</a>
+  </div>
+  <p>© 2025 Jim DeLeskie — Secure automation and AI programs with confidence.</p>
+</footer>
+</main>
+<a class="floating-cta" href="/#contact">Talk to Jim →</a>
+</body>
+</html>
