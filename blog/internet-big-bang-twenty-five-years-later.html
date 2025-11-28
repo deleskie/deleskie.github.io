@@ -127,6 +127,21 @@
     font-size: 0.92rem;
     margin-top: 14px;
   }
+  .hero-media {
+    margin: 24px 0 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(6,182,212,0.28);
+    box-shadow: 0 24px 44px rgba(3,6,15,0.68);
+  }
+  .hero-media img {
+    display: block;
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
+    filter: saturate(1.05);
+  }
   .badge-dot {
     width: 9px;
     height: 9px;
@@ -235,6 +250,9 @@
     <span class="badge-dot" aria-hidden="true"></span>
     <span>Original paper: <a href="/assets/internet-big-bang.pdf">Internet Big Bang Theory (PDF, Curtis Villamizar at Avici)</a></span>
   </div>
+  <figure class="hero-media">
+    <img src="/assets/neon-city.jpg" alt="Neon city skyline backdrop for the Internet Big Bang retrospective">
+  </figure>
 </header>
 <article class="article-card">
 <p>A huge hat tip to Curtis Villamizar, who wrote the original “Internet Big Bang Theory” white paper during his time at Avici. This update is my look back at where those ideas landed; any mistakes here are mine, not his.</p>
