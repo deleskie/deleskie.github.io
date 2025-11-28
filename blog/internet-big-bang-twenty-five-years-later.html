@@ -11,14 +11,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #03060f;
-    --card: rgba(9, 12, 24, 0.94);
-    --panel: rgba(12, 16, 30, 0.92);
-    --primary: #06b6d4;
-    --accent: #f59e0b;
-    --muted: #a7b7d4;
-    --text: #edf4ff;
-    --stroke: rgba(255,255,255,0.08);
+    --bg: #05030d;
+    --card: rgba(15, 13, 28, 0.94);
+    --panel: rgba(18, 16, 32, 0.92);
+    --primary: #8b5cf6;
+    --accent: #f472b6;
+    --muted: #a7a3c2;
+    --text: #f4f3ff;
+    --stroke: rgba(255,255,255,0.1);
     --radius: 18px;
     --max-width: 900px;
     --transition: 220ms ease;
@@ -27,9 +27,8 @@
   body {
     font-family: 'Inter', sans-serif;
     background:
-      radial-gradient(circle at 16% 18%, rgba(6, 182, 212, 0.18), transparent 48%),
-      radial-gradient(circle at 78% -6%, rgba(245, 158, 11, 0.16), transparent 50%),
-      radial-gradient(circle at 60% 70%, rgba(14, 165, 233, 0.18), transparent 55%),
+      radial-gradient(circle at 18% 12%, rgba(139, 92, 246, 0.25), transparent 45%),
+      radial-gradient(circle at 80% 0%, rgba(244, 114, 182, 0.16), transparent 40%),
       var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -45,18 +44,18 @@
   }
   body::before {
     inset: auto auto -26% -14%;
-    background: radial-gradient(circle, rgba(6, 182, 212, 0.22), transparent 65%);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.22), transparent 65%);
   }
   body::after {
     inset: -20% -10% auto auto;
-    background: radial-gradient(circle, rgba(245, 158, 11, 0.24), transparent 70%);
+    background: radial-gradient(circle, rgba(244, 114, 182, 0.22), transparent 70%);
   }
   nav {
     position: sticky;
     top: 0;
     z-index: 20;
     backdrop-filter: blur(12px);
-    background: rgba(3, 6, 15, 0.9);
+    background: rgba(5, 6, 12, 0.9);
     border-bottom: 1px solid var(--stroke);
   }
   .nav-inner {
@@ -121,17 +120,22 @@
     gap: 8px;
     padding: 10px 14px;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: linear-gradient(120deg, rgba(6,182,212,0.14), rgba(14,165,233,0.08));
+    border: 1px solid rgba(139,92,246,0.24);
+    background: linear-gradient(120deg, rgba(139,92,246,0.14), rgba(244,114,182,0.12));
     color: var(--text);
     font-size: 0.92rem;
     margin-top: 14px;
+  }
+  .hero-badge a {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: underline;
   }
   .hero-media {
     margin: 24px 0 0;
     border-radius: var(--radius);
     overflow: hidden;
-    border: 1px solid rgba(6,182,212,0.28);
+    border: 1px solid rgba(139,92,246,0.28);
     box-shadow: 0 24px 44px rgba(3,6,15,0.68);
   }
   .hero-media img {
@@ -175,7 +179,7 @@
     margin: 26px 0 14px;
     padding: 18px 18px;
     border-radius: 14px;
-    border: 1px solid rgba(6,182,212,0.32);
+    border: 1px solid rgba(139,92,246,0.32);
     background: var(--panel);
     display: flex;
     align-items: center;
@@ -188,8 +192,8 @@
     margin-top: 40px;
     padding: 30px 32px;
     border-radius: var(--radius);
-    border: 1px solid rgba(6, 182, 212, 0.35);
-    background: linear-gradient(135deg, rgba(6,182,212,0.18), rgba(9,12,24,0.92));
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(9,12,24,0.92));
   }
   .cta-panel h3 { margin-bottom: 12px; font-size: 1.4rem; color: var(--primary); }
   .cta-panel a { color: var(--accent); font-weight: 600; text-decoration: none; }
