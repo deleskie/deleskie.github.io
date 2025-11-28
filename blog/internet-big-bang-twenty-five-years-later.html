@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Internet Big Bang, Twenty Five Years Later</title>
+<link rel="canonical" href="https://deleskie.com/blog/internet-big-bang-twenty-five-years-later.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Looking back at the Internet Big Bang paper with twenty five years of hindsight: what scaled, what stalled, and where the next explosion is happening.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #03060f;
+    --card: rgba(9, 12, 24, 0.94);
+    --panel: rgba(12, 16, 30, 0.92);
+    --primary: #06b6d4;
+    --accent: #f59e0b;
+    --muted: #a7b7d4;
+    --text: #edf4ff;
+    --stroke: rgba(255,255,255,0.08);
+    --radius: 18px;
+    --max-width: 900px;
+    --transition: 220ms ease;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background:
+      radial-gradient(circle at 16% 18%, rgba(6, 182, 212, 0.18), transparent 48%),
+      radial-gradient(circle at 78% -6%, rgba(245, 158, 11, 0.16), transparent 50%),
+      radial-gradient(circle at 60% 70%, rgba(14, 165, 233, 0.18), transparent 55%),
+      var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  body::before, body::after {
+    content: '';
+    position: fixed;
+    width: 480px;
+    height: 480px;
+    filter: blur(36px);
+    z-index: -1;
+    opacity: 0.75;
+  }
+  body::before {
+    inset: auto auto -26% -14%;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.22), transparent 65%);
+  }
+  body::after {
+    inset: -20% -10% auto auto;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.24), transparent 70%);
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+    background: rgba(3, 6, 15, 0.9);
+    border-bottom: 1px solid var(--stroke);
+  }
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 26px; font-size: 0.95rem; flex-wrap: wrap; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .pill:hover {
+    background: rgba(6, 182, 212, 0.14);
+    color: var(--primary);
+    transform: translateY(-2px);
+  }
+  main { max-width: var(--max-width); margin: 0 auto; padding: 118px 22px 84px; }
+  header.hero { margin-bottom: 28px; border-bottom: 1px solid var(--stroke); padding-bottom: 24px; }
+  header.hero h1 {
+    font-size: clamp(2.3rem, 4vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.18;
+    margin-bottom: 12px;
+  }
+  header.hero p.meta {
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+  .hero-sub { color: var(--text); margin-top: 12px; font-size: 1.05rem; max-width: 760px; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(120deg, rgba(6,182,212,0.14), rgba(14,165,233,0.08));
+    color: var(--text);
+    font-size: 0.92rem;
+    margin-top: 14px;
+  }
+  .badge-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    box-shadow: 0 0 0 6px rgba(6, 182, 212, 0.12);
+  }
+  .article-card {
+    background: var(--card);
+    padding: 42px;
+    border-radius: var(--radius);
+    border: 1px solid var(--stroke);
+    box-shadow: 0 24px 48px rgba(3, 6, 15, 0.76);
+  }
+  .article-card h2 {
+    margin-top: 36px;
+    margin-bottom: 14px;
+    color: var(--primary);
+    font-size: 1.55rem;
+  }
+  .article-card h3 {
+    margin-top: 26px;
+    margin-bottom: 10px;
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+  .article-card p { margin: 18px 0; color: var(--text); line-height: 1.68; }
+  .article-card ul { margin: 14px 0 18px 20px; color: var(--text); line-height: 1.62; }
+  .article-card li { margin-bottom: 8px; }
+  .callout {
+    margin: 26px 0 14px;
+    padding: 18px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(6,182,212,0.32);
+    background: var(--panel);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .callout strong { color: var(--primary); }
+  .callout a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .callout a:hover { text-decoration: underline; }
+  .cta-panel {
+    margin-top: 40px;
+    padding: 30px 32px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(6, 182, 212, 0.35);
+    background: linear-gradient(135deg, rgba(6,182,212,0.18), rgba(9,12,24,0.92));
+  }
+  .cta-panel h3 { margin-bottom: 12px; font-size: 1.4rem; color: var(--primary); }
+  .cta-panel a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .cta-panel a:hover { text-decoration: underline; }
+  .footer {
+    margin-top: 70px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--stroke);
+    padding-top: 30px;
+  }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 14px; }
+  .footer a { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .footer a:hover { text-decoration: underline; }
+  .floating-cta {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: linear-gradient(120deg, var(--primary), var(--accent));
+    color: #05070e;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 18px 40px rgba(6,182,212,0.35);
+  }
+  .floating-cta:hover { transform: translateY(-3px); }
+  @media (max-width: 640px) {
+    .article-card { padding: 28px; }
+    .nav-inner { flex-direction: column; align-items: flex-start; }
+    .nav-links { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">Jim DeLeskie</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#approach">Method</a>
+      <a href="/#why-us">Why Jim</a>
+      <a href="/#field-notes">Field Notes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#bio">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a class="pill" href="mailto:deleskie@gmail.com">Book an Intro</a>
+  </div>
+</nav>
+<main>
+<header class="hero">
+  <p class="meta">Backbones • Optics • AI</p>
+  <h1>Internet Big Bang, Twenty Five Years Later</h1>
+  <p class="hero-sub">Looking back at the original Internet Big Bang paper with the benefit of 25 years of upgrades, scars, and entirely new kinds of networks.</p>
+  <div class="hero-badge">
+    <span class="badge-dot" aria-hidden="true"></span>
+    <span>Original paper: <a href="/assets/internet-big-bang.pdf">Internet Big Bang Theory (PDF, Curtis Villamizar at Avici)</a></span>
+  </div>
+</header>
+<article class="article-card">
+<p>A huge hat tip to Curtis Villamizar, who wrote the original “Internet Big Bang Theory” white paper during his time at Avici. This update is my look back at where those ideas landed; any mistakes here are mine, not his.</p>
+
+<p>Around 2000, the original paper argued that the backbone of the Internet was going through something that looked a lot like cosmology. Capacity was expanding at a rate that felt unbelievable if you grew up on voice networks and TDM. There was a lot of talk about all-optical cores, ATM overlays, and infinite scaling. The paper did something important. It separated the slideware from the physics and said, in plain terms, that routers, protocols, and optics all had hard limits.</p>
+
+<p>This version looks back with twenty five years of hindsight. For people who lived through those early years, the backbone often felt like something between public utility and quiet science fiction, a shared network that kept expanding at the edges of what seemed possible. It asks three questions. First, how did the public Internet backbone actually evolve. Second, who ended up carrying most of the traffic in practice. Third, where is the real “Big Bang” now that AI, cloud, and private fabrics exist. The short answer is that the original instincts were mostly right. Fully optical cores did not arrive. Packet routers never went away. The hardest problems moved from raw bandwidth to control plane complexity, traffic locality, and where we place compute.</p>
+
+<p>We will walk through what changed in the backbone, how hyperscalers and content networks reshaped the map, and why the fastest expansion today is happening inside data centers and AI fabrics rather than on the public Internet alone.</p>
+
+<div class="callout">
+  <strong>Original PDF:</strong>
+  <span><a href="/assets/internet-big-bang.pdf" download>Download the Internet Big Bang Theory paper</a> (courtesy of Curtis Villamizar and Avici) to compare the original framing with where we are now.</span>
+</div>
+
+<h2>The first Big Bang the paper saw</h2>
+<p>If you plot the early Internet on a log scale, it does not look like a gentle technology curve. It looks like a cliff. In just over a decade, typical backbone links went from tens of kilobits per second to hundreds of megabits, and then into early multi-gigabit territory. For engineers who grew up on DS0s and DS1s, it really did feel like a different universe.</p>
+
+<p>The original paper looked at the Internet from the early days of NSFNET through to about 2000. In that window, backbone capacity jumped by roughly six orders of magnitude. That is the kind of number that makes people reach for cosmology analogies.</p>
+
+<p>The path looked roughly like this in order-of-magnitude steps:</p>
+<ul>
+  <li>56 kbps links between early research sites.</li>
+  <li>T1 (1.5 Mbps) and T3 (45 Mbps) as the first serious wide area capacity.</li>
+  <li>OC-3 and OC-12 as commercial providers built national backbones.</li>
+  <li>OC-48 and OC-192 as the “gigabit” era arrived.</li>
+  <li>Early “gigabit routers” that could forward a few gigabits per second in aggregate and still felt enormous at the time.</li>
+</ul>
+
+<p>At the same time, IP was often running on top of ATM or frame relay. That gave operators some tools for virtual circuits and traffic isolation, but it also created scaling problems. Full mesh overlays looked elegant as diagrams and fragile as real networks.</p>
+
+<p>Before that paper was ever a PDF on an Avici web page, it was a conversation. I remember sitting with Curtis, treating him as a mentor, talking through what felt frightening about the growth curves and what looked merely noisy. Some of those threads made their way directly into the original Internet Big Bang paper; others only show up if you know what you were looking for.</p>
+
+<p>Three observations from that era still matter.</p>
+<ul>
+  <li><strong>Routers were not born as perfect hardware appliances.</strong> The first backbone routers were built out of general purpose compute, some forwarding hardware, and software control planes. They were good enough for the time, but nobody could seriously claim that this architecture would scale by another six orders of magnitude without major surgery.</li>
+  <li><strong>IP over ATM created as many problems as it solved.</strong> Building full mesh virtual circuits between a large number of routers looked neat. In practice, it created a combinatorial explosion of state and unpleasant interactions with link state routing protocols. Every new node increased the amount of work that every other node had to do.</li>
+  <li><strong>Regionalization and hierarchy were not optional.</strong> Operators started to carve their networks into regions. Each region had some internal richness, and a smaller core tied the regions together. This reduced the size of individual link state domains and gave engineers more room to maneuver under real world constraints.</li>
+</ul>
+
+<p>The message was simple. You were not going to scale IP by pretending the Internet was a flat mesh where every node saw everything. You were going to scale it by limiting what each router had to see and by making those routers much more capable.</p>
+
+<h2>What actually happened next</h2>
+<p>From 2000 through roughly 2010, the operational Internet more or less followed that script.</p>
+<ul>
+  <li>IP over ATM disappeared from the core. MPLS over SONET and then MPLS over Ethernet took its place.</li>
+  <li>Core routers grew up. Forwarding moved onto better silicon. Line rates increased. Chassis capacities climbed into the multi terabit range.</li>
+  <li>IGP design became more deliberate. Multi-area IS-IS and OSPF, route reflection, and confederations were used to make sure no single control plane had to carry the entire graph in full detail.</li>
+</ul>
+
+<p>What the original paper did not fully predict was how much the business landscape would change. Two trends dominated.</p>
+<ul>
+  <li><strong>Hyperscalers and content networks became the new gravity wells.</strong> Large cloud and content providers built their own global backbones. Traffic that once would have crossed multiple transit providers started and ended inside a single private network. In many paths, traditional tier one carriers became access and aggregation rather than the place where everything met.</li>
+  <li><strong>The diameter of most user traffic collapsed.</strong> Content distribution networks, regional data centers, and in-country peering shortened the path for a huge fraction of flows. Users talked to a nearby cache or a nearby region, not a server across an ocean.</li>
+</ul>
+
+<p>From a control plane perspective, this had the effect the original paper implicitly wanted. The part of the network that had to be fully coherent and tightly managed was smaller than the raw map of the Internet would suggest.</p>
+
+<h2>Expansion without catastrophe</h2>
+<p>The original Big Bang framing was driven by growth curves. Access speeds were rising. Applications were moving from simple web pages to rich media. It was reasonable to assume that backbones would need at least one or two more decimal orders of magnitude of capacity.</p>
+
+<p>That happened. The way it happened is important.</p>
+
+<h3>Capacity along three axes</h3>
+<p>Between roughly 2000 and 2025, Internet and cloud backbones grew along three main axes. A conservative way to say it is that many large backbones saw at least another two orders of magnitude of aggregate capacity, often more when you count multipath and private backbones layered on top of public transit.</p>
+<ul>
+  <li><strong>Per link rates.</strong> 2.5G and 10G links gave way to 40G, then 100G, and now 400G and 800G at scale. 1.6T line rates are starting to appear in trials. A single 400G wave carries almost ten thousand times the capacity of a 56 kbps NSFNET link; that is the kind of change that used to take whole generations of technology.</li>
+  <li><strong>Per fiber capacity.</strong> Early DWDM systems carried a handful of wavelengths. Modern coherent DWDM can pack many more wavelengths into a single fiber pair using flexible grid spacing and advanced modulation.</li>
+  <li><strong>System capacity.</strong> Router fabrics and line cards moved from single digit terabit capacity into the tens and then hundreds of terabits in aggregate.</li>
+</ul>
+
+<p>If you look at the total bps across the core of a major provider, you can see the additional two to three orders of magnitude that the original paper suspected would be necessary. Networks grew aggressively, but they did not violate physics.</p>
+
+<h3>Control plane discipline</h3>
+<p>The more fragile part of the story in 2000 was not bandwidth. It was the control plane.</p>
+<ul>
+  <li>How many nodes can you carry in a single link state domain.</li>
+  <li>How many adjacencies can each router maintain and update.</li>
+  <li>How often can you run SPF before you start to starve other work.</li>
+</ul>
+
+<p>The way the industry handled this was aligned with the earlier guidance.</p>
+<ul>
+  <li>IGPs were given structure. Designers drew real boundaries for areas and domains instead of letting everything grow flat.</li>
+  <li>MPLS, and later segment routing, were used to steer traffic without forcing the IGP to represent every detail of every path.</li>
+  <li>Central and distributed controllers became common in large environments. They made it possible to plan paths and manage traffic engineering without obsessing over metrics on every link by hand.</li>
+</ul>
+
+<p>The result is that today you can find networks with thousands of nodes and very large aggregate capacity, but no single box is responsible for carrying a complete view of the entire system at full resolution. The load is partitioned.</p>
+
+<h2>All-optical ambitions and mixed cores</h2>
+<p>Around the time the original paper was written, “all optical backbones” were popular in marketing material. The idea was simple to describe. Photons go in at one edge of the network, they travel through a cloud of optical switches, and they come out at another edge without ever meeting an electronic router in the middle.</p>
+
+<p>The original paper treated this with caution. The concerns were straightforward.</p>
+<ul>
+  <li>If every region needed a direct optical adjacency to every other region, the degree of each node would grow faster than the optics or the management systems could handle.</li>
+  <li>Optical systems at the time were great for moving light but not designed for the kind of granular, dynamic behavior that IP routing and fast convergence require.</li>
+</ul>
+
+<p>The conclusion was that optics would be essential for capacity, but packet routers at the edges of optical domains would remain the brains of the network. The future would be mixed, not purely photonic.</p>
+
+<p>That is exactly what we see in practice.</p>
+<ul>
+  <li>Coherent DWDM systems and ROADMs form the physical transport layer. They provide long haul and metro capacity and allow some flexibility in how sites are connected.</li>
+  <li>High capacity routers sit at the logical edges of those optical domains. They run BGP, IS-IS, OSPF, and MPLS or segment routing. They implement policy, enforce security, and make forwarding decisions.</li>
+  <li>Optical switching is used to reduce the number of required transceivers, increase capacity per fiber, and offer protection. Routing remains a function of packet switching silicon and control plane software.</li>
+</ul>
+
+<p>We did not get a pure optical core that replaced routers. We got exactly the mixed architecture that seemed most realistic in 2000.</p>
+
+<h2>How big we made it and where the wall moved</h2>
+<p>The original “how big can we make this” section ran a thought experiment. If you assume routers with hundreds of high speed interfaces, DWDM systems filling multiple fiber pairs, and reasonable assumptions about failure domains and manageability, then you can see a path to another two or three orders of magnitude. You do not see a path to another six in a handful of years.</p>
+
+<p>What happened in the real world followed the same pattern, but the wall moved.</p>
+
+<h3>Better hardware than expected</h3>
+<p>From the vantage point of the late 1990s, it was already bold to talk about routers filled with OC-192 and OC-768 interfaces and DWDM shelves lighting dozens of lambdas on a fiber pair. The cautious assumption was that we might reach those numbers, but only in the largest networks and only after a long, expensive transition.</p>
+
+<p>One of the clearest personal markers for me was seeing what a fully built fourteen-bay AVICI TSR would look like on the Avici floor, having just come from a world where the Cisco GSR had been the reference point for “big router.” On paper they were both large systems. In person the scale difference was obvious in a way you do not forget once you have walked around it.</p>
+
+<p>The conservative assumptions in 2000 did not account for the full pace of optical and silicon innovation.</p>
+<ul>
+  <li>Coherent optics improved faster than many expected. New modulation schemes and better DSP pulled more capacity out of each wavelength.</li>
+  <li>Router silicon became far more capable. We now talk about hundreds of 400G or 800G ports on a single system, backed by very large switch fabrics.</li>
+</ul>
+
+<p>This pushed the raw capacity ceiling higher than a cautious engineer in 2000 would have been comfortable forecasting. A backbone that might have been designed around a handful of 2.5G or 10G trunks between regions is now more likely to have a bundle of 100G, 400G, or 800G waves, often across multiple diverse paths, and that is before you count private cloud backbones and region-to-region fabrics.</p>
+
+<h3>Topology as a control knob</h3>
+<p>The bigger shift, though, was not just hardware. It was topology and traffic locality.</p>
+<ul>
+  <li>Content moved closer to end users through CDNs and regional points of presence.</li>
+  <li>Enterprises and consumers pushed more workloads into cloud regions rather than across the open Internet.</li>
+  <li>Rich peering fabrics reduced the number of long transit paths required for everyday usage.</li>
+</ul>
+
+<p>Instead of every backbone carrying every bit, each network carried more of its own traffic and fewer long distance flows. The load was still massive, but it was better organized.</p>
+
+<h2>The Big Bang inside the data center</h2>
+<p>From a 2025 perspective, the most extreme growth is not on the classic Internet backbone. It is inside and between data centers.</p>
+<ul>
+  <li>AI training clusters with tens of thousands of accelerators move enormous volumes of traffic east-west.</li>
+  <li>RDMA based fabrics are engineered for tight latency and loss budgets that make voice networks look easy.</li>
+  <li>Region-to-region connectivity for stateful services and global models creates private WANs that resemble backbones of their own.</li>
+</ul>
+
+<p>The same questions reappear. How much traffic can a single fabric carry. How much state can a single control plane handle. How do we carve these systems into manageable domains.</p>
+
+<p>The answers look familiar too. We use hierarchy, modular designs, optical transport, and packet based control.</p>
+
+<h2>The new Big Bang: AI fabrics and private backbones</h2>
+<p>If the first Internet Big Bang was about reaching global scale for general purpose connectivity, the current one is about concentrating extreme capacity into specialized domains.</p>
+
+<p>AI and large scale cloud fabrics change the problem in a few ways.</p>
+<ul>
+  <li><strong>Traffic patterns are more synchronized.</strong> Training jobs can drive many hosts and links hard at the same time. That is different from the more independent flows of typical web browsing.</li>
+  <li><strong>Latency and loss budgets are tighter.</strong> RDMA and collective communication patterns are less tolerant of jitter and loss than bulk file transfer or even voice.</li>
+  <li><strong>Failure domains are dense.</strong> A single bad link or misbehaving switch in a tightly coupled training cluster can have outsized impact.</li>
+</ul>
+
+<p>To keep this workable, designers lean on the same principles the original paper relied on.</p>
+<ul>
+  <li>Build the fabric out of modules. Pods, cells, and clusters form building blocks. Nobody tries to run a single flat control plane for everything.</li>
+  <li>Use optics to move bits between those modules efficiently, but keep routing and policy in the packet domain.</li>
+  <li>Introduce controller based traffic engineering where protocols alone are not enough.</li>
+</ul>
+
+<p>The Big Bang moved. The tools did not change as much as the application did. If you stand in the middle of a modern AI fabric and look at the diagrams, it can feel a little like a city from a cyberpunk novel drawn in optics and ECMP paths instead of neon and alleys.</p>
+
+<h2>What the original paper got right and what it missed</h2>
+<p>It is worth being explicit about what the original argument got right, because those instincts are still useful when we look at AI fabrics and future backbones.</p>
+
+<p>Looking back, several points from the original Internet Big Bang analysis stand up well.</p>
+<ul>
+  <li>Skepticism about fully optical cores was justified. Operators built mixed optical and packet cores instead.</li>
+  <li>The focus on IGP and control plane limits was correct. The industry responded with hierarchy and abstraction rather than trying to brute force a flat graph.</li>
+  <li>The expectation of another two to three orders of magnitude of growth was accurate. We reached those numbers by blending optical improvements, better router silicon, and a change in how and where traffic flows.</li>
+</ul>
+
+<p>There were also gaps, which would have been hard to avoid at the time.</p>
+<ul>
+  <li>The telco centric view of the world did not fully anticipate how important hyperscale content and cloud providers would become.</li>
+  <li>The analysis did not explicitly forecast that the most extreme scaling problems would move inside data centers and AI fabrics.</li>
+  <li>It did not yet frame “move compute and content closer to data” as the primary scaling weapon, even though early CDNs were already hinting in that direction.</li>
+</ul>
+
+<p>Despite those gaps, the core engineering instincts were sound. Do not believe in infinite scaling from one architecture. Expect to hit walls. Plan the next architecture before you arrive there. When we design very large systems today, the same discipline applies. We should assume that the current fabric or backbone design has a comfortable operating window, and we should know roughly where that window ends before we are forced into it by growth.</p>
+
+<h2>Implications for today’s architects</h2>
+<p>This history is interesting, but it is more useful if it changes how we design the next wave of networks and fabrics. A few practical implications stand out.</p>
+<ul>
+  <li><strong>Design for modules, not for hero graphs.</strong> Any network that looks impressive because it is a single, flat, thousand node graph is already on the edge. The proven pattern is to build with modules: regions, pods, clusters, cells. Each module has its own control plane envelope. The backbones that survived the first Big Bang all converged on this idea in one form or another.</li>
+  <li><strong>Treat optics as capacity, not as control.</strong> Coherent DWDM, ROADMs, and co-packaged optics are powerful tools. They lower the cost per bit and extend reach. They do not remove the need for clear routing and traffic engineering. An architecture that assumes “the optical layer will take care of it” is repeating the same mistake that optimistic all-optical core roadmaps made twenty five years ago.</li>
+  <li><strong>Keep the control plane small where it matters most.</strong> In the public Internet, that meant multi-area IGPs, MPLS or segment routing, and careful use of route reflection. In AI fabrics, it means scoping RDMA domains, limiting blast radius, and using controllers to coordinate behavior across pods rather than inside every switch.</li>
+  <li><strong>Assume the next Big Bang will be local, not global.</strong> The Internet Big Bang played out at global scale. The current one is playing out inside data centers, AI clusters, and regional fabrics. When you design a system today, ask where the next two orders of magnitude of growth are likely to show up. That is the place that needs hierarchy, telemetry, and tooling first.</li>
+  <li><strong>Plan exits as carefully as entrances.</strong> The hardest projects are not the first build outs. They are the transitions away from an exhausted architecture. Operators who handled the shift away from ATM, or the introduction of MPLS and optical transport, did well when they had a clear exit plan: how to migrate traffic, how to decommission state, and how to keep failure domains stable during the change.</li>
+  <li><strong>Write down the limits.</strong> One quiet strength of the original Big Bang work was that it put numbers, however approximate, on what felt possible. Modern designs benefit from the same honesty. It is better to say “this fabric is comfortable up to N racks or M terabits” and design the next tier around that, than to assume scaling will somehow take care of itself.</li>
+</ul>
+
+<p>These are not new rules. They are the same rules we saw play out between 1990 and 2025, now applied to a world where GPUs, AI cores, and private backbones drive much of the demand.</p>
+
+<h2>Last word for now</h2>
+<p>The Internet did not violate physics. It did something more familiar to engineers. It kept changing shape to avoid dead ends.</p>
+
+<p>The past twenty five years confirmed a few durable ideas.</p>
+<ul>
+  <li>Optics are crucial for capacity, but routers and control planes decide what is possible.</li>
+  <li>Flat topologies do not scale forever. Hierarchy and modularity are not optional.</li>
+  <li>When one design runs out of room, the answer is not hope. The answer is a new design.</li>
+</ul>
+
+<p>From a distance, this looks like a sequence of Big Bangs. Each generation of backbone, cloud core, or AI fabric expands until it hits the limits of its tools. Then we invent just enough new tools, and sometimes new business models, to move the limit a bit further out.</p>
+
+<p>Cosmology still debates the long term fate of the universe. Network engineering is more pragmatic. We assume the next wall is coming. We try to see it early. Then we build the next system that will carry us past it.</p>
+
+<p>If someone writes another update to this story in twenty five years, I hope I am still around to read it. I also expect I will care less about how the next fabric works than I once did. By then, most of the heavy lifting will belong to another generation of engineers and to the AI systems they train. That is how it should be. Our job was to move the wall a little further out and leave enough notes behind that the next team knows where to start.</p>
+</article>
+
+<div class="cta-panel">
+  <h3>Designing your next fabric?</h3>
+  <p>Jim DeLeskie helps teams move from backbone instincts to AI-era fabrics without losing stability or sleep.</p>
+  <p><a href="mailto:deleskie@gmail.com">deleskie@gmail.com</a> · <a href="https://www.linkedin.com/in/user1138" target="_blank" rel="noopener">LinkedIn</a></p>
+</div>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/#services">Services</a>
+    <a href="/#approach">Method</a>
+    <a href="/#field-notes">Field Notes</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#bio">About</a>
+    <a href="/#contact">Contact</a>
+    <a href="/blog/the-box-grew-around-us.html">The Box Grew Around Us</a>
+    <a href="/blog/routing-chaos-with-a-soundtrack.html">Routing Chaos</a>
+    <a href="/blog/the-quiet-professionals-of-tech.html">Quiet Professionals</a>
+    <a href="/blog/ghosts.html">Ghosts</a>
+  </div>
+  <p>© 2025 Jim DeLeskie — Secure automation and AI programs with confidence.</p>
+</footer>
+</main>
+<a class="floating-cta" href="/#contact">Talk to Jim →</a>
+</body>
+</html>
