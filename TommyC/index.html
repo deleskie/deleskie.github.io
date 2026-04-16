@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TC Audio Productions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Wedding DJ and entertainment services across Atlantic Canada.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TC Audio Productions">
+<meta property="og:description" content="Wedding DJ and entertainment services across Atlantic Canada.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TC Audio Productions">
+<meta name="twitter:description" content="Wedding DJ and entertainment services across Atlantic Canada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Replace these URLs when Tommy sends final images. */
+    --hero-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.76)),
+      url("https://media.base44.com/images/public/69dec41ff1150f0fde189227/1fa1628ff_generated_image.png");
+    --hero-card-image-1:
+      linear-gradient(135deg, rgba(200, 160, 80, 0.26), rgba(0, 0, 0, 0.08)),
+      url("https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=900&q=80");
+    --hero-card-image-2:
+      linear-gradient(135deg, rgba(200, 160, 80, 0.26), rgba(0, 0, 0, 0.08)),
+      url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80");
+    --hero-card-image-3:
+      linear-gradient(135deg, rgba(200, 160, 80, 0.26), rgba(0, 0, 0, 0.08)),
+      url("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=80");
+
+    --bg: #0a0a0a;
+    --panel: rgba(255, 255, 255, 0.03);
+    --panel-strong: rgba(255, 255, 255, 0.05);
+    --stroke: rgba(200, 160, 80, 0.16);
+    --stroke-strong: rgba(200, 160, 80, 0.34);
+    --gold: #c8a050;
+    --gold-bright: #e0b860;
+    --text: #f5f0e8;
+    --muted: rgba(245, 240, 232, 0.72);
+    --muted-soft: rgba(245, 240, 232, 0.52);
+    --shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
+    --max: 1120px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .page-shell {
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(200, 160, 80, 0.18);
+  }
+
+  .nav-inner {
+    width: min(calc(100% - 40px), var(--max));
+    margin: 0 auto;
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand {
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(245, 240, 232, 0.84);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    transition: color 160ms ease, opacity 160ms ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold);
+  }
+
+  .hero {
+    min-height: 100vh;
+    padding: 110px 20px 56px;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-inner {
+    width: min(100%, var(--max));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 40px;
+    align-items: end;
+  }
+
+  .hero-copy {
+    max-width: 620px;
+  }
+
+  .eyebrow {
+    color: var(--gold);
+    letter-spacing: 0.26em;
+    font-size: 0.77rem;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .hero h1,
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.04;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 34px;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 0 34px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+  }
+
+  .button-primary {
+    background: var(--gold);
+    color: #0a0a0a;
+  }
+
+  .button-primary:hover {
+    background: var(--gold-bright);
+    transform: translateY(-2px);
+  }
+
+  .hero-rail {
+    display: grid;
+    gap: 16px;
+    align-self: end;
+  }
+
+  .hero-card {
+    min-height: 150px;
+    padding: 18px;
+    border: 1px solid var(--stroke);
+    background-color: rgba(10, 10, 10, 0.4);
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.12));
+  }
+
+  .hero-card span,
+  .hero-card strong {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-card span {
+    display: block;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.68rem;
+    margin-bottom: 6px;
+  }
+
+  .hero-card strong {
+    display: block;
+    max-width: 18ch;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .hero-card.one { background-image: var(--hero-card-image-1); }
+  .hero-card.two { background-image: var(--hero-card-image-2); }
+  .hero-card.three { background-image: var(--hero-card-image-3); }
+
+  .section {
+    padding: 104px 20px;
+  }
+
+  .section-inner {
+    width: min(100%, var(--max));
+    margin: 0 auto;
+  }
+
+  .section-label {
+    text-align: center;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    font-size: 0.74rem;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .section-copy {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 1.03rem;
+  }
+
+  .divider {
+    width: min(calc(100% - 40px), var(--max));
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(to right, transparent, rgba(200, 160, 80, 0.45), transparent);
+  }
+
+  .services-grid,
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 56px;
+  }
+
+  .service-card,
+  .testimonial-card,
+  .gallery-card {
+    background: var(--panel);
+    border: 1px solid var(--stroke);
+    padding: 34px 28px;
+    box-shadow: var(--shadow);
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+
+  .service-card:hover,
+  .testimonial-card:hover,
+  .gallery-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--stroke-strong);
+    background: var(--panel-strong);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .service-card h3,
+  .gallery-card h3 {
+    color: var(--gold);
+    font-size: 1.06rem;
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .service-card p,
+  .gallery-card p,
+  .testimonial-card p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 0.96rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 34px;
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 3.1rem;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    color: var(--muted-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .gallery-photo {
+    aspect-ratio: 4 / 5;
+    margin-bottom: 20px;
+    border: 1px solid rgba(200, 160, 80, 0.14);
+    background:
+      linear-gradient(140deg, rgba(200, 160, 80, 0.24), rgba(255, 255, 255, 0.02)),
+      repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 16px, rgba(255, 255, 255, 0.01) 16px, rgba(255, 255, 255, 0.01) 32px),
+      #121212;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: var(--muted);
+    padding: 20px;
+  }
+
+  .gallery-photo strong {
+    display: block;
+    color: var(--gold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.76rem;
+    margin-bottom: 8px;
+  }
+
+  .testimonial-card p {
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .testimonial-name {
+    color: var(--gold);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .testimonial-date {
+    color: var(--muted-soft);
+    font-size: 0.76rem;
+    margin-top: 4px;
+  }
+
+  .contact-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    flex-wrap: wrap;
+    margin: 44px 0 52px;
+  }
+
+  .contact-links a {
+    text-decoration: none;
+    color: var(--text);
+    opacity: 0.84;
+    transition: opacity 160ms ease;
+  }
+
+  .contact-links a:hover {
+    opacity: 1;
+  }
+
+  .contact-links span:first-child {
+    color: var(--gold);
+    margin-right: 10px;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    color: var(--muted-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    margin-bottom: 8px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    border: 1px solid rgba(200, 160, 80, 0.24);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    padding: 15px 16px;
+    font: inherit;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: rgba(200, 160, 80, 0.52);
+  }
+
+  .contact-form textarea {
+    min-height: 144px;
+    resize: vertical;
+  }
+
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 56px 20px 14px;
+  }
+
+  .success-state.is-visible {
+    display: block;
+  }
+
+  .success-state .icon {
+    font-size: 3rem;
+    margin-bottom: 18px;
+  }
+
+  .success-state h3 {
+    color: var(--gold);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .success-state p {
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .site-footer {
+    border-top: 1px solid rgba(200, 160, 80, 0.14);
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .site-footer p {
+    color: var(--muted-soft);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .site-footer p + p {
+    margin-top: 10px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .footer-links a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 960px) {
+    .hero-inner,
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-rail {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .nav-inner {
+      width: min(calc(100% - 24px), var(--max));
+      padding: 16px 0;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav-links {
+      gap: 16px;
+    }
+
+    .hero {
+      padding-top: 154px;
+      padding-bottom: 42px;
+    }
+
+    .hero-rail,
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section {
+      padding: 80px 20px;
+    }
+
+    .contact-links {
+      gap: 18px;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page-shell">
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a class="brand" href="#top">TC Audio Productions</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Wedding DJ & Entertainment · Since 1992</p>
+          <h1>Your Perfect Day,<br><em>Your Perfect Sound</em></h1>
+          <p>TC Audio Productions delivers unforgettable wedding music experiences across Atlantic Canada. Every moment, perfectly scored.</p>
+          <a class="button button-primary" href="#contact">Check Your Date</a>
+        </div>
+
+        <div class="hero-rail" aria-label="Hero image placeholders">
+          <article class="hero-card one">
+            <div>
+              <span>Hero image 01</span>
+              <strong>Swap in Tommy's lead photo here.</strong>
+            </div>
+          </article>
+          <article class="hero-card two">
+            <div>
+              <span>Hero image 02</span>
+              <strong>Secondary event shot or crowd moment.</strong>
+            </div>
+          </article>
+          <article class="hero-card three">
+            <div>
+              <span>Hero image 03</span>
+              <strong>Third image slot ready for final assets.</strong>
+            </div>
+          </article>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="about">
+      <div class="section-inner">
+        <p class="section-label">About</p>
+        <h2 class="section-title">More Than Just Music</h2>
+        <p class="section-copy">TC Audio Productions has been the soundtrack to Atlantic Canada's most memorable weddings since 1992. With decades of experience and a sharp feel for the room, Tommy brings the energy, atmosphere, and timing that turn a solid night into a lasting memory. From the first dance to the final track, the flow is handled.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="services">
+      <div class="section-inner">
+        <p class="section-label">Services</p>
+        <h2 class="section-title">What We Offer</h2>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">💍</div>
+            <h3>Wedding Receptions</h3>
+            <p>Full-night entertainment from cocktail hour through last dance, with custom playlists, MC support, and clean transitions all night long.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🎤</div>
+            <h3>MC Services</h3>
+            <p>Professional hosting for announcements, introductions, and pacing so the room stays organized without ever feeling stiff.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">💡</div>
+            <h3>Dance Floor Lighting</h3>
+            <p>Lighting and effects that shift the mood of the room and turn the floor into the center of the night when it counts.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🎵</div>
+            <h3>Custom Playlist Planning</h3>
+            <p>A soundtrack built around the couple, the timeline, and the energy of the crowd, not a generic canned set.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🎧</div>
+            <h3>Ceremony Sound</h3>
+            <p>Clear audio for the processional, vows, and recessional, so every important word lands the way it should.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">📋</div>
+            <h3>Online Planning Portal</h3>
+            <p>Simple planning tools for music requests, do-not-play lists, and event flow so details stay organized before the date arrives.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="section-label">Why TC Audio</p>
+        <h2 class="section-title">The Difference Is in the Details</h2>
+        <div class="stats-grid">
+          <div>
+            <div class="stat-value">30+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div>
+            <div class="stat-value">500+</div>
+            <div class="stat-label">Weddings Performed</div>
+          </div>
+          <div>
+            <div class="stat-value">5★</div>
+            <div class="stat-label">Average Client Rating</div>
+          </div>
+          <div>
+            <div class="stat-value">∞</div>
+            <div class="stat-label">Memories Made</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="gallery">
+      <div class="section-inner">
+        <p class="section-label">Gallery</p>
+        <h2 class="section-title">Image Slots Ready for Final Photos</h2>
+        <div class="gallery-grid">
+          <article class="gallery-card">
+            <div class="gallery-photo">
+              <div>
+                <strong>Photo 01</strong>
+                <p>Drop in a signature hero image or reception floor shot here.</p>
+              </div>
+            </div>
+            <h3>Lead promo image</h3>
+            <p>This card is ready for one of Tommy's main visuals once he sends the final assets over.</p>
+          </article>
+          <article class="gallery-card">
+            <div class="gallery-photo">
+              <div>
+                <strong>Photo 02</strong>
+                <p>Use this slot for a booth setup, venue scene, or live crowd photo.</p>
+              </div>
+            </div>
+            <h3>Supporting visual</h3>
+            <p>Good place for a detail shot that helps sell the atmosphere and professionalism of the setup.</p>
+          </article>
+          <article class="gallery-card">
+            <div class="gallery-photo">
+              <div>
+                <strong>Photo 03</strong>
+                <p>Perfect for another reception image or branding-focused photo.</p>
+              </div>
+            </div>
+            <h3>Third image slot</h3>
+            <p>This keeps the page visually complete right away while still making future photo swaps trivial.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="section-label">Testimonials</p>
+        <h2 class="section-title">What Couples Are Saying</h2>
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <p>"TC Audio Productions made our wedding night absolutely magical. The dance floor was packed all night."</p>
+            <div class="testimonial-name">Sarah & James</div>
+            <div class="testimonial-date">August 2024</div>
+          </article>
+          <article class="testimonial-card">
+            <p>"Professional, easy to work with, and the music was perfect. Our guests are still talking about it."</p>
+            <div class="testimonial-name">Emily & Connor</div>
+            <div class="testimonial-date">June 2024</div>
+          </article>
+          <article class="testimonial-card">
+            <p>"From our first meeting to the last song, everything was seamless. Couldn't have asked for more."</p>
+            <div class="testimonial-name">Rachel & Michael</div>
+            <div class="testimonial-date">September 2024</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="contact">
+      <div class="section-inner contact-wrap">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Check Your Date</h2>
+        <p class="section-copy">Ready to make the night unforgettable? Reach out and start the conversation.</p>
+
+        <div class="contact-links">
+          <a href="tel:9025744800"><span>📞</span><span>(902) 574-4800</span></a>
+          <a href="mailto:tcaudiopro@hotmail.com"><span>✉</span><span>tcaudiopro@hotmail.com</span></a>
+        </div>
+
+        <div class="success-state" id="success-state">
+          <div class="icon">💍</div>
+          <h3>Message Received</h3>
+          <p>Thank you. We'll be in touch within 24 hours to talk through the details of your day.</p>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="names">Your Names</label>
+            <input id="names" name="names" type="text" placeholder="e.g. Sarah & James" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" placeholder="(902) 000-0000" required>
+          </div>
+          <div class="form-group">
+            <label for="date">Wedding Date</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+          <div class="form-group">
+            <label for="venue">Venue / Location</label>
+            <input id="venue" name="venue" type="text" placeholder="Venue name and city" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About Your Vision</label>
+            <textarea id="message" name="message" placeholder="What kind of vibe are you going for? Any must-play songs?"></textarea>
+          </div>
+          <button class="button button-primary" type="submit">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>© 2026 TC Audio Productions · Wedding DJ & Entertainment · Atlantic Canada</p>
+      <p>Serving couples since 1992</p>
+      <div class="footer-links">
+        <a href="tel:9025744800">(902) 574-4800</a>
+        <a href="mailto:tcaudiopro@hotmail.com">tcaudiopro@hotmail.com</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('success-state');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      form.style.display = 'none';
+      success.classList.add('is-visible');
+    });
+  </script>
+</body>
+</html>
