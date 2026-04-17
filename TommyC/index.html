@@ -323,7 +323,8 @@
   }
 
   .services-grid,
-  .testimonials-grid {
+  .testimonials-grid,
+  .article-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
@@ -332,7 +333,8 @@
 
   .service-card,
   .testimonial-card,
-  .gallery-card {
+  .gallery-card,
+  .article-card {
     background: var(--panel);
     border: 1px solid var(--stroke);
     padding: 34px 28px;
@@ -342,7 +344,8 @@
 
   .service-card:hover,
   .testimonial-card:hover,
-  .gallery-card:hover {
+  .gallery-card:hover,
+  .article-card:hover {
     transform: translateY(-4px);
     border-color: var(--stroke-strong);
     background: var(--panel-strong);
@@ -354,7 +357,8 @@
   }
 
   .service-card h3,
-  .gallery-card h3 {
+  .gallery-card h3,
+  .article-card h3 {
     color: var(--gold);
     font-size: 1.06rem;
     margin-bottom: 12px;
@@ -363,10 +367,30 @@
 
   .service-card p,
   .gallery-card p,
+  .article-card p,
   .testimonial-card p {
     color: var(--muted);
     line-height: 1.8;
     font-size: 0.96rem;
+  }
+
+  .article-card span {
+    display: block;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    margin-bottom: 14px;
+  }
+
+  .article-card a {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.04em;
   }
 
   .stats-grid {
@@ -741,6 +765,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#articles">Articles</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -951,6 +976,35 @@
             <p>"Easy to work with, reliable, and completely prepared. The sound, announcements, and overall flow were handled with real professionalism."</p>
             <div class="testimonial-name">Private Event Client</div>
             <div class="testimonial-date">Recent Booking</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="articles">
+      <div class="section-inner">
+        <p class="section-label">Planning Advice</p>
+        <h2 class="section-title">Helpful Reads For Weddings, Proms, And Private Events</h2>
+        <div class="article-grid">
+          <article class="article-card">
+            <span>Wedding Planning</span>
+            <h3>How To Choose The Right Wedding DJ In Cape Breton</h3>
+            <p>What couples should actually look for when comparing DJs, sound, lighting, planning support, and experience for a smooth wedding day.</p>
+            <a href="/TommyC/blog/how-to-choose-the-right-wedding-dj-in-cape-breton.html">Read the article →</a>
+          </article>
+          <article class="article-card">
+            <span>School Events</span>
+            <h3>What Makes A Great Prom DJ Setup For Schools And Grad Events</h3>
+            <p>Why the best prom setups balance music selection, clean presentation, lighting, announcements, and a room that actually feels exciting.</p>
+            <a href="/TommyC/blog/what-makes-a-great-prom-dj-setup.html">Read the article →</a>
+          </article>
+          <article class="article-card">
+            <span>Private Events</span>
+            <h3>Sound, Lighting, And Music Tips For Better Private Events</h3>
+            <p>How to think about flow, sound coverage, lighting, and guest energy when planning a party, fundraiser, anniversary, or community event.</p>
+            <a href="/TommyC/blog/sound-lighting-and-music-tips-for-private-events.html">Read the article →</a>
           </article>
         </div>
       </div>
