@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <title>TC Audio Productions</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Professional DJ entertainment and event production for weddings, proms, and private events across Atlantic Canada.">
+<meta name="description" content="Based in Sydney Mines and North Sydney, TC Audio Productions has provided professional sound, lighting, DJ, and karaoke services since 1992.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TC Audio Productions">
-<meta property="og:description" content="Professional DJ entertainment and event production for weddings, proms, and private events across Atlantic Canada.">
+<meta property="og:description" content="Based in Sydney Mines and North Sydney, TC Audio Productions has provided professional sound, lighting, DJ, and karaoke services since 1992.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TC Audio Productions">
-<meta name="twitter:description" content="Professional DJ entertainment and event production for weddings, proms, and private events across Atlantic Canada.">
+<meta name="twitter:description" content="Based in Sydney Mines and North Sydney, TC Audio Productions has provided professional sound, lighting, DJ, and karaoke services since 1992.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -380,6 +380,75 @@
     margin-top: 56px;
   }
 
+  .media-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.9fr);
+    gap: 36px;
+    align-items: center;
+    margin-top: 56px;
+  }
+
+  .media-videos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .media-frame,
+  .media-copy {
+    background: var(--panel);
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow);
+  }
+
+  .media-frame {
+    padding: 14px;
+  }
+
+  .media-frame video {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+
+  .media-frame-label {
+    display: block;
+    margin-top: 12px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+  }
+
+  .media-copy {
+    padding: 34px 30px;
+  }
+
+  .media-kicker {
+    display: block;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.74rem;
+    margin-bottom: 12px;
+  }
+
+  .media-copy h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.08;
+    margin-bottom: 16px;
+  }
+
+  .media-copy p {
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 0.98rem;
+  }
+
   .gallery-photo {
     aspect-ratio: 4 / 5;
     margin-bottom: 20px;
@@ -393,6 +462,41 @@
     text-align: center;
     color: var(--muted);
     padding: 20px;
+  }
+
+  .gallery-photo.has-image {
+    position: relative;
+    overflow: hidden;
+    place-items: end start;
+    text-align: left;
+    background-size: cover;
+    background-position: center;
+    color: var(--text);
+  }
+
+  .gallery-photo.has-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.18) 58%, rgba(0, 0, 0, 0.04));
+  }
+
+  .gallery-photo.has-image > div {
+    position: relative;
+    z-index: 1;
+    max-width: 24ch;
+  }
+
+  .gallery-photo.image-one {
+    background-image: url("./assets/tommy-photo-01.jpg");
+  }
+
+  .gallery-photo.image-two {
+    background-image: url("./assets/tommy-photo-02.jpg");
+  }
+
+  .gallery-photo.image-three {
+    background-image: url("./assets/tommy-photo-03.jpg");
   }
 
   .gallery-photo strong {
@@ -557,8 +661,13 @@
 
   @media (max-width: 960px) {
     .hero-inner,
-    .gallery-grid {
+    .gallery-grid,
+    .media-feature {
       grid-template-columns: 1fr;
+    }
+
+    .media-videos {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .hero-rail {
@@ -585,6 +694,10 @@
 
     .hero-rail,
     .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .media-videos {
       grid-template-columns: 1fr;
     }
 
@@ -617,9 +730,9 @@
     <header class="hero" id="top">
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">Weddings · Proms · Private Events · Since 1992</p>
+          <p class="eyebrow">Sydney Mines · North Sydney · Since 1992</p>
           <h1>Professional Event Entertainment,<br><em>Expertly Delivered</em></h1>
-          <p>TC Audio Productions provides polished DJ entertainment, MC services, and event production for weddings, proms, school events, and private celebrations across Atlantic Canada.</p>
+          <p>TC Audio Productions has been providing professional sound and lighting solutions, open format disc jockeys, and karaoke services for weddings, proms, private parties, and virtually any event requiring music.</p>
           <a class="button button-primary" href="#contact">Request Availability</a>
         </div>
 
@@ -649,8 +762,8 @@
     <section class="section" id="about">
       <div class="section-inner">
         <p class="section-label">About</p>
-        <h2 class="section-title">Trusted Entertainment For Milestone Events</h2>
-        <p class="section-copy">TC Audio Productions has been helping clients deliver memorable, well-run events since 1992. From elegant wedding receptions and high-energy proms to fundraisers, private parties, and community celebrations, every event is handled with professionalism, strong crowd awareness, and a clean, reliable production approach from start to finish.</p>
+        <h2 class="section-title">Professional Sound, Lighting, DJ & Karaoke Services</h2>
+        <p class="section-copy">Based in Sydney Mines and North Sydney, TC Audio Productions has been serving clients since 1992 with professional sound and lighting solutions, open format disc jockey services, and karaoke for a wide range of events. From weddings and proms to private parties, fundraisers, and community functions, the focus is always on dependable service, strong presentation, and music that fits the room.</p>
       </div>
     </section>
 
@@ -724,40 +837,70 @@
 
     <div class="divider"></div>
 
+    <section class="section">
+      <div class="section-inner">
+        <p class="section-label">Promo Reel</p>
+        <h2 class="section-title">A Short Look At The Atmosphere</h2>
+        <div class="media-feature">
+          <div class="media-videos">
+            <div class="media-frame">
+              <video autoplay muted loop playsinline preload="metadata" poster="./assets/tommy-promo-poster.jpg">
+                <source src="./assets/tommy-promo-loop.mp4" type="video/mp4">
+              </video>
+              <span class="media-frame-label">Promo Loop 01</span>
+            </div>
+            <div class="media-frame">
+              <video autoplay muted loop playsinline preload="metadata" poster="./assets/tommy-promo-poster-02.jpg">
+                <source src="./assets/tommy-promo-loop-02.mp4" type="video/mp4">
+              </video>
+              <span class="media-frame-label">Promo Loop 02</span>
+            </div>
+          </div>
+          <div class="media-copy">
+            <span class="media-kicker">7 second loops</span>
+            <h3>Live energy, clean presentation, and more than one look at the room.</h3>
+            <p>Both promo clips loop silently, play inline on mobile, and add motion without overwhelming the page. Together they give visitors a stronger feel for the setup, lighting, and live event atmosphere behind TC Audio Productions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
     <section class="section" id="gallery">
       <div class="section-inner">
         <p class="section-label">Gallery</p>
         <h2 class="section-title">Showcase Images Coming Soon</h2>
         <div class="gallery-grid">
           <article class="gallery-card">
-            <div class="gallery-photo">
+            <div class="gallery-photo has-image image-one">
               <div>
                 <strong>Photo 01</strong>
-                <p>Drop in a signature wedding, prom, or private event image here.</p>
+                <p>Featured event image now live on the site.</p>
               </div>
             </div>
             <h3>Lead brand image</h3>
-            <p>This slot is ready for a hero-quality image that immediately shows the style and professionalism of the brand.</p>
+            <p>This image now anchors the gallery and gives the page a stronger, more credible event-forward look.</p>
           </article>
           <article class="gallery-card">
-            <div class="gallery-photo">
+            <div class="gallery-photo has-image image-two">
               <div>
                 <strong>Photo 02</strong>
-                <p>Use this slot for a setup shot, venue image, or live crowd moment.</p>
+                <p>Second featured event image now live on the site.</p>
               </div>
             </div>
             <h3>Event atmosphere</h3>
-            <p>A strong supporting visual here can reinforce production quality, lighting, and the overall event experience.</p>
+            <p>This supporting image adds more real event coverage and strengthens the overall presentation of the brand.</p>
           </article>
           <article class="gallery-card">
-            <div class="gallery-photo">
+            <div class="gallery-photo has-image image-three">
               <div>
                 <strong>Photo 03</strong>
-                <p>Perfect for another event image or a branding-focused promotional photo.</p>
+                <p>Third featured event image now live on the site.</p>
               </div>
             </div>
             <h3>Promotional support image</h3>
-            <p>This section is ready for another polished visual that rounds out the page and gives the site a more complete portfolio feel.</p>
+            <p>This image rounds out the gallery with another real event visual and gives the page a much stronger portfolio presence.</p>
           </article>
         </div>
       </div>
@@ -847,8 +990,8 @@
     </section>
 
     <footer class="site-footer">
-      <p>© 2026 TC Audio Productions · Event Entertainment · Atlantic Canada</p>
-      <p>Serving weddings, proms, and private events since 1992</p>
+      <p>© 2026 TC Audio Productions · Sound, Lighting, DJ & Karaoke Services</p>
+      <p>Based in Sydney Mines and North Sydney, serving events since 1992</p>
       <div class="footer-links">
         <a href="tel:9025744800">(902) 574-4800</a>
         <a href="mailto:tcaudiopro@hotmail.com">tcaudiopro@hotmail.com</a>
