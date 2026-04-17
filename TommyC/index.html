@@ -582,6 +582,8 @@
   }
 
   .contact-links a {
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
     color: var(--text);
     opacity: 0.84;
@@ -592,9 +594,17 @@
     opacity: 1;
   }
 
-  .contact-links span:first-child {
+  .contact-links span:first-child,
+  .contact-links svg:first-child {
     color: var(--gold);
     margin-right: 10px;
+  }
+
+  .social-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex: 0 0 auto;
   }
 
   .contact-form {
@@ -963,19 +973,19 @@
         <h2 class="section-title">What Clients Are Saying</h2>
         <div class="testimonials-grid">
           <article class="testimonial-card">
-            <p>"Professional from the first call to the last song. The room stayed full, the timeline stayed tight, and the entire night felt effortless."</p>
-            <div class="testimonial-name">Wedding Client</div>
-            <div class="testimonial-date">2024 Event</div>
+            <p>"Very professional DJ and lighting services for our wedding venue. Tom and Mike did a wonderful job getting people dancing and communicating with us throughout the process."</p>
+            <div class="testimonial-name">Myles H.G.</div>
+            <div class="testimonial-date">Facebook Recommendation</div>
           </article>
           <article class="testimonial-card">
-            <p>"Exactly the kind of presence you want running a major event. Great music, great pacing, and a packed dance floor all night."</p>
-            <div class="testimonial-name">Prom Committee Feedback</div>
-            <div class="testimonial-date">2024 Season</div>
+            <p>"Tommy did the music for my daughter's wedding and it was a great time. Tommy never disappoints."</p>
+            <div class="testimonial-name">Bernie Beaton</div>
+            <div class="testimonial-date">Facebook Recommendation</div>
           </article>
           <article class="testimonial-card">
-            <p>"Easy to work with, reliable, and completely prepared. The sound, announcements, and overall flow were handled with real professionalism."</p>
-            <div class="testimonial-name">Private Event Client</div>
-            <div class="testimonial-date">Recent Booking</div>
+            <p>"Stood in a wedding over the weekend. I could not get off the dance floor all night. I can't recommend Tommy enough. He was incredible."</p>
+            <div class="testimonial-name">Marie Nic</div>
+            <div class="testimonial-date">Facebook Recommendation</div>
           </article>
         </div>
       </div>
@@ -1021,6 +1031,12 @@
         <div class="contact-links">
           <a href="tel:9025744800"><span>📞</span><span>(902) 574-4800</span></a>
           <a href="mailto:tcaudiopro@hotmail.com"><span>✉</span><span>tcaudiopro@hotmail.com</span></a>
+          <a href="https://www.facebook.com/profile.php?id=61569444590301" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.7-1.6h1.8V4.1c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.1H8v3.2h2.6V22h2.9z"/>
+            </svg>
+            <span>Facebook</span>
+          </a>
         </div>
 
         <div class="success-state" id="success-state">
@@ -1073,6 +1089,12 @@
       <div class="footer-links">
         <a href="tel:9025744800">(902) 574-4800</a>
         <a href="mailto:tcaudiopro@hotmail.com">tcaudiopro@hotmail.com</a>
+        <a href="https://www.facebook.com/profile.php?id=61569444590301" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.7-1.6h1.8V4.1c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.1H8v3.2h2.6V22h2.9z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
       </div>
     </footer>
   </div>
