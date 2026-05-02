@@ -167,7 +167,7 @@ header:not(.hero)::after {
 .hero-grid {
   width: min(100%, var(--stage-max));
   margin: 0 auto;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.75fr) !important;
+  grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.88fr) !important;
   gap: 52px !important;
   align-items: end !important;
 }
@@ -249,6 +249,135 @@ header.hero p.desc {
   letter-spacing: 0.08em;
 }
 
+.hero-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+}
+
+.hero-visual {
+  display: grid;
+  gap: 16px;
+  align-self: stretch;
+  min-height: 560px;
+}
+
+.hero-portrait,
+.artifact-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--stage-line);
+  border-radius: 2px;
+  background: var(--stage-panel);
+  box-shadow: var(--stage-shadow);
+}
+
+.hero-portrait {
+  min-height: 360px;
+  display: grid;
+  align-items: end;
+}
+
+.hero-portrait::before,
+.artifact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.2) 62%, rgba(0, 0, 0, 0.05));
+}
+
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(120deg, rgba(255, 48, 76, 0.2), transparent 40%),
+    linear-gradient(90deg, rgba(214, 177, 95, 0.08), transparent 38%);
+  mix-blend-mode: screen;
+}
+
+.hero-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.02);
+  filter: grayscale(0.08) contrast(1.12) saturate(0.92);
+}
+
+.hero-portrait figcaption,
+.artifact-card span,
+.artifact-card strong {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-portrait figcaption {
+  padding: 24px;
+}
+
+.hero-portrait span,
+.artifact-card span,
+.section-kicker,
+.proof-item span {
+  display: block;
+  color: var(--stage-gold);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero-portrait strong {
+  display: block;
+  max-width: 24ch;
+  margin-top: 8px;
+  color: var(--stage-cream);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.1rem;
+  font-weight: 400;
+  line-height: 1.02;
+}
+
+.hero-artifacts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.artifact-card {
+  min-height: 178px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+}
+
+.artifact-card strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--stage-cream);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.artifact-dragon {
+  background:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.1), rgba(8, 8, 8, 0.78)),
+    url("/assets/old-dragons-first-fire.png") center / cover;
+}
+
+.artifact-nstn {
+  background:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.1), rgba(8, 8, 8, 0.82)),
+    url("/assets/nstn.jpg") center / cover;
+}
+
 .hero-stats {
   gap: 14px !important;
 }
@@ -314,6 +443,54 @@ section h2 {
   margin-bottom: 22px !important;
   font-size: clamp(2.7rem, 5vw, 4.25rem) !important;
   line-height: 1.02 !important;
+}
+
+.first-fire-section {
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background:
+    linear-gradient(90deg, rgba(8, 8, 8, 0.98), rgba(8, 8, 8, 0.72)),
+    linear-gradient(135deg, rgba(214, 177, 95, 0.08), rgba(255, 48, 76, 0.09)),
+    url("/assets/nstn.jpg") center / cover;
+}
+
+.first-fire-grid {
+  width: min(calc(100% - 44px), var(--stage-max));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(300px, 0.74fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.first-fire-section h2 {
+  max-width: 790px;
+}
+
+.proof-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.proof-item {
+  padding: 24px;
+  border: 1px solid var(--stage-line);
+  background: rgba(8, 8, 8, 0.58);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.proof-item strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--stage-cream);
+  font-size: 1.08rem;
+}
+
+.proof-item p {
+  margin-top: 10px;
+  color: var(--stage-muted);
+  line-height: 1.75;
 }
 
 .section-intro {
@@ -518,6 +695,68 @@ main > header.hero .desc {
   font-weight: 300 !important;
 }
 
+.writing-feature {
+  position: relative;
+  min-height: 310px;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.writing-feature::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.3) 62%, rgba(0, 0, 0, 0.08));
+}
+
+.writing-feature h3,
+.writing-feature p,
+.writing-feature a {
+  position: relative;
+  z-index: 1;
+}
+
+.writing-feature h3 {
+  color: var(--stage-cream) !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: clamp(2rem, 3vw, 2.8rem) !important;
+  font-weight: 300 !important;
+}
+
+.writing-feature p {
+  max-width: 36rem;
+  color: rgba(247, 239, 224, 0.82) !important;
+}
+
+.writing-dragons {
+  grid-column: span 2;
+  background:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.08), rgba(8, 8, 8, 0.9)),
+    url("/assets/old-dragons-first-fire.png") center / cover !important;
+}
+
+.writing-cognition {
+  background:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.08), rgba(8, 8, 8, 0.9)),
+    url("/assets/neon-city.jpg") center / cover !important;
+}
+
+.writing-ghosts {
+  background:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.08), rgba(8, 8, 8, 0.9)),
+    url("https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?auto=format&fit=crop&w=1200&q=80") center / cover !important;
+}
+
+.writing-bigbang {
+  background:
+    linear-gradient(180deg, rgba(8, 8, 8, 0.08), rgba(8, 8, 8, 0.9)),
+    url("/assets/nstn.jpg") center / cover !important;
+}
+
 @media (max-width: 900px) {
   nav .nav-inner,
   .nav-inner {
@@ -532,6 +771,22 @@ main > header.hero .desc {
 
   .hero-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  .hero-visual {
+    min-height: auto;
+  }
+
+  .hero-artifacts {
+    grid-template-columns: 1fr;
+  }
+
+  .first-fire-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .writing-dragons {
+    grid-column: span 1;
   }
 
   .hero-copy {
