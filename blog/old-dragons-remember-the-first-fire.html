@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Old Dragons Remember the First Fire: What Avici Taught Me About AI Infrastructure</title>
+<link rel="canonical" href="https://deleskie.com/blog/old-dragons-remember-the-first-fire.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="What Avici Systems and the dot-com era can teach us about timing, market demand, fabric pressure, and the modern AI infrastructure buildout.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Old Dragons Remember the First Fire: What Avici Taught Me About AI Infrastructure">
+<meta property="og:description" content="What Avici Systems and the dot-com era can teach us about timing, market demand, fabric pressure, and the modern AI infrastructure buildout.">
+<meta property="og:url" content="https://deleskie.com/blog/old-dragons-remember-the-first-fire.html">
+<meta property="og:image" content="https://deleskie.com/assets/old-dragons-first-fire.png">
+<meta property="og:image:width" content="1672">
+<meta property="og:image:height" content="941">
+<meta property="og:site_name" content="Jim DeLeskie">
+<meta property="article:author" content="Jim DeLeskie">
+<meta property="article:published_time" content="2026-05-02">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Old Dragons Remember the First Fire">
+<meta name="twitter:description" content="What Avici Systems and the dot-com era can teach us about timing, market demand, fabric pressure, and the modern AI infrastructure buildout.">
+<meta name="twitter:image" content="https://deleskie.com/assets/old-dragons-first-fire.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05030d;
+    --card: rgba(15, 13, 28, 0.92);
+    --primary: #8b5cf6;
+    --accent: #c084fc;
+    --highlight: #f472b6;
+    --text: #f4f3ff;
+    --muted: #a7a3c2;
+    --radius: 18px;
+    --max-width: 860px;
+    --transition: 220ms ease;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at 18% 12%, rgba(139, 92, 246, 0.25), transparent 45%), radial-gradient(circle at 80% 0%, rgba(244, 114, 182, 0.16), transparent 40%), var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  body::after, body::before {
+    content: '';
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    filter: blur(30px);
+    z-index: -1;
+  }
+  body::before {
+    inset: -20% auto auto -10%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.25), transparent 65%);
+  }
+  body::after {
+    inset: auto -10% -25% auto;
+    background: radial-gradient(circle, rgba(244, 114, 182, 0.3), transparent 70%);
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(12px);
+    background: rgba(5, 6, 12, 0.85);
+    border-bottom: 1px solid rgba(192, 132, 252, 0.16);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 26px; font-size: 0.95rem; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background var(--transition), transform var(--transition);
+  }
+  .pill:hover {
+    background: rgba(192, 132, 252, 0.18);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 120px 20px 80px;
+  }
+  header.hero {
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 24px;
+  }
+  header.hero h1 {
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  header.hero p.meta {
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.88rem;
+  }
+  .hero-sub {
+    margin-top: 14px;
+    color: var(--muted);
+    max-width: 760px;
+    font-size: 1.02rem;
+  }
+  .hero-media {
+    margin: 30px 0 10px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(192, 132, 252, 0.25);
+    box-shadow: 0 25px 45px rgba(6, 7, 20, 0.75);
+  }
+  .hero-media img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+  }
+  .article-card {
+    background: var(--card);
+    padding: 42px;
+    border-radius: var(--radius);
+    box-shadow: 0 24px 48px rgba(6, 7, 20, 0.7);
+  }
+  .article-card h2 {
+    margin-top: 36px;
+    margin-bottom: 12px;
+    color: var(--highlight);
+    font-size: 1.45rem;
+  }
+  .article-card p {
+    margin: 18px 0;
+    line-height: 1.75;
+  }
+  .cta-panel {
+    margin-top: 40px;
+    padding: 28px 32px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(192, 132, 252, 0.35);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(8, 10, 24, 0.92));
+  }
+  .cta-panel h3 { margin-bottom: 12px; font-size: 1.4rem; }
+  .cta-panel a { color: var(--accent); font-weight: 600; }
+  .footer {
+    margin-top: 70px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(192,132,252,0.16);
+    padding-top: 30px;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .footer a:hover { text-decoration: underline; }
+  .floating-cta {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: linear-gradient(120deg, var(--accent), var(--highlight));
+    color: #05070e;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 18px 40px rgba(168,85,247,0.35);
+  }
+  .floating-cta:hover { transform: translateY(-3px); }
+  @media (max-width: 640px) {
+    .article-card { padding: 28px; }
+    .nav-inner { flex-direction: column; align-items: flex-start; }
+    .nav-links { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="/">Jim DeLeskie</a>
+    <div class="nav-links">
+      <a href="/#services">Services</a>
+      <a href="/#approach">Method</a>
+      <a href="/#why-us">Why Jim</a>
+      <a href="/#field-notes">Field Notes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#bio">About</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <a class="pill" href="mailto:deleskie@gmail.com">Book an Intro</a>
+  </div>
+</nav>
+<main>
+<header class="hero">
+  <p class="meta">Avici / AI Infrastructure / Systems</p>
+  <h1>Old Dragons Remember the First Fire: What Avici Taught Me About AI Infrastructure</h1>
+  <p class="hero-sub">A dot-com era lesson about being technically right, commercially early, and why the modern AI buildout is familiar without being a replay.</p>
+  <figure class="hero-media">
+    <img src="/assets/old-dragons-first-fire.png" alt="Old dragon watching a first fire over AI infrastructure">
+  </figure>
+</header>
+<article class="article-card">
+<p>Old dragons remember the first fire.</p>
+
+<p>Some of us were there the first time the future showed up too early.</p>
+
+<p>Back in the dot-com era, I worked at Avici Systems. We were building terabit-class routers for a world that was absolutely going to need them. That part was not wrong. The Internet was growing. Traffic was growing. The core was going to get bigger, faster, and less forgiving. The mistake, if you want to call it that, was not the shape of the architecture. The mistake was timing.</p>
+
+<p>We were not wrong about where the world was going. We were early about when it would get there.</p>
+
+<p>That is a different kind of failure. It is also a kind of failure that people who did not live through it often misunderstand.</p>
+
+<p>When people talk about the dot-com bubble now, they tend to flatten it into a cartoon. Bad business plans. Too much venture money. Too much optimism. Too many companies with no revenue and a logo that looked like it was designed by someone drinking Red Bull out of a server rack. Some of that is fair. There was plenty of nonsense. There were companies selling fantasy, companies selling vapor, and companies that existed because capital was cheap and everyone thought the Internet would turn every bad idea into gold.</p>
+
+<p>But that was not the whole story.</p>
+
+<p>Some companies were not wrong. Some companies were building real technology aimed at real problems. They just arrived before the market was ready to pay for the thing at the scale required to survive.</p>
+
+<p>That was one of the great lessons of Avici for me.</p>
+
+<p>We were building for a traffic curve that was real, but not immediate enough. We were building for carrier needs that would become obvious later. We were building systems that made architectural sense, but the operational, financial, and customer demand environment had not fully caught up. In startup terms, that is brutal. You can be technically right and commercially dead. The market does not hand out trophies for being correct eventually. It rewards being correct when the purchase order shows up.</p>
+
+<p>That is the part people miss when they compare today's AI infrastructure buildout to the dot-com bubble. The easy take is, "This looks like 2000." The smarter question is, "Which part looks like 2000?"</p>
+
+<p>Because in 2000, in parts of the networking world, we were building capacity for a future that was coming but not here yet. Today, in AI, the world cannot build enough of the thing it already wants.</p>
+
+<p>That does not mean there is no bubble. There will absolutely be bubble behavior. There will be bad companies. There will be weak business models. There will be rented GPU farms pretending they are strategy. There will be PowerPoint infrastructure companies where the only durable asset is the font choice. There will be software wrappers with no moat, no discipline, and no plan beyond "the model will save us."</p>
+
+<p>Fine. That is how every gold rush works. Real gold attracts real miners, fake miners, shovel salesmen, con men, bankers, drunks, and guys who heard there might be snacks.</p>
+
+<p>But the presence of nonsense does not make the core thing fake.</p>
+
+<p>AI infrastructure today is not being built for an imaginary workload five years away. Training demand is real. Inference demand is real. Memory bandwidth demand is real. Power demand is real. Cooling demand is real. Networking demand is absolutely real. Anyone who has looked seriously at GPU clusters understands that the problem is not just "buy chips." The problem is building an entire system where compute, memory, storage, interconnect, software, scheduling, fault handling, power, and operations all converge without turning the whole thing into an expensive space heater with a dashboard.</p>
+
+<p>That is why Avici keeps coming back to mind.</p>
+
+<p>Not because Avici became NVIDIA. It did not. That is not the claim. Not because modern AI infrastructure is a copy of what we built. It is not. That would be lazy history, and I am not interested in stepping on anyone's toes or flattening twenty-five years of engineering into a cute metaphor.</p>
+
+<p>The point is simpler and stronger.</p>
+
+<p>Some architectural pressures keep coming back because physics does not care what logo is on the chassis.</p>
+
+<p>At Avici, we were dealing with the problem of moving massive amounts of traffic through large systems without the fabric becoming the bottleneck. Big systems become fabric problems. That was true in carrier routing. It is true in hyperscale data centers. It is true in AI clusters. The workload changes. The silicon changes. The packaging changes. The protocols change. The budget owners change. But the ugly truth remains: moving data at scale is often harder than doing the math.</p>
+
+<p>When I look at modern AI infrastructure, especially GPU clusters and the work William "Bill" Dally has done around interconnection networks, parallel systems, and high-performance computing, I do not see Avici reborn. I see a familiar pressure field. I see big fabrics. I see topology mattering. I see locality mattering. I see congestion becoming destiny. I see distributed systems where the clean diagram on the whiteboard gets beaten half to death by tail latency, failure modes, oversubscription, retry behavior, and the fact that buffers are never where you wish they were. That smell is familiar.</p>
+
+<p>Old dragons remember it.</p>
+
+<p>The funny thing about infrastructure is that the ideas do not die cleanly. Companies die. Product names disappear. Chassis get decommissioned. Source code gets archived, lost, or trapped forever inside some corporate archaeology layer. The engineers scatter. But the instincts survive.</p>
+
+<p>The bubble did not kill the dragons. It scattered them. Some went to other startups. Some ended up at Oracle, Apple, AWS, Google, Dell, HPE, and a long list of other places where the next twenty-five years of infrastructure got built. The names on the badges changed. The scars and instincts came with them.</p>
+
+<p>That matters more than people realize. Because architecture is not just what you draw. Architecture is what you remember after production teaches you humility.</p>
+
+<p>A younger engineer can learn a topology. They can learn Clos. They can learn ECMP. They can learn RDMA. They can learn congestion control, telemetry, loss recovery, flow hashing, buffer behavior, failure domains, and all the vocabulary. That is all good. We need that. But there is a difference between knowing the terms and having lived inside a system where the terms became alarms at three in the morning. Scar tissue is a database. It stores the things the whitepaper left out.</p>
+
+<p>It remembers that customers say they want innovation until innovation means operational risk. It remembers that being first sounds heroic until nobody wants to be the first production deployment. It remembers that performance claims are easy, but supportability is where systems go to confess their sins. It remembers that a beautiful architecture with no market timing is still a very expensive way to learn a lesson.</p>
+
+<p>That is why I get impatient with shallow AI bubble talk.</p>
+
+<p>If someone says, "Some AI valuations are insane," I agree.</p>
+
+<p>If someone says, "A lot of AI startups have no moat," I agree.</p>
+
+<p>If someone says, "There is going to be a correction," I agree.</p>
+
+<p>But if someone says, "This is just like 2000," my answer is: define "just like."</p>
+
+<p>Because the Internet was real in 2000. The traffic growth was real. The need for bigger systems was real. What failed was not the entire thesis. What failed was timing, capital discipline, and the number of companies trying to occupy a market before the market had enough room for them. That distinction matters.</p>
+
+<p>The AI buildout has its own timing risk, but it is not the same risk.</p>
+
+<p>The question is not whether demand exists. It does. The question is whether today's supply arrives at the right cost, in the right form, for the workloads that will exist by the time the concrete dries, the power contracts are signed, the GPUs are racked, and the customers are ready to run real production work.</p>
+
+<p>That is the modern knife edge. Build too slowly and you miss the scarcity window. Build too expensively and you need perfect utilization forever. Build around today's training assumptions and tomorrow's inference-heavy world may punish you. Build a GPU cloud without networking discipline and you will learn very quickly that "AI infrastructure" is not just a purchasing department with access to NVIDIA allocation. Build without software, operations, support, security, and customer trust, and all you have is hot silicon and a cooling bill that looks like it was written by a Bond villain.</p>
+
+<p>This is where the old networking lessons matter. AI is not only a compute problem. It is a systems problem. It is a fabric problem. It is a scheduling problem. It is a data movement problem. It's a failure domain problem. It is a power and cooling problem. It is a timing problem. And at scale, it becomes all of those at once, usually on a Friday night when everyone important is on a plane.</p>
+
+<p>That is not new. The names are new. The stakes are higher. The speed is different. The amount of capital is absurd. But the pattern has history. The mistake is thinking history repeats as a costume party. It usually does not. History rhymes through constraints.</p>
+
+<p>The constraint in the Avici era was that the future was visible, but the market was not ready to fully buy it yet. The constraint in AI today is that demand is visible, but supply, power, economics, and operational maturity are struggling to keep up. Those are different conditions. Both can burn companies. Both can reward the few who time it correctly. Both can produce spectacular nonsense along the way.</p>
+
+<p>That is why this moment feels familiar, but not identical.</p>
+
+<p>At Avici, we stood on the sharpest point of the cutting edge. That sounds glamorous until you understand what the sharpest point actually is. It is not a throne. It is a blade. There is no broad market cushion under you. There is no installed base large enough to absorb every mistake. There are customers who admire the technology, test the technology, praise the technology, and then buy more of what they already operate because nobody gets fired for reducing risk. Being right too early is lonely. And expensive.</p>
+
+<p>Twenty-five years later, I look at AI infrastructure and I see a world where some of the old pressures finally have enough demand behind them to become unavoidable. Big systems need big fabrics. Data movement matters. Topology matters. Congestion matters. Control planes matter. Operational discipline matters. The network is not a side quest. It is part of the machine.</p>
+
+<p>That does not make every AI company good. It does not make every capex plan sane. It does not mean the growth curve goes up forever at some ridiculous angle. Nothing does. Trees do not grow to the moon, and neither do GPU clusters, no matter what the deck says. But it does mean the comparison to 2000 needs to be made carefully.</p>
+
+<p>The lesson from Avici is not "never build ahead." Sometimes building ahead is the only way anything important gets built. The lesson is that architecture, market timing, capital, and customer pain all have to converge. If they do not, the future can arrive without you, using ideas you helped prove, carried forward by engineers who survived the first fire.</p>
+
+<p>That is not failure in the simple sense. It is harsher than that. It is being right before being useful.</p>
+
+<p>And if you have lived through that once, you look at AI infrastructure differently. You are less impressed by hype, but also less dismissive of ambition. You know that some of the loudest companies will vanish. You know that some of the dumbest claims will be forgotten. You know that some expensive hardware will end up stranded, mispriced, or badly matched to the workloads that actually survive.</p>
+
+<p>But you also know that the underlying pressure is real. The fire is real. The only question is who can build close enough to it without getting burned.</p>
+
+<p>Old dragons remember the first fire because we have seen the future arrive early before.</p>
+
+<p>This time, the future is not waiting politely at the edge of the market.</p>
+
+<p>This time, the barn is already burning.</p>
+</article>
+<div class="cta-panel">
+  <h3>Building around real infrastructure pressure?</h3>
+  <p>Jim DeLeskie helps teams reason through AI infrastructure, network fabrics, and operating models before the constraints do the talking.</p>
+  <p><a href="mailto:deleskie@gmail.com">deleskie@gmail.com</a> | <a href="https://www.linkedin.com/in/user1138" target="_blank" rel="noopener">LinkedIn</a></p>
+</div>
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/#services">Services</a>
+    <a href="/#approach">Method</a>
+    <a href="/#why-us">Why Jim</a>
+    <a href="/#field-notes">Field Notes</a>
+    <a href="/blog/">Blog</a>
+    <a href="/#bio">About</a>
+    <a href="/#contact">Contact</a>
+    <a href="/blog/the-industry-is-wasting-time-on-the-wrong-argument.html">Cognition</a>
+    <a href="/blog/internet-big-bang-twenty-five-years-later.html">Internet Big Bang</a>
+    <a href="/blog/the-box-grew-around-us.html">The Box Grew Around Us</a>
+  </div>
+  <p>&copy; 2025 Jim DeLeskie &mdash; Secure automation and AI programs with confidence.</p>
+</footer>
+</main>
+<a class="floating-cta" href="/#contact">Talk to Jim &rarr;</a>
+</body>
+</html>
