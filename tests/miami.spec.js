@@ -65,3 +65,21 @@ test('/miami smart form validates and shows recommendation', async ({ page }) =>
   await expect(page.locator('[data-recommendation]')).toBeVisible();
   await expect(page.locator('[data-recommendation-title]')).toContainText('Bilingual Premium Wedding');
 });
+
+test('/miami checkbox controls stay compact on desktop and mobile', async ({ page }) => {
+  for (const viewport of [{ width: 390, height: 1200 }, { width: 1440, height: 1200 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto(`${baseUrl}/miami/#availability`, { waitUntil: 'networkidle' });
+    const boxes = await page.locator('.miami-checks input[type="checkbox"]').evaluateAll((nodes) =>
+      nodes.map((node) => {
+        const rect = node.getBoundingClientRect();
+        return { width: rect.width, height: rect.height };
+      })
+    );
+    expect(boxes.length).toBeGreaterThan(0);
+    for (const box of boxes) {
+      expect(box.width).toBeLessThanOrEqual(24);
+      expect(box.height).toBeLessThanOrEqual(24);
+    }
+  }
+});

@@ -896,6 +896,17 @@ body.miami-page--has-still-hero .miami-stage__video {
   text-transform: none;
 }
 
+.miami-checks input[type="checkbox"] {
+  flex: 0 0 18px;
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--miami-gold);
+}
+
 .miami-recommendation,
 .miami-success {
   display: none;
