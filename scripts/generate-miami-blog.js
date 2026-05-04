@@ -76,15 +76,15 @@ function postBody(post) {
   const sections = spanish
     ? [
         ['Borrador editorial', 'Este artículo es un borrador estructurado para la estrategia de contenido en español de TC Audio Productions Miami. TODO: completar con ejemplos reales, detalles de paquetes aprobados, fotos reales y enlaces internos finales antes de publicarlo como contenido definitivo.'],
-        ['Por qué importa en Miami', 'Miami combina familias bilingües, tradiciones latinas, invitados de diferentes generaciones, hoteles, salones, espacios privados y celebraciones con mucha energía. El DJ/MC no solo pone música; ayuda a que el evento tenga claridad, ritmo y respeto por los momentos importantes.'],
+        ['Por qué importa en Miami', 'Miami combina familias bilingües, tradiciones latinas, invitados de diferentes generaciones, hoteles, salones, espacios privados y celebraciones con mucha energía. El DJ/MC no solo pone música; ayuda a que el evento tenga claridad, ritmo, elegancia y respeto por los momentos importantes.'],
         ['Qué debe confirmar la familia', 'Antes de contratar, conviene confirmar el tipo de evento, fecha, lugar, número de invitados, necesidades de MC bilingüe, sonido para ceremonia, iluminación, momentos formales, canciones importantes y restricciones de música.'],
-        ['Cómo TC Audio lo planifica', 'El flujo de planificación captura detalles clave para preparar el evento: nombres, pronunciación, línea de tiempo, géneros musicales, entradas, micrófonos, logística del venue y notas para proveedores. La ejecución sigue siendo humana, preparada y profesional.']
+        ['Cómo TC Audio lo planifica', 'El flujo de planificación captura detalles clave para preparar el evento: nombres, pronunciación, línea de tiempo, géneros musicales, entradas, micrófonos, logística del venue y notas para proveedores. La ejecución sigue siendo humana, refinada y profesional.']
       ]
     : [
         ['Editorial draft', 'This article is a structured draft for the TC Audio Productions Miami content strategy. TODO: complete with approved package details, real media, internal links, and any verified proof points before treating it as final editorial content.'],
-        ['Why it matters in Miami', 'Miami events often combine luxury venues, bilingual guests, outdoor constraints, tight timelines, separate ceremony and reception spaces, and high expectations for sound, lighting, and MC flow. A DJ choice is really a production choice.'],
+        ['Why it matters in Miami', 'Miami events often combine luxury venues, bilingual guests, outdoor constraints, tight timelines, separate ceremony and reception spaces, and high expectations for sound, lighting, and MC flow. A DJ choice is really a production and presentation choice.'],
         ['What buyers should confirm', 'Before booking, confirm the event type, date, venue, guest count, ceremony audio needs, bilingual MC requirements, lighting goals, planner or venue restrictions, load-in windows, power, and backup expectations.'],
-        ['How the planning starts', 'Your inquiry should capture the details that affect the real setup: date, venue, guest count, ceremony needs, language needs, lighting goals, planner notes, and timeline priorities. From there, TC Audio can recommend the right starting package and confirm fit.']
+        ['How the planning starts', 'Your inquiry should capture the details that shape the real experience: date, venue, guest count, ceremony needs, language needs, lighting goals, planner notes, and timeline priorities. From there, TC Audio can recommend the right starting package and confirm fit.']
       ];
 
   return sections
@@ -155,7 +155,7 @@ ${renderHreflangLinks(post, posts)}
         <h1>${escapeHtml(post.title)}</h1>
         <p>${escapeHtml(post.excerpt)}</p>
         <div class="miami-hero__actions">
-          <a class="miami-button miami-button--primary" href="/miami/#availability">${spanish ? 'Iniciar consulta' : 'Start Inquiry'}</a>
+          <a class="miami-button miami-button--primary" href="/miami/#availability">${spanish ? 'Consultar disponibilidad' : 'Check Availability'}</a>
           <a class="miami-button miami-button--secondary" href="${spanish ? '/es/blog/' : '/blog/'}">${spanish ? 'Ver blog' : 'View Blog'}</a>
         </div>
       </div>
@@ -186,8 +186,8 @@ ${renderHreflangLinks(post, posts)}
   <section class="miami-section miami-section--tight">
     <div class="miami-section__inner">
       <div class="miami-final-cta reveal">
-        <h2>${spanish ? 'Empecemos con lo que tu evento necesita.' : 'Start with what your event actually needs.'}</h2>
-        <p>${spanish ? 'Comparte fecha, lugar, invitados, idioma, sonido, iluminación y presupuesto estimado para recibir una recomendación inicial.' : 'Share the date, venue, guest count, language needs, sound, lighting, and budget range so TC Audio can recommend the right starting setup.'}</p>
+        <h2>${spanish ? 'Empecemos con la experiencia que quieres crear.' : 'Start with the experience you want to create.'}</h2>
+        <p>${spanish ? 'Comparte fecha, lugar, invitados, idioma, sonido, iluminación y presupuesto estimado para recibir una recomendación inicial.' : 'Share the date, venue, guest count, language needs, sound, lighting, and budget range so TC Audio can recommend the right starting direction.'}</p>
         <a class="miami-button miami-button--primary" href="/miami/#availability">${spanish ? 'Consultar disponibilidad' : 'Check Availability'}</a>
       </div>
     </div>

@@ -197,10 +197,10 @@
       return;
     }
 
-    recommendationTitle.textContent = `This looks like a strong fit for ${data.recommendedPackage}.`;
+    recommendationTitle.textContent = `This looks like a strong starting direction for ${data.recommendedPackage}.`;
     recommendationCopy.textContent = data.lighting
       ? 'We will confirm the right sound, lighting, and staffing plan after reviewing your venue, timeline, and guest count.'
-      : 'We will confirm availability and the right setup after reviewing your details.';
+      : 'We will confirm availability and the right event scope after reviewing your details.';
     recommendationBox.classList.add('is-visible');
   }
 
