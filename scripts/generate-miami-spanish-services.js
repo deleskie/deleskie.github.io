@@ -61,6 +61,13 @@ function ensureDir(dir) {
 function page(service) {
   const url = `https://deleskie.com/es/${service.slug}/`;
   const relatedLinks = service.related.map((href) => `<a class="miami-link-button" href="${href}">${href.replaceAll('/', ' ').trim()}</a>`).join('');
+  const pageClass = {
+    'dj-para-bodas-miami': 'miami-page--wedding',
+    'dj-bilingue-para-bodas-miami': 'miami-page--bilingual',
+    'dj-para-quinceanera-miami': 'miami-page--quince',
+    'dj-para-eventos-corporativos-miami': 'miami-page--corporate',
+    'iluminacion-para-eventos-miami': 'miami-page--lighting'
+  }[service.slug] || '';
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -108,7 +115,7 @@ function page(service) {
 <link rel="stylesheet" href="/assets/miami.css">
 <script type="application/ld+json">${JSON.stringify(schema)}</script>
 </head>
-<body class="miami-page">
+<body class="miami-page ${pageClass}">
 <nav class="miami-nav"><div class="miami-nav__inner"><a class="miami-brand" href="/es/blog/"><strong>TC Audio Productions</strong><span>Miami en español</span></a><div class="miami-nav__links"><a href="/es/blog/">Blog</a><a href="/es/dj-para-bodas-miami/">Bodas</a><a href="/es/dj-para-quinceanera-miami/">Quinceañeras</a><a href="/miami/">English</a><a class="miami-link-button" href="/miami/#availability">Consultar disponibilidad</a></div></div></nav>
 <main>
   <header class="miami-service-hero">
