@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Gallery | TC Audio Productions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Browse featured event setups, lighting looks, and venue-specific context from TC Audio Productions for weddings, private events, and community functions across Cape Breton.">
+<link rel="canonical" href="https://deleskie.com/unlinktoalaska.com/gallery/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --panel: rgba(255,255,255,0.03);
+    --panel-strong: rgba(255,255,255,0.05);
+    --stroke: rgba(200,160,80,0.16);
+    --stroke-strong: rgba(200,160,80,0.34);
+    --gold: #c8a050;
+    --gold-bright: #e0b860;
+    --text: #f5f0e8;
+    --muted: rgba(245,240,232,0.72);
+    --muted-soft: rgba(245,240,232,0.54);
+    --max: 1120px;
+    --shadow: 0 28px 70px rgba(0,0,0,0.34);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Inter',sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(200,160,80,0.18);
+  }
+  .nav-inner,
+  .wrap {
+    width: min(calc(100% - 40px), var(--max));
+    margin: 0 auto;
+  }
+  .nav-inner {
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand {
+    text-decoration: none;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.8rem;
+  }
+  header {
+    padding: 110px 0 42px;
+  }
+  .eyebrow,
+  .section-label,
+  .card-label {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.74rem;
+  }
+  .eyebrow { margin-bottom: 16px; }
+  h1,
+  h2 {
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    line-height:1.04;
+  }
+  h1 {
+    font-size: clamp(2.9rem, 6vw, 4.8rem);
+    margin-bottom: 18px;
+  }
+  .lede,
+  .section-copy,
+  .feature-card p,
+  .detail-card p,
+  .cta-box p {
+    color: var(--muted);
+    line-height: 1.85;
+  }
+  .lede {
+    max-width: 760px;
+    font-size: 1.02rem;
+  }
+  .feature-grid,
+  .detail-grid {
+    display: grid;
+    gap: 28px;
+  }
+  .feature-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin: 28px 0 92px;
+  }
+  .feature-card,
+  .detail-card,
+  .cta-box {
+    background: var(--panel);
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow);
+  }
+  .feature-card {
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+  .feature-card:hover,
+  .detail-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--stroke-strong);
+    background: var(--panel-strong);
+  }
+  .feature-photo {
+    aspect-ratio: 4 / 3;
+    padding: 24px;
+    display: grid;
+    align-content: end;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .feature-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.18));
+  }
+  .feature-photo > div {
+    position: relative;
+    z-index: 1;
+    max-width: 26ch;
+  }
+  .feature-photo.one { background-image: url("../assets/tommy-photo-01.jpg"); }
+  .feature-photo.two { background-image: url("../assets/tommy-photo-02.jpg"); }
+  .feature-photo.three { background-image: url("../assets/tommy-photo-03.jpg"); }
+  .feature-card strong {
+    display: block;
+    font-size: 1.08rem;
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+  .feature-body {
+    padding: 26px 24px 28px;
+  }
+  .feature-body h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+  }
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .section {
+    padding: 0 0 88px;
+  }
+  .section-label { margin-bottom: 12px; }
+  .section-title {
+    font-size: clamp(2.3rem, 4vw, 3.5rem);
+    margin-bottom: 18px;
+  }
+  .detail-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin-top: 34px;
+  }
+  .detail-card {
+    padding: 28px 26px 30px;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+  .detail-card h3 {
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin: 12px 0 12px;
+  }
+  .detail-card ul {
+    margin-top: 18px;
+    padding-left: 18px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .cta-box {
+    padding: 34px 30px;
+    text-align: center;
+  }
+  .cta-box h2 {
+    font-size: 2.4rem;
+    margin-bottom: 14px;
+  }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 30px;
+    margin-top: 22px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: var(--gold);
+    color: #0a0a0a;
+  }
+  footer {
+    border-top:1px solid rgba(200,160,80,0.14);
+    padding:32px 0 48px;
+    text-align:center;
+    color:var(--muted-soft);
+    font-size:0.84rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  @media (max-width: 720px) {
+    .nav-inner {
+      width: min(calc(100% - 24px), var(--max));
+      padding: 16px 0;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    header {
+      padding-top: 138px;
+    }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/unlinktoalaska.com/">TC Audio Productions</a>
+    <div class="nav-links">
+      <a href="/unlinktoalaska.com/">Home</a>
+      <a href="/unlinktoalaska.com/gallery/">Gallery</a>
+      <a href="/unlinktoalaska.com/blog/">Articles</a>
+      <a href="/unlinktoalaska.com/#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header>
+    <p class="eyebrow">Event Gallery</p>
+    <h1>Real local setups, venue context, and event atmosphere from across Cape Breton.</h1>
+    <p class="lede">This gallery is built to show more than a few nice visuals. It gives couples, schools, and event organizers a clearer sense of how TC Audio Productions approaches wedding receptions, community functions, private parties, and venue-specific setups across the region.</p>
+  </header>
+
+  <section class="feature-grid">
+    <a class="feature-card" href="/unlinktoalaska.com/venues/keltic-lodge-weddings.html">
+      <div class="feature-photo one">
+        <div>
+          <span class="card-label">Wedding Reception</span>
+          <strong>Keltic Lodge wedding setup and reception flow.</strong>
+        </div>
+      </div>
+      <div class="feature-body">
+        <h2>Keltic Lodge Weddings</h2>
+        <p>Clean presentation, polished announcements, and a lighting plan that fits formal wedding rooms without overwhelming them.</p>
+        <span class="card-link">Open venue page →</span>
+      </div>
+    </a>
+    <a class="feature-card" href="/unlinktoalaska.com/venues/centre-200-events.html">
+      <div class="feature-photo two">
+        <div>
+          <span class="card-label">Community & School Events</span>
+          <strong>High-energy event production for larger rooms and bigger crowds.</strong>
+        </div>
+      </div>
+      <div class="feature-body">
+        <h2>Centre 200 Events</h2>
+        <p>Sound coverage, lighting control, and event pacing that hold together when the room is larger and expectations are higher.</p>
+        <span class="card-link">Open venue page →</span>
+      </div>
+    </a>
+    <a class="feature-card" href="/unlinktoalaska.com/venues/inverary-inn-events.html">
+      <div class="feature-photo three">
+        <div>
+          <span class="card-label">Private Events</span>
+          <strong>Flexible setups for milestone celebrations, banquets, and mixed-age crowds.</strong>
+        </div>
+      </div>
+      <div class="feature-body">
+        <h2>Inverary Inn Events</h2>
+        <p>Room-aware planning for private parties and receptions where the setup needs to feel polished without becoming too rigid.</p>
+        <span class="card-link">Open venue page →</span>
+      </div>
+    </a>
+  </section>
+
+  <section class="section" id="reception-ready-setup">
+    <p class="section-label">Professional DJ Setup</p>
+    <h2 class="section-title">Reception-ready presentation starts with a setup that looks intentional.</h2>
+    <p class="section-copy">The strongest wedding and banquet setups do not just sound good. They fit the room visually, keep cable management tight, make announcements clear, and leave enough flexibility to move from dinner service into a full dance floor without rebuilding the night around the gear.</p>
+    <div class="detail-grid">
+      <article class="detail-card">
+        <span class="card-label">What Matters</span>
+        <h3>Clean Room Presence</h3>
+        <p>Professional placement, tidy layout, and a setup that photographs well matter more at weddings than many people realize. That is part of what helps the event feel organized from the beginning.</p>
+      </article>
+      <article class="detail-card">
+        <span class="card-label">Local Context</span>
+        <h3>Banquet and Lodge Spaces</h3>
+        <p>Rooms like the Keltic Lodge or Inverary Inn call for a balance between elegance and flexibility. The setup has to support speeches, dinner service, and dancing without looking oversized or improvised.</p>
+      </article>
+      <article class="detail-card">
+        <span class="card-label">Related Page</span>
+        <h3>Keltic Lodge Weddings</h3>
+        <p>For couples comparing venue fit, flow, and what a polished reception setup should include, the Keltic Lodge page gives a stronger planning picture than a static photo alone.</p>
+        <a class="card-link" href="/unlinktoalaska.com/venues/keltic-lodge-weddings.html">Read more →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="lighting-atmosphere">
+    <p class="section-label">Lighting & Atmosphere</p>
+    <h2 class="section-title">Lighting should shape the room, not just flash around it.</h2>
+    <p class="section-copy">Good lighting changes how the room feels. It can support a formal introduction, lift energy when the dance floor opens, and help larger spaces feel more focused. The best results come from matching the room size, crowd energy, and event style instead of using the same look everywhere.</p>
+    <div class="detail-grid">
+      <article class="detail-card">
+        <span class="card-label">Why It Works</span>
+        <h3>Energy Without Visual Clutter</h3>
+        <p>Lighting needs to feel deliberate. For some events that means subtle room wash and cleaner movement. For others it means bigger effects that help a larger floor feel alive when the night turns up.</p>
+      </article>
+      <article class="detail-card">
+        <span class="card-label">Large-Room Fit</span>
+        <h3>Centre 200 Style Considerations</h3>
+        <p>Bigger spaces need stronger sound coverage and lighting decisions that keep the event from feeling visually flat. That is where planning matters more than simply bringing more fixtures.</p>
+      </article>
+      <article class="detail-card">
+        <span class="card-label">Related Page</span>
+        <h3>Centre 200 Events</h3>
+        <p>The Centre 200 page breaks down the difference between a setup that fills a room and one that actually controls the room well enough to keep momentum.</p>
+        <a class="card-link" href="/unlinktoalaska.com/venues/centre-200-events.html">Read more →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="private-event-setup">
+    <p class="section-label">Events That Move</p>
+    <h2 class="section-title">Private events work best when the setup can adapt to the crowd in front of it.</h2>
+    <p class="section-copy">Not every event wants the same rhythm. Some rooms need formal introductions and careful pacing. Others need faster transitions, flexible music control, and a setup that can support multiple age groups without losing the room. That is where experience shows up in the actual event flow.</p>
+    <div class="detail-grid">
+      <article class="detail-card">
+        <span class="card-label">Crowd Fit</span>
+        <h3>Mixed-Age Events</h3>
+        <p>Private celebrations often move between cocktails, dinner, speeches, and dance-floor time. A flexible setup keeps those transitions smooth instead of making the night feel segmented.</p>
+      </article>
+      <article class="detail-card">
+        <span class="card-label">Venue Fit</span>
+        <h3>Rooms That Need Balance</h3>
+        <p>Spaces like the Inverary Inn tend to reward setups that feel strong but controlled. The goal is enough energy to move the room without overpowering the event itself.</p>
+      </article>
+      <article class="detail-card">
+        <span class="card-label">Related Page</span>
+        <h3>Inverary Inn Events</h3>
+        <p>The Inverary Inn page focuses on private events, milestone celebrations, and how to keep room flow, announcements, and music pacing aligned with the crowd.</p>
+        <a class="card-link" href="/unlinktoalaska.com/venues/inverary-inn-events.html">Read more →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta-box">
+      <p class="section-label">Planning A Date?</p>
+      <h2>Need a setup that fits the room and the kind of event you are actually planning?</h2>
+      <p>If you already know the venue, include it in the inquiry. That makes it easier to discuss layout, lighting, sound coverage, and the kind of event flow that will work best for the room.</p>
+      <a class="button" href="/unlinktoalaska.com/#contact">Request Availability</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>TC Audio Productions · Sydney Mines & North Sydney · Since 1992</p>
+</footer>
+</body>
+</html>

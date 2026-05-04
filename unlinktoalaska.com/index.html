@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TC Audio Productions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Based in Sydney Mines and North Sydney, TC Audio Productions has provided professional sound, lighting, DJ, and karaoke services since 1992.">
+<link rel="canonical" href="https://deleskie.com/unlinktoalaska.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TC Audio Productions">
+<meta property="og:description" content="Based in Sydney Mines and North Sydney, TC Audio Productions has provided professional sound, lighting, DJ, and karaoke services since 1992.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TC Audio Productions">
+<meta name="twitter:description" content="Based in Sydney Mines and North Sydney, TC Audio Productions has provided professional sound, lighting, DJ, and karaoke services since 1992.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --hero-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.8)),
+      url("./assets/tommy-hero-bg.jpg");
+    --hero-card-image-1:
+      linear-gradient(135deg, rgba(200, 160, 80, 0.26), rgba(0, 0, 0, 0.08)),
+      url("./assets/tommy-hero-card-01.jpg");
+    --hero-card-image-2:
+      linear-gradient(135deg, rgba(200, 160, 80, 0.26), rgba(0, 0, 0, 0.08)),
+      url("./assets/tommy-photo-02.jpg");
+    --hero-card-image-3:
+      linear-gradient(135deg, rgba(200, 160, 80, 0.26), rgba(0, 0, 0, 0.08)),
+      url("./assets/tommy-photo-03.jpg");
+
+    --bg: #0a0a0a;
+    --panel: rgba(255, 255, 255, 0.03);
+    --panel-strong: rgba(255, 255, 255, 0.05);
+    --stroke: rgba(200, 160, 80, 0.16);
+    --stroke-strong: rgba(200, 160, 80, 0.34);
+    --gold: #c8a050;
+    --gold-bright: #e0b860;
+    --text: #f5f0e8;
+    --muted: rgba(245, 240, 232, 0.72);
+    --muted-soft: rgba(245, 240, 232, 0.52);
+    --shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
+    --max: 1120px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .page-shell {
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(200, 160, 80, 0.18);
+  }
+
+  .nav-inner {
+    width: min(calc(100% - 40px), var(--max));
+    margin: 0 auto;
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand {
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(245, 240, 232, 0.84);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    transition: color 160ms ease, opacity 160ms ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold);
+  }
+
+  .hero {
+    min-height: 100vh;
+    padding: 110px 20px 56px;
+    background-image: var(--hero-image);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-inner {
+    width: min(100%, var(--max));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 40px;
+    align-items: end;
+  }
+
+  .hero-copy {
+    max-width: 620px;
+  }
+
+  .eyebrow {
+    color: var(--gold);
+    letter-spacing: 0.26em;
+    font-size: 0.77rem;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .hero h1,
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.04;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    max-width: 560px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 34px;
+  }
+
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .hero-trust span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid rgba(200, 160, 80, 0.22);
+    background: rgba(10, 10, 10, 0.46);
+    color: var(--text);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    backdrop-filter: blur(8px);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 0 34px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+  }
+
+  .button-primary {
+    background: var(--gold);
+    color: #0a0a0a;
+  }
+
+  .button-primary:hover {
+    background: var(--gold-bright);
+    transform: translateY(-2px);
+  }
+
+  .hero-rail {
+    display: grid;
+    gap: 16px;
+    align-self: end;
+  }
+
+  .hero-card {
+    min-height: 150px;
+    padding: 18px;
+    border: 1px solid var(--stroke);
+    background-color: rgba(10, 10, 10, 0.4);
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 180ms ease, border-color 180ms ease;
+  }
+
+  .hero-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.12));
+  }
+
+  .hero-card span,
+  .hero-card strong {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--stroke-strong);
+  }
+
+  .hero-card span {
+    display: block;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.68rem;
+    margin-bottom: 6px;
+  }
+
+  .hero-card strong {
+    display: block;
+    max-width: 18ch;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .hero-card.one { background-image: var(--hero-card-image-1); }
+  .hero-card.two { background-image: var(--hero-card-image-2); }
+  .hero-card.three { background-image: var(--hero-card-image-3); }
+
+  .section {
+    padding: 104px 20px;
+  }
+
+  .section-inner {
+    width: min(100%, var(--max));
+    margin: 0 auto;
+  }
+
+  .section-label {
+    text-align: center;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.26em;
+    font-size: 0.74rem;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.08;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .section-copy {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 1.03rem;
+  }
+
+  .divider {
+    width: min(calc(100% - 40px), var(--max));
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(to right, transparent, rgba(200, 160, 80, 0.45), transparent);
+  }
+
+  .services-grid,
+  .testimonials-grid,
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 56px;
+  }
+
+  .service-card,
+  .testimonial-card,
+  .gallery-card,
+  .article-card {
+    background: var(--panel);
+    border: 1px solid var(--stroke);
+    padding: 34px 28px;
+    box-shadow: var(--shadow);
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+
+  .service-card:hover,
+  .testimonial-card:hover,
+  .gallery-card:hover,
+  .article-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--stroke-strong);
+    background: var(--panel-strong);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .service-card h3,
+  .gallery-card h3,
+  .article-card h3 {
+    color: var(--gold);
+    font-size: 1.06rem;
+    margin-bottom: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .service-card p,
+  .gallery-card p,
+  .article-card p,
+  .testimonial-card p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 0.96rem;
+  }
+
+  .article-card span {
+    display: block;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    margin-bottom: 14px;
+  }
+
+  .article-card a {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .gallery-card {
+    display: block;
+    text-decoration: none;
+  }
+
+  .gallery-card .card-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 34px;
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold);
+    font-size: 3.1rem;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .stat-label {
+    color: var(--muted-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .media-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.9fr);
+    gap: 36px;
+    align-items: center;
+    margin-top: 56px;
+  }
+
+  .media-videos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .media-frame,
+  .media-copy {
+    background: var(--panel);
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow);
+  }
+
+  .media-frame {
+    padding: 14px;
+  }
+
+  .media-frame video {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+    display: block;
+    background: #000;
+  }
+
+  .media-frame-label {
+    display: block;
+    margin-top: 12px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+  }
+
+  .media-copy {
+    padding: 34px 30px;
+  }
+
+  .media-kicker {
+    display: block;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.74rem;
+    margin-bottom: 12px;
+  }
+
+  .media-copy h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.08;
+    margin-bottom: 16px;
+  }
+
+  .media-copy p {
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 0.98rem;
+  }
+
+  .gallery-photo {
+    aspect-ratio: 4 / 5;
+    margin-bottom: 20px;
+    border: 1px solid rgba(200, 160, 80, 0.14);
+    background:
+      linear-gradient(140deg, rgba(200, 160, 80, 0.24), rgba(255, 255, 255, 0.02)),
+      repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 16px, rgba(255, 255, 255, 0.01) 16px, rgba(255, 255, 255, 0.01) 32px),
+      #121212;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: var(--muted);
+    padding: 20px;
+  }
+
+  .gallery-photo.has-image {
+    position: relative;
+    overflow: hidden;
+    place-items: end start;
+    text-align: left;
+    background-size: cover;
+    background-position: center;
+    color: var(--text);
+  }
+
+  .gallery-photo.has-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0.18) 58%, rgba(0, 0, 0, 0.04));
+  }
+
+  .gallery-photo.has-image > div {
+    position: relative;
+    z-index: 1;
+    max-width: 24ch;
+  }
+
+  .gallery-photo.image-one {
+    background-image: url("./assets/tommy-photo-01.jpg");
+  }
+
+  .gallery-photo.image-two {
+    background-image: url("./assets/tommy-photo-02.jpg");
+  }
+
+  .gallery-photo.image-three {
+    background-image: url("./assets/tommy-photo-03.jpg");
+  }
+
+  .gallery-photo strong {
+    display: block;
+    color: var(--gold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.76rem;
+    margin-bottom: 8px;
+  }
+
+  .testimonial-card p {
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .testimonial-name {
+    color: var(--gold);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .testimonial-date {
+    color: var(--muted-soft);
+    font-size: 0.76rem;
+    margin-top: 4px;
+  }
+
+  .contact-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    flex-wrap: wrap;
+    margin: 44px 0 52px;
+  }
+
+  .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text);
+    opacity: 0.84;
+    transition: opacity 160ms ease;
+  }
+
+  .contact-links a:hover {
+    opacity: 1;
+  }
+
+  .contact-links span:first-child,
+  .contact-links svg:first-child {
+    color: var(--gold);
+    margin-right: 10px;
+  }
+
+  .social-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex: 0 0 auto;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    color: var(--muted-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    margin-bottom: 8px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    border: 1px solid rgba(200, 160, 80, 0.24);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    padding: 15px 16px;
+    font: inherit;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-color: rgba(200, 160, 80, 0.52);
+  }
+
+  .contact-form textarea {
+    min-height: 144px;
+    resize: vertical;
+  }
+
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 56px 20px 14px;
+  }
+
+  .success-state.is-visible {
+    display: block;
+  }
+
+  .error-state {
+    display: none;
+    text-align: center;
+    padding: 20px 20px 0;
+    color: #f0c7c7;
+    line-height: 1.7;
+  }
+
+  .error-state.is-visible {
+    display: block;
+  }
+
+  .success-state .icon {
+    font-size: 3rem;
+    margin-bottom: 18px;
+  }
+
+  .success-state h3 {
+    color: var(--gold);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .success-state p {
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .site-footer {
+    border-top: 1px solid rgba(200, 160, 80, 0.14);
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .site-footer p {
+    color: var(--muted-soft);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .site-footer p + p {
+    margin-top: 10px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .footer-links a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.82rem;
+  }
+
+  .section-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  @media (max-width: 960px) {
+    .hero-inner,
+    .gallery-grid,
+    .media-feature {
+      grid-template-columns: 1fr;
+    }
+
+    .media-videos {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-rail {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .nav-inner {
+      width: min(calc(100% - 24px), var(--max));
+      padding: 16px 0;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav-links {
+      gap: 16px;
+    }
+
+    .hero {
+      padding-top: 154px;
+      padding-bottom: 42px;
+    }
+
+    .hero-rail,
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .media-videos {
+      grid-template-columns: 1fr;
+    }
+
+    .section {
+      padding: 80px 20px;
+    }
+
+    .contact-links {
+      gap: 18px;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page-shell">
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a class="brand" href="#top">TC Audio Productions</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="/unlinktoalaska.com/gallery/">Gallery</a></li>
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Sydney Mines · North Sydney · Since 1992</p>
+          <h1>Professional Sound, Lighting, DJ & Karaoke Services<br><em>For Events That Need To Feel Right</em></h1>
+          <p>TC Audio Productions delivers professional sound, lighting, open format DJ entertainment, and karaoke services for weddings, proms, private parties, community events, and milestone celebrations across Cape Breton and beyond.</p>
+          <a class="button button-primary" href="#contact">Request Availability</a>
+          <div class="hero-trust">
+            <span>Serving events since 1992</span>
+            <span>Weddings, proms & private events</span>
+            <span>Based in Sydney Mines & North Sydney</span>
+          </div>
+        </div>
+
+        <div class="hero-rail" aria-label="Featured service visuals">
+          <a class="hero-card one" href="/unlinktoalaska.com/gallery/#reception-ready-setup">
+            <div>
+              <span>Professional DJ Setup</span>
+              <strong>Clean presentation, dependable gear, and a setup that looks sharp in the room.</strong>
+            </div>
+          </a>
+          <a class="hero-card two" href="/unlinktoalaska.com/gallery/#lighting-atmosphere">
+            <div>
+              <span>Lighting & Atmosphere</span>
+              <strong>Custom lighting and event energy that help turn a standard space into a real party.</strong>
+            </div>
+          </a>
+          <a class="hero-card three" href="/unlinktoalaska.com/gallery/#private-event-setup">
+            <div>
+              <span>Events That Move</span>
+              <strong>Music, lighting, and pacing built to keep guests engaged from the first song to the last.</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="about">
+      <div class="section-inner">
+        <p class="section-label">About</p>
+        <h2 class="section-title">Professional Sound, Lighting, DJ & Karaoke Services</h2>
+        <p class="section-copy">Based in Sydney Mines and North Sydney, TC Audio Productions has been serving clients since 1992 with professional sound and lighting solutions, open format disc jockey services, and karaoke for a wide range of events. From Centre 200, the Keltic Lodge, and Inverary Inn to community halls, private venues, weddings, proms, fundraisers, and community functions, the focus is always on dependable service, strong presentation, and music that fits the room.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="services">
+      <div class="section-inner">
+        <p class="section-label">Services</p>
+        <h2 class="section-title">Entertainment Services</h2>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">💍</div>
+            <h3>Wedding Receptions</h3>
+            <p>Professional entertainment for the full wedding day, from cocktail hour and dinner service through the final dance, with music tailored to the room and the couple.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🎤</div>
+            <h3>Proms & School Events</h3>
+            <p>High-energy music programming, polished announcements, and age-appropriate event control for proms, graduations, and school dances.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">💡</div>
+            <h3>Private Events</h3>
+            <p>Sound, music, and event flow support for anniversaries, birthdays, holiday parties, fundraisers, and other private celebrations.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🎵</div>
+            <h3>MC & Event Hosting</h3>
+            <p>Clear, confident microphone work for introductions, formalities, and schedule management so your event stays on pace and feels professionally run.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🎧</div>
+            <h3>Lighting & Atmosphere</h3>
+            <p>Dance floor lighting and room-enhancing effects that elevate the space and create the right look and energy for the occasion.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">📋</div>
+            <h3>Custom Music Planning</h3>
+            <p>Thoughtful music preparation built around your event timeline, preferred style, must-play selections, and the audience in the room.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="section-label">Why TC Audio</p>
+        <h2 class="section-title">Experience That Shows Up On Event Day</h2>
+        <div class="stats-grid">
+          <div>
+            <div class="stat-value">30+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div>
+            <div class="stat-value">500+</div>
+            <div class="stat-label">Events Entertained</div>
+          </div>
+          <div>
+            <div class="stat-value">5★</div>
+            <div class="stat-label">Average Client Rating</div>
+          </div>
+          <div>
+            <div class="stat-value">∞</div>
+            <div class="stat-label">Packed Dance Floors</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="section-label">In Action</p>
+        <h2 class="section-title">See The Look And Feel Of A TC Audio Event</h2>
+        <div class="media-feature">
+          <div class="media-videos">
+            <div class="media-frame">
+              <video autoplay muted loop playsinline preload="metadata" poster="./assets/tommy-promo-poster.jpg">
+                <source src="./assets/tommy-promo-loop.mp4" type="video/mp4">
+              </video>
+              <span class="media-frame-label">Live Event Energy</span>
+            </div>
+            <div class="media-frame">
+              <video autoplay muted loop playsinline preload="metadata" poster="./assets/tommy-promo-poster-02.jpg">
+                <source src="./assets/tommy-promo-loop-02.mp4" type="video/mp4">
+              </video>
+              <span class="media-frame-label">Professional Presentation</span>
+            </div>
+          </div>
+          <div class="media-copy">
+            <span class="media-kicker">Professional Event Experience</span>
+            <h3>Entertainment that looks polished, sounds right, and keeps the night moving.</h3>
+            <p>From elegant weddings and high-energy proms to private parties and milestone celebrations, TC Audio Productions delivers the sound, lighting, and music programming that help turn a good event into a packed room and a memorable night.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="gallery">
+      <div class="section-inner">
+        <p class="section-label">Event Gallery</p>
+        <h2 class="section-title">Professional Setups. Strong Lighting. Real Event Atmosphere.</h2>
+        <p class="section-copy">Explore featured setups, venue-specific notes, and real local context for weddings, community functions, and private events across Cape Breton. The gallery now links through to dedicated venue pages instead of stopping at a static homepage preview.</p>
+        <div class="gallery-grid">
+          <a class="gallery-card" href="/unlinktoalaska.com/venues/keltic-lodge-weddings.html">
+            <div class="gallery-photo has-image image-one">
+              <div>
+                <strong>Wedding Reception</strong>
+                <p>Clean setup, polished presentation, and a room ready for the night ahead.</p>
+              </div>
+            </div>
+            <h3>Reception-Ready Setup</h3>
+            <p>Professional gear, thoughtful layout, and a presentation style that fits elegant wedding and banquet spaces.</p>
+            <span class="card-link">View Keltic Lodge page →</span>
+          </a>
+          <a class="gallery-card" href="/unlinktoalaska.com/venues/centre-200-events.html">
+            <div class="gallery-photo has-image image-two">
+              <div>
+                <strong>Lighting Design</strong>
+                <p>Atmosphere-building lighting that helps shape the room and lift the energy.</p>
+              </div>
+            </div>
+            <h3>Lighting That Changes The Room</h3>
+            <p>From subtle ambiance to high-energy effects, the lighting package adds depth, motion, and a stronger event experience.</p>
+            <span class="card-link">View Centre 200 page →</span>
+          </a>
+          <a class="gallery-card" href="/unlinktoalaska.com/venues/inverary-inn-events.html">
+            <div class="gallery-photo has-image image-three">
+              <div>
+                <strong>Private Events</strong>
+                <p>Flexible setups built to match milestone celebrations, parties, and community events.</p>
+              </div>
+            </div>
+            <h3>Setup Flexibility For Any Crowd</h3>
+            <p>Whether the night calls for polished announcements, dance-floor energy, or a more laid-back mix, the setup is built around the event.</p>
+            <span class="card-link">View Inverary Inn page →</span>
+          </a>
+        </div>
+        <div class="section-actions">
+          <a class="button button-primary" href="/unlinktoalaska.com/gallery/">Browse Full Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="section-label">Testimonials</p>
+        <h2 class="section-title">What Clients Are Saying</h2>
+        <div class="testimonials-grid">
+          <article class="testimonial-card">
+            <p>"Very professional DJ and lighting services for our wedding venue. Tom and Mike did a wonderful job getting people dancing and communicating with us throughout the process."</p>
+            <div class="testimonial-name">Myles H.G.</div>
+            <div class="testimonial-date">Facebook Recommendation</div>
+          </article>
+          <article class="testimonial-card">
+            <p>"TC Audio Productions did the music for my daughter's wedding and it was a great time. TC Audio Productions never disappoints."</p>
+            <div class="testimonial-name">Bernie Beaton</div>
+            <div class="testimonial-date">Facebook Recommendation</div>
+          </article>
+          <article class="testimonial-card">
+            <p>"Stood in a wedding over the weekend. I could not get off the dance floor all night. I can't recommend TC Audio Productions enough. The service was incredible."</p>
+            <div class="testimonial-name">Marie Nic</div>
+            <div class="testimonial-date">Facebook Recommendation</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="articles">
+      <div class="section-inner">
+        <p class="section-label">Planning Advice</p>
+        <h2 class="section-title">Helpful Reads For Weddings, Proms, And Private Events</h2>
+        <div class="article-grid">
+          <article class="article-card">
+            <span>Wedding Planning</span>
+            <h3>How To Choose The Right Wedding DJ In Cape Breton</h3>
+            <p>What couples should actually look for when comparing DJs, sound, lighting, planning support, and experience for a smooth wedding day.</p>
+            <a href="/unlinktoalaska.com/blog/how-to-choose-the-right-wedding-dj-in-cape-breton.html">Read the article →</a>
+          </article>
+          <article class="article-card">
+            <span>School Events</span>
+            <h3>What Makes A Great Prom DJ Setup For Schools And Grad Events</h3>
+            <p>Why the best prom setups balance music selection, clean presentation, lighting, announcements, and a room that actually feels exciting.</p>
+            <a href="/unlinktoalaska.com/blog/what-makes-a-great-prom-dj-setup.html">Read the article →</a>
+          </article>
+          <article class="article-card">
+            <span>Private Events</span>
+            <h3>Sound, Lighting, And Music Tips For Better Private Events</h3>
+            <p>How to think about flow, sound coverage, lighting, and guest energy when planning a party, fundraiser, anniversary, or community event.</p>
+            <a href="/unlinktoalaska.com/blog/sound-lighting-and-music-tips-for-private-events.html">Read the article →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="contact">
+      <div class="section-inner contact-wrap">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Request Availability</h2>
+        <p class="section-copy">Planning a wedding, prom, or private event? Get in touch to discuss your date, venue, and the kind of atmosphere you want to create.</p>
+
+        <div class="contact-links">
+          <a href="tel:9025744800"><span>📞</span><span>(902) 574-4800</span></a>
+          <a href="mailto:tcaudiopro@hotmail.com"><span>✉</span><span>tcaudiopro@hotmail.com</span></a>
+          <a href="https://www.facebook.com/profile.php?id=61569444590301" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.7-1.6h1.8V4.1c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.1H8v3.2h2.6V22h2.9z"/>
+            </svg>
+            <span>Facebook</span>
+          </a>
+        </div>
+
+        <div class="success-state" id="success-state">
+          <div class="icon">💍</div>
+          <h3>Draft Form Disabled</h3>
+          <p>This Miami draft workspace is not sending inquiries yet. Contact details can be wired up once the Miami version is ready.</p>
+        </div>
+
+        <div class="error-state" id="error-state">
+          <p>There was a problem sending your message. Please try again, call Tommy at <a href="tel:9025744800">(902) 574-4800</a>, or email <a href="mailto:tcaudiopro@hotmail.com">tcaudiopro@hotmail.com</a>.</p>
+        </div>
+
+        <form class="contact-form" id="contact-form" action="#contact" method="POST">
+          <input type="hidden" name="_subject" value="New Miami draft inquiry">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://deleskie.com/unlinktoalaska.com/?submitted=1">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+          <div class="form-group">
+            <label for="names">Your Names</label>
+            <input id="names" name="names" type="text" placeholder="e.g. Sarah & James" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" placeholder="(902) 000-0000" required>
+          </div>
+          <div class="form-group">
+            <label for="date">Event Date</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+          <div class="form-group">
+            <label for="venue">Venue / Location</label>
+            <input id="venue" name="venue" type="text" placeholder="Venue name and city" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About Your Event</label>
+            <textarea id="message" name="message" placeholder="Tell us about the event, the audience, the vibe, and any important music or timeline details."></textarea>
+          </div>
+          <button class="button button-primary" type="submit">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>© 2026 TC Audio Productions · Sound, Lighting, DJ & Karaoke Services</p>
+      <p>Based in Sydney Mines and North Sydney, serving events since 1992</p>
+      <div class="footer-links">
+        <a href="tel:9025744800">(902) 574-4800</a>
+        <a href="mailto:tcaudiopro@hotmail.com">tcaudiopro@hotmail.com</a>
+        <a href="https://www.facebook.com/profile.php?id=61569444590301" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.7-1.6h1.8V4.1c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.1H8v3.2h2.6V22h2.9z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('success-state');
+    const error = document.getElementById('error-state');
+
+    if (window.location.search.includes('submitted=1')) {
+      form.style.display = 'none';
+      success.classList.add('is-visible');
+    }
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      error.classList.remove('is-visible');
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Draft Only';
+      form.reset();
+      form.style.display = 'none';
+      success.classList.add('is-visible');
+    });
+  </script>
+</body>
+</html>

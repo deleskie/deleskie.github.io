@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "node scripts/generate-miami-blog.js && node scripts/generate-miami-spanish-services.js && node scripts/validate-miami.js",
+    "lint": "node --check assets/miami.js && node --check scripts/miami-blog-helpers.js && node --check scripts/generate-miami-blog.js && node --check scripts/generate-miami-spanish-services.js && node --check scripts/validate-miami.js",
+    "test:miami": "playwright test tests/miami.spec.js --workers=1 --reporter=line"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}
