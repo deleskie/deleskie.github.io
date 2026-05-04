@@ -3,8 +3,8 @@
 ## Must Have
 
 - Make `/miami-wedding-dj/` the primary wedding conversion route and keep `/miami/` as the broader market layer.
-- Rename the primary conversion action from generic contact language to "Build Your Miami Event Profile" where appropriate.
-- Expand smart intake with MC style, guest-request policy, music balance, must-play/do-not-play, pronunciation, and outdoor/rain-plan fields.
+- Rename the primary conversion action from generic contact language to "Start Your Miami Event Plan" where appropriate.
+- Expand guided intake with MC style, guest-request policy, music balance, must-play/do-not-play, pronunciation, and outdoor/rain-plan fields.
 - Keep package recommendations advisory and warm, never harsh or price-binding.
 - Add clear form microcopy: TC reviews details, confirms availability, recommends setup, and follows up.
 - Keep bilingual MC, ceremony audio, lighting, planner coordination, and backup mindset above the fold or in the first major sections.
@@ -101,20 +101,20 @@ Second wave:
 
 ## CTA Strategy
 
-- Primary: Build Your Miami Event Profile
+- Primary: Start Your Miami Event Plan
 - Secondary: Explore Packages
 - Service pages: Check Availability
 - Spanish: Consultar disponibilidad / Crear mi perfil de evento
 
-## AI-Assisted Planning Strategy
+## Guided Planning Strategy
 
-Position AI as an assistant to planning, not event execution:
+Position the intake as concierge-style planning, not automation theater:
 
-- Smart intake
+- Guided intake
 - Music planning
 - Timeline details
 - Pronunciation guide
 - Vendor coordination notes
 - Final event packet
 
-Keep the human trust line clear: AI-assisted planning. Human performance.
+Keep the human trust line clear: detailed planning. Human performance.

@@ -62,7 +62,7 @@ The user supplied additional competitors that should be audited in a second pass
 
 ## Strategic Gaps TC Can Own
 
-1. Smart event intake is underdeveloped across the competitor set. Most competitors still use quote forms, contact pages, or simple availability forms.
+1. Guided event intake is underdeveloped across the competitor set. Most competitors still use quote forms, contact pages, or simple availability forms.
 2. Spanish content is often either absent, mixed into English pages, or SEO-dense. A polished es-US editorial lane can be a real moat.
 3. Many competitors claim energy, packed dance floors, or premium service. Fewer explain how they prevent ceremony audio issues, timeline confusion, bad MC flow, playlist mistakes, and vendor coordination problems.
 4. Package cards often sell gear or generic service bundles. TC should sell outcomes: clean ceremony, bilingual flow, planner-ready packet, controlled guest requests, backup mindset, and lighting atmosphere.

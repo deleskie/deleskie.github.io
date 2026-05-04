@@ -78,13 +78,13 @@ function postBody(post) {
         ['Borrador editorial', 'Este artículo es un borrador estructurado para la estrategia de contenido en español de TC Audio Productions Miami. TODO: completar con ejemplos reales, detalles de paquetes aprobados, fotos reales y enlaces internos finales antes de publicarlo como contenido definitivo.'],
         ['Por qué importa en Miami', 'Miami combina familias bilingües, tradiciones latinas, invitados de diferentes generaciones, hoteles, salones, espacios privados y celebraciones con mucha energía. El DJ/MC no solo pone música; ayuda a que el evento tenga claridad, ritmo y respeto por los momentos importantes.'],
         ['Qué debe confirmar la familia', 'Antes de contratar, conviene confirmar el tipo de evento, fecha, lugar, número de invitados, necesidades de MC bilingüe, sonido para ceremonia, iluminación, momentos formales, canciones importantes y restricciones de música.'],
-        ['Cómo TC Audio lo planifica', 'El flujo de planificación captura detalles clave para preparar el evento: nombres, pronunciación, línea de tiempo, géneros musicales, entradas, micrófonos, logística del venue y notas para proveedores. La inteligencia artificial puede ayudar a organizar la información; la ejecución sigue siendo humana.']
+        ['Cómo TC Audio lo planifica', 'El flujo de planificación captura detalles clave para preparar el evento: nombres, pronunciación, línea de tiempo, géneros musicales, entradas, micrófonos, logística del venue y notas para proveedores. La ejecución sigue siendo humana, preparada y profesional.']
       ]
     : [
         ['Editorial draft', 'This article is a structured draft for the TC Audio Productions Miami content strategy. TODO: complete with approved package details, real media, internal links, and any verified proof points before treating it as final editorial content.'],
         ['Why it matters in Miami', 'Miami events often combine luxury venues, bilingual guests, outdoor constraints, tight timelines, separate ceremony and reception spaces, and high expectations for sound, lighting, and MC flow. A DJ choice is really a production choice.'],
         ['What buyers should confirm', 'Before booking, confirm the event type, date, venue, guest count, ceremony audio needs, bilingual MC requirements, lighting goals, planner or venue restrictions, load-in windows, power, and backup expectations.'],
-        ['How TC Audio plans it', 'The Miami intake captures structured details and recommends a non-binding package direction. AI can assist the planning workflow, but the room, microphones, music, lighting, and event flow are executed by people.']
+        ['How TC Audio plans it', 'The Miami intake captures structured details and recommends a non-binding package direction. The planning workflow keeps the details organized before the room, microphones, music, lighting, and event flow are handled by people.']
       ];
 
   return sections

@@ -31,13 +31,13 @@ These are common buyer-risk patterns across DJ/event review ecosystems. They sho
 | Risk Theme | Website Safeguard |
 |---|---|
 | Slow response or unclear next step | Show "what happens next" under every form: review details, confirm availability, recommend setup, schedule consult. |
-| Ignored playlist or do-not-play list | Build structured music preferences and do-not-play fields into the smart intake. |
+| Ignored playlist or do-not-play list | Build structured music preferences and do-not-play fields into the guided intake. |
 | Wrong song or awkward formalities | Add pronunciation guide, key-song fields, formalities checklist, and final event packet. |
 | Too much talking or cheesy MC | Add MC-style selector and language preference. |
 | Poor ceremony sound | Add ceremony audio detail, separate ceremony/reception setup logic, and outdoor/rain-plan fields. |
 | Hidden add-ons | Package cards should clearly label quote-based services and optional add-ons. |
 | Unprepared replacement or backup issue | Explain backup gear mindset without fearmongering. |
-| Disorganized planning | Position AI-assisted planning as human-reviewed organization, not automated performance. |
+| Disorganized planning | Position guided planning as human-reviewed organization, not automated performance. |
 
 ## Review Mining Sources Used
 

@@ -2,7 +2,7 @@
 
 ## Core Decision
 
-Make `/miami-wedding-dj/` the primary Miami conversion hub for the wedding market, with `/miami/` acting as the broader market layer and other Miami service routes feeding into the same smart intake.
+Make `/miami-wedding-dj/` the primary Miami conversion hub for the wedding market, with `/miami/` acting as the broader market layer and other Miami service routes feeding into the same guided intake.
 
 The competitive gap is not just prettier design. It is a better decision system for the buyer.
 
@@ -16,9 +16,9 @@ TC Audio Productions Miami should sit between three competitor categories:
 
 Recommended line:
 
-AI-assisted planning. Human performance.
+guided planning. Human performance.
 
-Do not imply AI runs the event. The trust signal is that AI helps organize intake, music planning, pronunciation, timeline details, and vendor notes before humans execute.
+Do not frame this as automation. The trust signal is that the planning process organizes intake, music planning, pronunciation, timeline details, and vendor notes before the event team executes.
 
 ## Homepage / Miami Wedding Hub
 
@@ -26,9 +26,9 @@ Use the strongest above-the-fold direction:
 
 H1: Miami Events Deserve More Than a DJ.
 
-Subheadline: DJ/MC talent, ceremony audio, lighting, and AI-assisted planning for weddings, quinceaneras, corporate events, and private celebrations across Miami.
+Subheadline: DJ/MC talent, ceremony audio, lighting, and guided planning for weddings, quinceaneras, corporate events, and private celebrations across Miami.
 
-Primary CTA: Build Your Miami Event Profile
+Primary CTA: Start Your Miami Event Plan
 
 Secondary CTA: Explore Packages
 
@@ -43,7 +43,7 @@ Trust strip:
 
 ## Conversion Architecture
 
-Competitors commonly say "Request a Quote." TC should say "Build Your Miami Event Profile."
+Competitors commonly say "Request a Quote." TC should say "Start Your Miami Event Plan."
 
 The form should recommend a setup after enough detail is entered. This makes TC feel more premium because the site is actively helping the buyer make a decision.
 
@@ -133,7 +133,7 @@ Only add neighborhood pages when they have enough unique content to avoid thin-l
 
 ## Competitor-Informed Modules To Add
 
-1. Smart event intake hero module.
+1. Guided event intake hero module.
 2. MC style selector.
 3. Music balance selector.
 4. Guest-request policy selector.
