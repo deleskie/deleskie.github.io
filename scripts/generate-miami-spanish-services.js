@@ -9,7 +9,7 @@ const services = [
     metaTitle: 'DJ para bodas en Miami | TC Audio Productions',
     description: 'DJ/MC, sonido para ceremonia, recepción, música, iluminación y planificación para bodas latinas, bilingües y multiculturales en Miami.',
     h1: 'DJ para bodas en Miami con sonido, flujo y energía bien planificados.',
-    intro: 'Una boda en Miami puede combinar ceremonia, recepción, familia bilingüe, invitados de varias generaciones, música latina, clásicos y momentos formales. El trabajo no es solo poner canciones; es ayudar a que el evento fluya.',
+    intro: 'Tu boda en Miami puede combinar ceremonia, recepción, familia bilingüe, invitados de varias generaciones, música latina, clásicos y momentos formales. El sonido, los anuncios y la música deben sentirse preparados desde el principio.',
     related: ['/es/dj-bilingue-para-bodas-miami/', '/es/iluminacion-para-eventos-miami/', '/miami/#availability']
   },
   {
@@ -19,7 +19,7 @@ const services = [
     metaTitle: 'DJ bilingüe para bodas en Miami | TC Audio Productions',
     description: 'DJ y MC bilingüe para bodas latinas y multiculturales en Miami, con planificación de pronunciación, música, ceremonia y recepción.',
     h1: 'Un DJ bilingüe para bodas latinas, multiculturales y familiares.',
-    intro: 'Cuando una boda combina inglés, español, familia latina, invitados americanos y tradiciones importantes, el MC necesita preparación. Los nombres, entradas, anuncios, música y momentos familiares deben sentirse naturales.',
+    intro: 'Cuando tu boda combina inglés, español, familia latina, invitados americanos y tradiciones importantes, el MC necesita preparación. Los nombres, entradas, anuncios, música y momentos familiares deben sentirse naturales.',
     related: ['/es/dj-para-bodas-miami/', '/es/blog/como-elegir-dj-bilingue-boda-latina-miami/', '/miami/#availability']
   },
   {
@@ -29,7 +29,7 @@ const services = [
     metaTitle: 'DJ para quinceañera en Miami | TC Audio Productions',
     description: 'DJ/MC, música, entradas, vals, iluminación y planificación para quinceañeras y celebraciones familiares en Miami.',
     h1: 'Una quinceañera necesita tradición, energía y control del momento.',
-    intro: 'Entradas, vals, familia, amigos, música para jóvenes y adultos, iluminación y momentos especiales necesitan un plan. La celebración debe sentirse organizada y emocionante.',
+    intro: 'Tus entradas, vals, familia, amigos, música para jóvenes y adultos, iluminación y momentos especiales necesitan un plan. La celebración debe sentirse organizada y emocionante.',
     related: ['/es/iluminacion-para-eventos-miami/', '/es/blog/dj-para-quinceanera-miami-musica-entradas-vals-energia/', '/miami/#availability']
   },
   {
@@ -39,7 +39,7 @@ const services = [
     metaTitle: 'DJ para eventos corporativos en Miami | TC Audio Productions',
     description: 'DJ/MC, sonido, micrófonos, música e iluminación para eventos corporativos, hoteles, marcas y celebraciones privadas en Miami.',
     h1: 'Sonido y música para eventos corporativos donde la presentación importa.',
-    intro: 'Eventos en hoteles, reuniones de marca, cenas privadas y celebraciones corporativas necesitan comunicación clara, audio controlado, música adecuada y respeto por la agenda.',
+    intro: 'Tu evento en hotel, reunión de marca, cena privada o celebración corporativa necesita comunicación clara, audio controlado, música adecuada y respeto por la agenda.',
     related: ['/miami-corporate-event-dj/', '/es/iluminacion-para-eventos-miami/', '/miami/#availability']
   },
   {
@@ -49,7 +49,7 @@ const services = [
     metaTitle: 'Iluminación para eventos en Miami | TC Audio Productions',
     description: 'Iluminación, ambiente, efectos de pista y apoyo visual para bodas, quinceañeras, eventos corporativos y celebraciones privadas en Miami.',
     h1: 'Iluminación para eventos en Miami que se siente premium, no caótica.',
-    intro: 'La iluminación correcta transforma el salón, ayuda a las fotos, marca momentos importantes y levanta la pista cuando llega el momento de bailar.',
+    intro: 'Tu salón debe sentirse diseñado cuando entran los invitados. La iluminación correcta ayuda a las fotos, marca momentos importantes y levanta la pista cuando llega el momento de bailar.',
     related: ['/miami-event-lighting/', '/es/dj-para-bodas-miami/', '/es/dj-para-quinceanera-miami/']
   }
 ];
@@ -121,11 +121,11 @@ function page(service) {
   <header class="miami-service-hero">
     <div class="miami-service-hero__inner">
       <div class="reveal"><p class="miami-kicker">Servicios en Miami</p><h1>${service.h1}</h1><p>${service.intro}</p><div class="miami-hero__actions"><a class="miami-button miami-button--primary" href="/miami/#availability">Consultar disponibilidad</a><a class="miami-button miami-button--secondary" href="/es/blog/">Ver blog en español</a></div></div>
-      <article class="miami-service-panel reveal"><p class="miami-card__kicker">Planificación</p><h3>Detalles antes del evento.</h3><p>Fecha, lugar, invitados, idioma, sonido, iluminación, momentos formales y presupuesto estimado ayudan a recomendar la configuración correcta.</p></article>
+      <article class="miami-service-panel reveal"><p class="miami-card__kicker">Detalles del evento</p><h3>Empecemos por lo que necesitas.</h3><p>Fecha, lugar, invitados, idioma, sonido, iluminación, momentos formales y presupuesto estimado ayudan a recomendar la configuración correcta.</p></article>
     </div>
   </header>
   <section class="miami-section miami-section--tight"><div class="miami-section__inner miami-grid miami-grid--three"><article class="miami-card reveal"><h3>MC y flujo</h3><p>Anuncios claros, nombres preparados y un ritmo profesional para que la familia y los invitados sepan qué viene después.</p></article><article class="miami-card reveal"><h3>Sonido limpio</h3><p>Micrófonos, música y cobertura pensados para ceremonia, recepción, discursos o momentos especiales.</p></article><article class="miami-card reveal"><h3>Iluminación y energía</h3><p>Ambiente visual que apoya el evento sin sentirse exagerado o barato.</p></article></div></section>
-  <section class="miami-section miami-section--tight"><div class="miami-section__inner"><div class="miami-final-cta reveal"><h2>Empecemos con los detalles esenciales.</h2><p>Comparte fecha, lugar, invitados y servicios necesarios para recibir una recomendación inicial.</p><div class="miami-hero__actions">${relatedLinks}</div></div></div></section>
+  <section class="miami-section miami-section--tight"><div class="miami-section__inner"><div class="miami-final-cta reveal"><h2>Empecemos con lo que tu evento necesita.</h2><p>Comparte fecha, lugar, invitados y servicios necesarios para revisar disponibilidad y recomendar una configuración inicial.</p><div class="miami-hero__actions">${relatedLinks}</div></div></div></section>
 </main>
 <script src="/assets/miami.js" defer></script>
 </body>

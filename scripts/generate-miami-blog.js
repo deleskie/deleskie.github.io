@@ -84,7 +84,7 @@ function postBody(post) {
         ['Editorial draft', 'This article is a structured draft for the TC Audio Productions Miami content strategy. TODO: complete with approved package details, real media, internal links, and any verified proof points before treating it as final editorial content.'],
         ['Why it matters in Miami', 'Miami events often combine luxury venues, bilingual guests, outdoor constraints, tight timelines, separate ceremony and reception spaces, and high expectations for sound, lighting, and MC flow. A DJ choice is really a production choice.'],
         ['What buyers should confirm', 'Before booking, confirm the event type, date, venue, guest count, ceremony audio needs, bilingual MC requirements, lighting goals, planner or venue restrictions, load-in windows, power, and backup expectations.'],
-        ['How TC Audio plans it', 'The Miami intake captures structured details and recommends a non-binding package direction. The planning workflow keeps the details organized before the room, microphones, music, lighting, and event flow are handled by people.']
+        ['How the planning starts', 'Your inquiry should capture the details that affect the real setup: date, venue, guest count, ceremony needs, language needs, lighting goals, planner notes, and timeline priorities. From there, TC Audio can recommend the right starting package and confirm fit.']
       ];
 
   return sections
@@ -161,8 +161,8 @@ ${renderHreflangLinks(post, posts)}
       </div>
       <article class="miami-service-panel reveal">
         <p class="miami-card__kicker">${post.draft ? (spanish ? 'Borrador' : 'Draft') : (spanish ? 'Publicado' : 'Published')}</p>
-        <h3>${spanish ? 'Sin reseñas inventadas. Sin venues falsos. Sin promesas infladas.' : 'No fake reviews. No fake venues. No inflated claims.'}</h3>
-        <p>${spanish ? 'Este contenido está marcado como borrador hasta que se complete la versión editorial final.' : 'This content is marked as a draft until the full editorial version is completed.'}</p>
+        <h3>${spanish ? 'Contenido editorial en revisión.' : 'Editorial content under review.'}</h3>
+        <p>${spanish ? 'Este contenido está marcado como borrador hasta que se complete la versión editorial final con detalles aprobados.' : 'This content is marked as a draft until the final editorial version is completed with approved details.'}</p>
       </article>
     </div>
   </header>
@@ -186,8 +186,8 @@ ${renderHreflangLinks(post, posts)}
   <section class="miami-section miami-section--tight">
     <div class="miami-section__inner">
       <div class="miami-final-cta reveal">
-        <h2>${spanish ? 'Convierte estos detalles en un plan real para tu evento en Miami.' : 'Turn these details into a real Miami event plan.'}</h2>
-        <p>${spanish ? 'Comparte fecha, lugar, invitados, idioma, sonido, iluminación y presupuesto estimado para recibir una recomendación inicial.' : 'Share the date, venue, guest count, language needs, sound, lighting, and budget range to get an initial recommendation.'}</p>
+        <h2>${spanish ? 'Empecemos con lo que tu evento necesita.' : 'Start with what your event actually needs.'}</h2>
+        <p>${spanish ? 'Comparte fecha, lugar, invitados, idioma, sonido, iluminación y presupuesto estimado para recibir una recomendación inicial.' : 'Share the date, venue, guest count, language needs, sound, lighting, and budget range so TC Audio can recommend the right starting setup.'}</p>
         <a class="miami-button miami-button--primary" href="/miami/#availability">${spanish ? 'Consultar disponibilidad' : 'Check Availability'}</a>
       </div>
     </div>
