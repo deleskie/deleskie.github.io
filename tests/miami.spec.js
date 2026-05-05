@@ -1,8 +1,11 @@
 const { test, expect } = require('@playwright/test');
+const fs = require('fs');
+const path = require('path');
 
 const baseUrl = process.env.MIAMI_TEST_BASE_URL || 'http://127.0.0.1:8123';
 const routes = [
   '/miami/',
+  '/miami/resources/',
   '/miami-wedding-dj/',
   '/miami-bilingual-wedding-dj/',
   '/miami-quinceanera-dj/',
@@ -81,5 +84,34 @@ test('/miami checkbox controls stay compact on desktop and mobile', async ({ pag
       expect(box.width).toBeLessThanOrEqual(24);
       expect(box.height).toBeLessThanOrEqual(24);
     }
+  }
+});
+
+test('Miami first 20 image test asset matches metadata and files exist', async () => {
+  const repoRoot = path.resolve(__dirname, '..');
+  const fixturePath = path.join(repoRoot, 'tests/fixtures/miami-first-20-assets.json');
+  const metadataPath = path.join(repoRoot, 'assets/miami/image-metadata.tsv');
+  const fixture = JSON.parse(fs.readFileSync(fixturePath, 'utf8'));
+  const metadataLines = fs.readFileSync(metadataPath, 'utf8').trim().split(/\r?\n/);
+  const headers = metadataLines[0].split('\t');
+  const firstTwentyRows = metadataLines.slice(1, 21).map((line) => {
+    const values = line.split('\t');
+    return Object.fromEntries(headers.map((header, index) => [header, values[index] || '']));
+  });
+
+  expect(fixture.count).toBe(20);
+  expect(fixture.items).toHaveLength(20);
+  expect(fixture.items.map((item) => item.index)).toEqual(firstTwentyRows.map((row) => row.index));
+  expect(fixture.items.map((item) => item.file)).toEqual(firstTwentyRows.map((row) => row.file));
+
+  for (const item of fixture.items) {
+    const matchingRow = firstTwentyRows.find((row) => row.index === item.index);
+    expect(item.path).toBe(`/assets/miami/${item.file}`);
+    expect(item.width).toBe(Number(matchingRow.width));
+    expect(item.height).toBe(Number(matchingRow.height));
+    expect(item.category).toBe(matchingRow.category);
+    expect(item.eventType).toBe(matchingRow.event_type);
+    expect(item.recommendedUse).toBe(matchingRow.recommended_use);
+    expect(fs.existsSync(path.join(repoRoot, 'assets/miami', item.file))).toBe(true);
   }
 });
