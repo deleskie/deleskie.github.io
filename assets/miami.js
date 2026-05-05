@@ -118,13 +118,14 @@
   }
 
   function recommendPackage(data) {
+    const bilingualDirection = data.bilingualMc || data.servicesNeeded.includes('bilingual-mc') || data.mcStyle === 'bilingual';
     if (data.eventType === 'corporate-hotel') {
       return 'Corporate / Private Event Production';
     }
     if (data.eventType === 'quinceanera' || data.eventType === 'private-celebration') {
       return 'Quince / Private Celebration';
     }
-    if (data.eventType === 'wedding' && data.bilingualMc) {
+    if (data.eventType === 'wedding' && bilingualDirection) {
       return 'Bilingual Premium Wedding';
     }
     if (data.eventType === 'wedding' && data.ceremonyAudio) {
@@ -142,7 +143,8 @@
     const budget = parseBudget(data.budgetRange);
     const daysOut = daysUntilEvent(data.eventDate);
     const hasOutdoorService = data.servicesNeeded.some((service) => service === 'outdoor-sound' || service === 'beach-ceremony');
-    const hasRainNote = /rain|cover|tent|indoor|backup|weather/i.test(data.message || '');
+    const planningText = `${data.outdoorWeatherNotes || ''} ${data.message || ''}`;
+    const hasRainNote = /rain|cover|covered|tent|indoor|backup|weather/i.test(planningText);
 
     if (data.eventType === 'wedding') score += 25;
     if (data.eventType === 'quinceanera' || data.eventType === 'private-celebration') score += 18;
@@ -154,6 +156,9 @@
     if (data.lighting) score += 10;
     if (budget > 2000) score += 20;
     if (daysOut !== null && daysOut >= 90 && daysOut <= 365) score += 10;
+    if (data.plannerContact) score += 8;
+    if (data.pronunciationNotes) score += 5;
+    if (data.mustPlay || data.doNotPlay) score += 5;
     if (budget > 0 && budget < 900) score -= 30;
     if (hasOutdoorService && !hasRainNote) score -= 20;
     if (daysOut !== null && daysOut >= 0 && daysOut <= 7) score -= 20;
@@ -194,7 +199,8 @@
 
   function inferIndoorOutdoor(data) {
     const services = data.servicesNeeded || [];
-    const notes = `${data.venue || ''} ${data.formalMoments || ''} ${data.productionNotes || ''} ${data.message || ''}`;
+    const notes = `${data.venue || ''} ${data.formalMoments || ''} ${data.productionNotes || ''} ${data.outdoorWeatherNotes || ''} ${data.message || ''}`;
+    if (/covered|tent|pavilion|backup room|indoor backup/i.test(data.outdoorWeatherNotes || '')) return 'outdoor_covered';
     if (services.includes('beach-ceremony')) return 'outdoor_uncovered';
     if (/outdoor uncovered|beach|garden|lawn|terrace|patio|pool|waterfront/i.test(notes)) return 'mixed';
     if (services.includes('outdoor-sound')) return 'mixed';
@@ -203,8 +209,40 @@
   }
 
   function hasPlannerInvolved(data) {
-    const notes = `${data.productionNotes || ''} ${data.message || ''}`;
+    const notes = `${data.productionNotes || ''} ${data.plannerContact || ''} ${data.message || ''}`;
     return /planner|coordinator|venue manager|event manager|hotel contact|catering manager/i.test(notes);
+  }
+
+  function formatChoice(value, labels) {
+    return labels[value] || value;
+  }
+
+  function formatMcStyle(value) {
+    return formatChoice(value, {
+      'warm-concise': 'Warm and concise',
+      'high-energy': 'High-energy host',
+      bilingual: 'Bilingual English / Spanish',
+      minimal: 'Minimal announcements'
+    });
+  }
+
+  function formatMusicBalance(value) {
+    return formatChoice(value, {
+      'open-format': 'Open-format mix',
+      'latin-forward': 'Latin-forward celebration',
+      'classics-family': 'Classics and family favorites',
+      'client-curated': 'Client-curated list',
+      'corporate-polished': 'Corporate polished'
+    });
+  }
+
+  function formatGuestRequestPolicy(value) {
+    return formatChoice(value, {
+      open: 'Open requests',
+      screened: 'Screen requests first',
+      'approved-only': 'Approved list only',
+      none: 'No guest requests'
+    });
   }
 
   function formatServices(servicesNeeded) {
@@ -242,6 +280,14 @@
       budgetRange: getValue('budgetRange'),
       formalMoments: getValue('formalMoments').trim(),
       productionNotes: getValue('productionNotes').trim(),
+      mcStyle: getValue('mcStyle'),
+      musicBalance: getValue('musicBalance'),
+      guestRequestPolicy: getValue('guestRequestPolicy'),
+      plannerContact: getValue('plannerContact').trim(),
+      pronunciationNotes: getValue('pronunciationNotes').trim(),
+      mustPlay: getValue('mustPlay').trim(),
+      doNotPlay: getValue('doNotPlay').trim(),
+      outdoorWeatherNotes: getValue('outdoorWeatherNotes').trim(),
       message: getValue('message').trim(),
       sourcePage: window.location.pathname,
       submittedAt: new Date().toISOString()
@@ -259,7 +305,7 @@
       || data.servicesNeeded.includes('ceremony-audio')
       || data.servicesNeeded.includes('beach-ceremony');
     const needsLighting = data.lighting || data.servicesNeeded.includes('event-lighting');
-    const needsBilingualMc = data.bilingualMc || data.servicesNeeded.includes('bilingual-mc');
+    const needsBilingualMc = data.bilingualMc || data.servicesNeeded.includes('bilingual-mc') || data.mcStyle === 'bilingual';
 
     return {
       event_type: mapEventType(data.eventType),
@@ -286,6 +332,12 @@
       music_notes: compactLines([
         data.servicesNeeded.length ? `Services requested: ${formatServices(data.servicesNeeded)}` : '',
         data.formalMoments ? `Formal moments: ${data.formalMoments}` : '',
+        data.mcStyle ? `MC style: ${formatMcStyle(data.mcStyle)}` : '',
+        data.musicBalance ? `Music balance: ${formatMusicBalance(data.musicBalance)}` : '',
+        data.guestRequestPolicy ? `Guest request policy: ${formatGuestRequestPolicy(data.guestRequestPolicy)}` : '',
+        data.pronunciationNotes ? `Pronunciation and formalities: ${data.pronunciationNotes}` : '',
+        data.mustPlay ? `Must-play songs: ${data.mustPlay}` : '',
+        data.doNotPlay ? `Do-not-play songs: ${data.doNotPlay}` : '',
         data.productionNotes ? `Planner / venue notes: ${data.productionNotes}` : '',
         data.message ? `Client notes: ${data.message}` : '',
         `Recommended package: ${data.recommendedPackage}`
@@ -293,6 +345,8 @@
       urgency_notes: compactLines([
         `Source page: ${data.sourcePage}`,
         `Submitted at: ${data.submittedAt}`,
+        data.plannerContact ? `Planner / venue contact: ${data.plannerContact}` : '',
+        data.outdoorWeatherNotes ? `Outdoor / rain-plan notes: ${data.outdoorWeatherNotes}` : '',
         `Website lead score: ${data.leadScore}`,
         `Website lead category: ${data.leadCategory}`
       ])

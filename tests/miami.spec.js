@@ -64,7 +64,7 @@ test('/miami smart form validates and shows recommendation', async ({ page }) =>
   await page.locator('#budgetRange').selectOption('2500-4000');
   await page.locator('input[name="servicesNeeded"][value="ceremony-audio"]').check();
   await page.locator('input[name="ceremonyAudio"]').check();
-  await page.locator('input[name="bilingualMc"]').check();
+  await page.locator('#mcStyle').selectOption('bilingual');
   await expect(page.locator('[data-recommendation]')).toBeVisible();
   await expect(page.locator('[data-recommendation-title]')).toContainText('Bilingual Premium Wedding');
 });
@@ -99,6 +99,14 @@ test('/miami smart form posts a DJ World lead intake payload', async ({ page }) 
   await page.locator('input[name="ceremonyAudio"]').check();
   await page.locator('input[name="bilingualMc"]').check();
   await page.locator('#formalMoments').fill('Grand entrance, first dance, parent dances, speeches');
+  await page.locator('#mcStyle').selectOption('bilingual');
+  await page.locator('#musicBalance').selectOption('latin-forward');
+  await page.locator('#guestRequestPolicy').selectOption('screened');
+  await page.locator('#plannerContact').fill('Planner Maria, maria@example.com');
+  await page.locator('#pronunciationNotes').fill('Confirm both family last names and bilingual introductions.');
+  await page.locator('#mustPlay').fill('Salsa classics, 2000s hip-hop, family favorites');
+  await page.locator('#doNotPlay').fill('No explicit tracks during dinner');
+  await page.locator('#outdoorWeatherNotes').fill('Cocktail hour is on a covered terrace with indoor backup.');
   await page.locator('#message').fill('Planner is involved. Balance Latin classics, current hits, and family favorites.');
   await page.getByRole('button', { name: 'Request Miami Availability' }).click();
 
@@ -116,6 +124,7 @@ test('/miami smart form posts a DJ World lead intake payload', async ({ page }) 
     needs_ceremony: true,
     needs_reception: true,
     needs_bilingual_mc: true,
+    indoor_outdoor: 'outdoor_covered',
     needs_lighting: false,
     planner_involved: true,
     client_name: 'Miami CRM Lead',
@@ -125,8 +134,16 @@ test('/miami smart form posts a DJ World lead intake payload', async ({ page }) 
     website: null
   });
   expect(crmPayload.music_notes).toContain('Formal moments: Grand entrance');
+  expect(crmPayload.music_notes).toContain('MC style: Bilingual English / Spanish');
+  expect(crmPayload.music_notes).toContain('Music balance: Latin-forward celebration');
+  expect(crmPayload.music_notes).toContain('Guest request policy: Screen requests first');
+  expect(crmPayload.music_notes).toContain('Pronunciation and formalities: Confirm both family last names');
+  expect(crmPayload.music_notes).toContain('Must-play songs: Salsa classics');
+  expect(crmPayload.music_notes).toContain('Do-not-play songs: No explicit tracks');
   expect(crmPayload.music_notes).toContain('Recommended package: Bilingual Premium Wedding');
   expect(crmPayload.urgency_notes).toContain('Source page: /miami/');
+  expect(crmPayload.urgency_notes).toContain('Planner / venue contact: Planner Maria');
+  expect(crmPayload.urgency_notes).toContain('Outdoor / rain-plan notes: Cocktail hour is on a covered terrace');
 });
 
 test('/miami smart form honors configured CRM endpoint override', async ({ page }) => {

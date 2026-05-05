@@ -347,7 +347,7 @@
           <div class="miami-form__intro">
             <p class="miami-section__label">Availability request</p>
             <h2>Tell us what you are planning.</h2>
-            <p>Share the date, venue, guest count, and moments that matter most. We will review availability and recommend the right starting direction.</p>
+            <p>Share the date, venue, guest count, music direction, MC style, and planning notes. We will review availability and recommend the right starting direction.</p>
           </div>
           <div class="miami-form__grid">
             <div class="miami-field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
@@ -386,7 +386,15 @@
               <label for="productionNotes">Planner / venue notes</label>
               <input id="productionNotes" name="productionNotes" placeholder="Load-in window, room name, power notes, brand requirements, hotel contact">
             </div>
-            <div class="miami-field miami-field--full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell us about the event, timeline, music direction, language needs, outdoor/weather notes, and anything the venue or planner already shared."></textarea></div>
+            <div class="miami-field"><label for="mcStyle">MC style</label><select id="mcStyle" name="mcStyle"><option value="">Select preference</option><option value="warm-concise">Warm and concise</option><option value="high-energy">High-energy host</option><option value="bilingual">Bilingual English / Spanish</option><option value="minimal">Minimal announcements</option></select></div>
+            <div class="miami-field"><label for="musicBalance">Music balance</label><select id="musicBalance" name="musicBalance"><option value="">Select direction</option><option value="open-format">Open-format mix</option><option value="latin-forward">Latin-forward celebration</option><option value="classics-family">Classics and family favorites</option><option value="client-curated">Client-curated list</option><option value="corporate-polished">Corporate polished</option></select></div>
+            <div class="miami-field"><label for="guestRequestPolicy">Guest requests</label><select id="guestRequestPolicy" name="guestRequestPolicy"><option value="">Select policy</option><option value="open">Open requests</option><option value="screened">Screen requests first</option><option value="approved-only">Approved list only</option><option value="none">No guest requests</option></select></div>
+            <div class="miami-field"><label for="plannerContact">Planner / venue contact</label><input id="plannerContact" name="plannerContact" placeholder="Name, role, email, phone, or TBD"></div>
+            <div class="miami-field miami-field--full"><label for="pronunciationNotes">Pronunciation and formalities</label><textarea id="pronunciationNotes" name="pronunciationNotes" placeholder="Names, introductions, family moments, language balance, cultural traditions"></textarea></div>
+            <div class="miami-field miami-field--full"><label for="mustPlay">Must-play songs</label><textarea id="mustPlay" name="mustPlay" placeholder="Songs, artists, genres, entrances, parent dances, hora loca direction"></textarea></div>
+            <div class="miami-field miami-field--full"><label for="doNotPlay">Do-not-play songs</label><textarea id="doNotPlay" name="doNotPlay" placeholder="Songs, artists, genres, or request types to avoid"></textarea></div>
+            <div class="miami-field miami-field--full"><label for="outdoorWeatherNotes">Outdoor / rain-plan notes</label><textarea id="outdoorWeatherNotes" name="outdoorWeatherNotes" placeholder="Ceremony location, covered area, backup room, power, wind, rain plan, beach or terrace notes"></textarea></div>
+            <div class="miami-field miami-field--full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Anything else we should know about the event, timeline, room, guests, or planning priorities."></textarea></div>
             <div class="miami-recommendation" data-recommendation aria-live="polite">
               <strong data-recommendation-title></strong>
               <span data-recommendation-copy></span>
