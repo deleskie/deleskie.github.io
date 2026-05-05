@@ -69,6 +69,64 @@ test('/miami smart form validates and shows recommendation', async ({ page }) =>
   await expect(page.locator('[data-recommendation-title]')).toContainText('Bilingual Premium Wedding');
 });
 
+test('/miami smart form posts a DJ World lead intake payload', async ({ page }) => {
+  let crmPayload;
+  await page.route('**/api/leads/intake', async (route) => {
+    crmPayload = route.request().postDataJSON();
+    await route.fulfill({
+      json: {
+        status: 'received',
+        lead_id: 'lead-miami-1',
+        score: 90,
+        score_category: 'hot',
+        reason_codes: ['event_type_wedding'],
+        next_action: 'Immediate human call/text.'
+      }
+    });
+  });
+
+  await page.goto(`${baseUrl}/miami/`, { waitUntil: 'networkidle' });
+  await page.locator('#name').fill('Miami CRM Lead');
+  await page.locator('#email').fill('crm-lead@example.com');
+  await page.locator('#phone').fill('305-555-0144');
+  await page.locator('#eventType').selectOption('wedding');
+  await page.locator('#eventDate').fill('2026-12-12');
+  await page.locator('#venue').fill('The Biltmore Hotel Miami Coral Gables');
+  await page.locator('#guestCount').fill('160');
+  await page.locator('#budgetRange').selectOption('2500-4000');
+  await page.locator('input[name="servicesNeeded"][value="ceremony-audio"]').check();
+  await page.locator('input[name="servicesNeeded"][value="bilingual-mc"]').check();
+  await page.locator('input[name="ceremonyAudio"]').check();
+  await page.locator('input[name="bilingualMc"]').check();
+  await page.locator('#formalMoments').fill('Grand entrance, first dance, parent dances, speeches');
+  await page.locator('#message').fill('Planner is involved. Balance Latin classics, current hits, and family favorites.');
+  await page.getByRole('button', { name: 'Request Miami Availability' }).click();
+
+  await expect(page.locator('[data-success]')).toBeVisible();
+  await expect(page.locator('[data-success-crm]')).toContainText('lead-miami-1');
+
+  expect(crmPayload).toMatchObject({
+    event_type: 'wedding',
+    event_date: '2026-12-12',
+    venue_name: 'The Biltmore Hotel Miami Coral Gables',
+    venue_city: 'Coral Gables',
+    guest_count: 160,
+    budget_min: 2500,
+    budget_max: 4000,
+    needs_ceremony: true,
+    needs_reception: true,
+    needs_bilingual_mc: true,
+    needs_lighting: false,
+    planner_involved: true,
+    client_name: 'Miami CRM Lead',
+    client_email: 'crm-lead@example.com',
+    client_phone: '305-555-0144'
+  });
+  expect(crmPayload.music_notes).toContain('Formal moments: Grand entrance');
+  expect(crmPayload.music_notes).toContain('Recommended package: Bilingual Premium Wedding');
+  expect(crmPayload.urgency_notes).toContain('Source page: /miami/');
+});
+
 test('/miami checkbox controls stay compact on desktop and mobile', async ({ page }) => {
   for (const viewport of [{ width: 390, height: 1200 }, { width: 1440, height: 1200 }]) {
     await page.setViewportSize(viewport);

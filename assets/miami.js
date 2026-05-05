@@ -50,6 +50,9 @@
   const recommendationTitle = form.querySelector('[data-recommendation-title]');
   const recommendationCopy = form.querySelector('[data-recommendation-copy]');
   const successBox = form.querySelector('[data-success]');
+  const successCrm = form.querySelector('[data-success-crm]');
+  const errorBox = form.querySelector('[data-error]');
+  const errorCopy = form.querySelector('[data-error-copy]');
   const conditionalBlocks = form.querySelectorAll('[data-show-for]');
   let hasTrackedStart = false;
 
@@ -88,6 +91,17 @@
       '4000plus': 4500
     };
     return ranges[value] || 0;
+  }
+
+  function parseBudgetBounds(value) {
+    const ranges = {
+      under900: [0, 899],
+      '900-1500': [900, 1500],
+      '1500-2500': [1500, 2500],
+      '2500-4000': [2500, 4000],
+      '4000plus': [4000, null]
+    };
+    return ranges[value] || [null, null];
   }
 
   function daysUntilEvent(dateValue) {
@@ -154,6 +168,61 @@
     return 'Low-fit lead';
   }
 
+  function mapEventType(eventType) {
+    const eventTypes = {
+      wedding: 'wedding',
+      quinceanera: 'quince',
+      'private-celebration': 'private_celebration',
+      'corporate-hotel': 'corporate',
+      'lighting-production': 'other'
+    };
+    return eventTypes[eventType] || 'other';
+  }
+
+  function inferVenueCity(venue) {
+    const normalized = (venue || '').toLowerCase();
+    if (normalized.includes('miami beach')) return 'Miami Beach';
+    if (normalized.includes('coral gables')) return 'Coral Gables';
+    if (normalized.includes('coconut grove')) return 'Coconut Grove';
+    if (normalized.includes('doral')) return 'Doral';
+    if (normalized.includes('key biscayne')) return 'Key Biscayne';
+    if (normalized.includes('aventura')) return 'Aventura';
+    if (normalized.includes('kendall')) return 'Kendall';
+    if (normalized.includes('homestead')) return 'Homestead';
+    return 'Miami';
+  }
+
+  function inferIndoorOutdoor(data) {
+    const services = data.servicesNeeded || [];
+    const notes = `${data.venue || ''} ${data.formalMoments || ''} ${data.productionNotes || ''} ${data.message || ''}`;
+    if (services.includes('beach-ceremony')) return 'outdoor_uncovered';
+    if (/outdoor uncovered|beach|garden|lawn|terrace|patio|pool|waterfront/i.test(notes)) return 'mixed';
+    if (services.includes('outdoor-sound')) return 'mixed';
+    if (/indoor|ballroom|banquet|hotel room|reception room/i.test(notes)) return 'indoor';
+    return 'unknown';
+  }
+
+  function hasPlannerInvolved(data) {
+    const notes = `${data.productionNotes || ''} ${data.message || ''}`;
+    return /planner|coordinator|venue manager|event manager|hotel contact|catering manager/i.test(notes);
+  }
+
+  function formatServices(servicesNeeded) {
+    const labels = {
+      'dj-mc': 'DJ/MC',
+      'ceremony-audio': 'Ceremony audio',
+      'event-lighting': 'Lighting',
+      'bilingual-mc': 'Bilingual MC',
+      'outdoor-sound': 'Outdoor sound',
+      'beach-ceremony': 'Beach ceremony'
+    };
+    return servicesNeeded.map((service) => labels[service] || service).join(', ');
+  }
+
+  function compactLines(lines) {
+    return lines.filter((line) => line && String(line).trim()).join('\n');
+  }
+
   function collectLeadData() {
     const servicesNeeded = getCheckedList('servicesNeeded');
     const data = {
@@ -170,6 +239,8 @@
       ceremonyAudio: getChecked('ceremonyAudio'),
       lighting: getChecked('lighting'),
       budgetRange: getValue('budgetRange'),
+      formalMoments: getValue('formalMoments').trim(),
+      productionNotes: getValue('productionNotes').trim(),
       message: getValue('message').trim(),
       sourcePage: window.location.pathname,
       submittedAt: new Date().toISOString()
@@ -179,6 +250,83 @@
     data.leadScore = calculateLeadScore(data);
     data.leadCategory = leadCategory(data.leadScore);
     return data;
+  }
+
+  function buildCrmPayload(data) {
+    const [budgetMin, budgetMax] = parseBudgetBounds(data.budgetRange);
+    const needsCeremony = data.ceremonyAudio
+      || data.servicesNeeded.includes('ceremony-audio')
+      || data.servicesNeeded.includes('beach-ceremony');
+    const needsLighting = data.lighting || data.servicesNeeded.includes('event-lighting');
+    const needsBilingualMc = data.bilingualMc || data.servicesNeeded.includes('bilingual-mc');
+
+    return {
+      event_type: mapEventType(data.eventType),
+      event_date: data.eventDate || null,
+      venue_name: data.venue || null,
+      venue_city: data.venue ? inferVenueCity(data.venue) : null,
+      guest_count: data.guestCount ? Number(data.guestCount) : null,
+      budget_min: budgetMin,
+      budget_max: budgetMax,
+      needs_ceremony: needsCeremony,
+      needs_cocktail: /cocktail/i.test(`${data.formalMoments || ''} ${data.message || ''}`),
+      needs_reception: data.eventType !== 'lighting-production',
+      needs_bilingual_mc: needsBilingualMc,
+      needs_lighting: needsLighting,
+      indoor_outdoor: inferIndoorOutdoor(data),
+      planner_involved: hasPlannerInvolved(data),
+      contract_deposit_resistance: false,
+      client_name: data.name,
+      client_email: data.email,
+      client_phone: data.phone || null,
+      music_notes: compactLines([
+        data.servicesNeeded.length ? `Services requested: ${formatServices(data.servicesNeeded)}` : '',
+        data.formalMoments ? `Formal moments: ${data.formalMoments}` : '',
+        data.productionNotes ? `Planner / venue notes: ${data.productionNotes}` : '',
+        data.message ? `Client notes: ${data.message}` : '',
+        `Recommended package: ${data.recommendedPackage}`
+      ]),
+      urgency_notes: compactLines([
+        `Source page: ${data.sourcePage}`,
+        `Submitted at: ${data.submittedAt}`,
+        `Website lead score: ${data.leadScore}`,
+        `Website lead category: ${data.leadCategory}`
+      ])
+    };
+  }
+
+  function getCrmEndpoint() {
+    const configuredEndpoint = window.TC_MIAMI_CRM_ENDPOINT || form.getAttribute('data-crm-endpoint') || '';
+    return configuredEndpoint.trim() || '/api/leads/intake';
+  }
+
+  async function submitLeadToCrm(payload) {
+    const response = await fetch(getCrmEndpoint(), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(body.detail || 'CRM intake request failed');
+    }
+    return body;
+  }
+
+  function persistLeadDraft(data, crmPayload, crmResult, status) {
+    try {
+      const storedLeads = JSON.parse(window.localStorage.getItem('tcMiamiLeadDrafts') || '[]');
+      storedLeads.push(Object.assign({}, data, {
+        crmPayload,
+        crmResult: crmResult || null,
+        crmStatus: status
+      }));
+      window.localStorage.setItem('tcMiamiLeadDrafts', JSON.stringify(storedLeads.slice(-20)));
+      return true;
+    } catch (error) {
+      track('lead_form_local_persist_failed', { sourcePage: data.sourcePage });
+      return false;
+    }
   }
 
   function updateConditionalFields() {
@@ -218,7 +366,7 @@
     updateRecommendation();
   });
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     if (!form.reportValidity()) {
@@ -226,52 +374,55 @@
     }
 
     const data = collectLeadData();
+    const crmPayload = buildCrmPayload(data);
     const submitButton = form.querySelector('button[type="submit"]');
     const originalButtonText = submitButton.textContent;
     submitButton.disabled = true;
-    submitButton.textContent = 'Reviewing details';
+    submitButton.textContent = 'Sending to CRM';
+    successBox?.classList.remove('is-visible');
+    errorBox?.classList.remove('is-visible');
 
-    const payload = {
-      market: data.market,
-      eventType: data.eventType,
-      eventDate: data.eventDate,
-      venue: data.venue,
-      guestCount: data.guestCount,
-      servicesNeeded: data.servicesNeeded,
-      bilingualMc: data.bilingualMc,
-      ceremonyAudio: data.ceremonyAudio,
-      lighting: data.lighting,
-      budgetRange: data.budgetRange,
-      leadScore: data.leadScore,
-      recommendedPackage: data.recommendedPackage,
-      sourcePage: data.sourcePage,
-      submittedAt: data.submittedAt
-    };
+    try {
+      const crmResult = await submitLeadToCrm(crmPayload);
+      persistLeadDraft(data, crmPayload, crmResult, 'submitted');
+      form.dataset.lastLeadPayload = JSON.stringify(crmPayload);
+      form.dataset.lastCrmResult = JSON.stringify(crmResult);
+      track('lead_form_submit', {
+        sourcePage: window.location.pathname,
+        recommendedPackage: data.recommendedPackage,
+        leadCategory: data.leadCategory,
+        crmLeadId: crmResult.lead_id || ''
+      });
 
-    // TODO: Replace this safe local stub with CRM, SMS, email, and calendar integrations.
-    // Suggested production flow: POST payload and contact details to an API route, then notify sales.
-    const storedLeads = JSON.parse(window.localStorage.getItem('tcMiamiLeadDrafts') || '[]');
-    storedLeads.push(Object.assign({}, data, { payload }));
-    window.localStorage.setItem('tcMiamiLeadDrafts', JSON.stringify(storedLeads.slice(-20)));
-
-    form.dataset.lastLeadPayload = JSON.stringify(payload);
-    track('lead_form_submit', {
-      sourcePage: window.location.pathname,
-      recommendedPackage: data.recommendedPackage,
-      leadCategory: data.leadCategory
-    });
-
-    window.setTimeout(() => {
       successBox?.classList.add('is-visible');
       if (successBox) {
+        successBox.querySelector('strong').textContent = 'Your Miami event details were sent to the CRM.';
         successBox.querySelector('[data-success-package]').textContent = data.recommendedPackage;
       }
-      submitButton.disabled = false;
-      submitButton.textContent = originalButtonText;
+      if (successCrm) {
+        successCrm.textContent = crmResult.lead_id ? `CRM lead ID: ${crmResult.lead_id}` : '';
+      }
       form.reset();
       updateConditionalFields();
       updateRecommendation();
-    }, 360);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'CRM intake request failed';
+      const savedDraft = persistLeadDraft(data, crmPayload, { message }, 'crm_error');
+      track('lead_form_submit_failed', {
+        sourcePage: window.location.pathname,
+        recommendedPackage: data.recommendedPackage,
+        leadCategory: data.leadCategory
+      });
+      errorBox?.classList.add('is-visible');
+      if (errorCopy) {
+        errorCopy.textContent = savedDraft
+          ? 'The details were saved in this browser as a draft, but the CRM did not accept the request. Check the DJ World API endpoint and try again.'
+          : 'The CRM did not accept the request. Check the DJ World API endpoint and try again.';
+      }
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
   });
 
   updateConditionalFields();

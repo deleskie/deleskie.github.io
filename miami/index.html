@@ -343,7 +343,7 @@
 
     <section class="miami-section" id="availability">
       <div class="miami-section__inner">
-        <form class="miami-form reveal" data-miami-lead-form novalidate>
+        <form class="miami-form reveal" data-miami-lead-form data-crm-endpoint="/api/leads/intake" novalidate>
           <div class="miami-form__intro">
             <p class="miami-section__label">Availability request</p>
             <h2>Tell us what you are planning.</h2>
@@ -393,6 +393,11 @@
             <div class="miami-success" data-success aria-live="polite">
               <strong>Your Miami event details are ready for review.</strong>
               <span>Recommended starting direction: <span data-success-package></span>. The next step is availability confirmation and package review.</span>
+              <span class="miami-success__meta" data-success-crm></span>
+            </div>
+            <div class="miami-error" data-error aria-live="polite">
+              <strong>We could not send the details to the CRM.</strong>
+              <span data-error-copy>Please try again, or contact us directly if the issue continues.</span>
             </div>
             <div class="miami-form__actions">
               <button class="miami-button miami-button--primary" type="submit">Request Miami Availability</button>

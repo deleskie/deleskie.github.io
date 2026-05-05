@@ -125,6 +125,15 @@ Add fields already identified in the backlog:
 
 The recommendation box should stay advisory. It should not imply guaranteed pricing or availability.
 
+The public Miami form should submit directly to the DJ World CRM intake endpoint:
+
+- `POST /api/leads/intake`
+- Contract source: `/Users/deleskie/gitrepos/djworld/schemas/lead-intake.v1.schema.json`
+- Public form source fields should be mapped into DJ World's `LeadIntake` shape.
+- Richer planning details that do not have first-class CRM columns yet should be preserved in `music_notes` and `urgency_notes`.
+- Mailto/local-only capture should be treated as fallback behavior, not the primary lead path.
+- Production deployment still needs the final API hostname, CORS policy or same-origin reverse proxy, and monitoring for failed submissions.
+
 ### 4. Package Recommendation Panel
 
 Connect package cards to the form logic:

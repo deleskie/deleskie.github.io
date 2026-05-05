@@ -908,7 +908,8 @@ body.miami-page--has-still-hero .miami-stage__video {
 }
 
 .miami-recommendation,
-.miami-success {
+.miami-success,
+.miami-error {
   display: none;
   grid-column: 1 / -1;
   padding: 18px;
@@ -918,14 +919,28 @@ body.miami-page--has-still-hero .miami-stage__video {
 }
 
 .miami-recommendation.is-visible,
-.miami-success.is-visible {
+.miami-success.is-visible,
+.miami-error.is-visible {
   display: block;
 }
 
 .miami-recommendation strong,
-.miami-success strong {
+.miami-success strong,
+.miami-error strong {
   display: block;
   margin-bottom: 6px;
+}
+
+.miami-success__meta {
+  display: block;
+  margin-top: 8px;
+  color: var(--miami-soft);
+  font-size: 0.86rem;
+}
+
+.miami-error {
+  border-color: rgba(216, 137, 111, 0.44);
+  background: rgba(216, 137, 111, 0.1);
 }
 
 .miami-form__actions {

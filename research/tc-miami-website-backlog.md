@@ -11,6 +11,7 @@
 - Keep bilingual MC, ceremony audio, lighting, planner coordination, and backup mindset above the fold or in the first major sections.
 - Continue avoiding fake reviews, fake awards, fake venue partnerships, fake rankings, and unsupported "number one" claims.
 - Add real CRM/SMS/email/calendar integration behind the lead payload before production lead volume scales.
+- Send Miami availability requests to DJ World's public `POST /api/leads/intake` endpoint instead of relying on mailto or local-only collection.
 
 ## Should Have
 
@@ -78,6 +79,7 @@ Second wave:
 - Add planner/venue contact field.
 - Keep internal lead score private.
 - Send clean payload to CRM/API with source page and recommended package.
+- Keep DJ World `LeadIntake` mapping tested so static-site field names can evolve without silently breaking CRM submission.
 
 ## Package Card Improvements
 
