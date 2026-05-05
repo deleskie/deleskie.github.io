@@ -228,6 +228,7 @@
     const data = {
       market: 'Miami',
       name: getValue('name').trim(),
+      website: getValue('website').trim(),
       email: getValue('email').trim(),
       phone: getValue('phone').trim(),
       eventType: getValue('eventType'),
@@ -279,6 +280,9 @@
       client_name: data.name,
       client_email: data.email,
       client_phone: data.phone || null,
+      source_page: data.sourcePage,
+      submitted_at: data.submittedAt,
+      website: data.website || null,
       music_notes: compactLines([
         data.servicesNeeded.length ? `Services requested: ${formatServices(data.servicesNeeded)}` : '',
         data.formalMoments ? `Formal moments: ${data.formalMoments}` : '',

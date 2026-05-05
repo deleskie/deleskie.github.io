@@ -831,6 +831,14 @@ body.miami-page--has-still-hero .miami-stage__video {
   grid-column: 1 / -1;
 }
 
+.miami-field--bot-trap {
+  position: absolute;
+  left: -100vw;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .miami-field label,
 .miami-field legend {
   color: var(--miami-text);

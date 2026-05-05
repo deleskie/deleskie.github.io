@@ -120,7 +120,9 @@ test('/miami smart form posts a DJ World lead intake payload', async ({ page }) 
     planner_involved: true,
     client_name: 'Miami CRM Lead',
     client_email: 'crm-lead@example.com',
-    client_phone: '305-555-0144'
+    client_phone: '305-555-0144',
+    source_page: '/miami/',
+    website: null
   });
   expect(crmPayload.music_notes).toContain('Formal moments: Grand entrance');
   expect(crmPayload.music_notes).toContain('Recommended package: Bilingual Premium Wedding');
