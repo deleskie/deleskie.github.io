@@ -2,6 +2,7 @@
 
 ## Must Have
 
+- Treat TC Audio Productions as a working label until the final brand is approved; keep new architecture and copy easy to rebrand.
 - Make `/miami-wedding-dj/` the primary wedding conversion route and keep `/miami/` as the broader market layer.
 - Rename the primary conversion action from generic contact language to "Start Your Miami Event Plan" where appropriate.
 - Expand guided intake with MC style, guest-request policy, music balance, must-play/do-not-play, pronunciation, and outdoor/rain-plan fields.
@@ -118,3 +119,7 @@ Position the intake as concierge-style planning, not automation theater:
 - Final event packet
 
 Keep the human trust line clear: detailed planning. Human performance.
+
+## Planning Hub Scope
+
+See `research/miami-dj-planning-hub-scope.md` for the Loverly-informed planning hub notes, implementation phases, and brand-swap requirements.
