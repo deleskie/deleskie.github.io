@@ -102,6 +102,9 @@ if (!css.includes('prefers-reduced-motion')) {
 if (!js.includes('leadScore') || !js.includes('recommendedPackage')) {
   errors.push('assets/miami.js: missing lead scoring or package recommendation payload');
 }
+if (!leadFormHtml.includes('/assets/miami-crm-config.js')) {
+  errors.push('miami/index.html: missing CRM endpoint config script');
+}
 
 for (const post of posts) {
   if (post.language === 'es-US' && !getPostPath(post).startsWith('/es/blog/')) {

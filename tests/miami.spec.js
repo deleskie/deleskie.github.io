@@ -127,6 +127,46 @@ test('/miami smart form posts a DJ World lead intake payload', async ({ page }) 
   expect(crmPayload.urgency_notes).toContain('Source page: /miami/');
 });
 
+test('/miami smart form honors configured CRM endpoint override', async ({ page }) => {
+  let crmPayload;
+  await page.addInitScript(() => {
+    window.TC_MIAMI_CRM_ENDPOINT = 'https://crm.example.test/api/leads/intake';
+  });
+  await page.route('https://crm.example.test/api/leads/intake', async (route) => {
+    crmPayload = route.request().postDataJSON();
+    await route.fulfill({
+      json: {
+        status: 'received',
+        lead_id: 'lead-configured-endpoint',
+        score: 70,
+        score_category: 'qualified',
+        reason_codes: ['configured_endpoint'],
+        next_action: 'Prepare automated quote draft and follow up.'
+      }
+    });
+  });
+
+  await page.goto(`${baseUrl}/miami/`, { waitUntil: 'networkidle' });
+  await page.locator('#name').fill('Configured Endpoint Lead');
+  await page.locator('#email').fill('configured@example.com');
+  await page.locator('#phone').fill('305-555-0101');
+  await page.locator('#eventType').selectOption('corporate-hotel');
+  await page.locator('#eventDate').fill('2026-10-10');
+  await page.locator('#venue').fill('Brickell hotel');
+  await page.locator('#guestCount').fill('80');
+  await page.locator('#budgetRange').selectOption('1500-2500');
+  await page.locator('#productionNotes').fill('Hotel contact and load-in notes to follow');
+  await page.getByRole('button', { name: 'Request Miami Availability' }).click();
+
+  await expect(page.locator('[data-success-crm]')).toContainText('lead-configured-endpoint');
+  expect(crmPayload).toMatchObject({
+    event_type: 'corporate',
+    venue_name: 'Brickell hotel',
+    planner_involved: true,
+    client_name: 'Configured Endpoint Lead'
+  });
+});
+
 test('/miami checkbox controls stay compact on desktop and mobile', async ({ page }) => {
   for (const viewport of [{ width: 390, height: 1200 }, { width: 1440, height: 1200 }]) {
     await page.setViewportSize(viewport);
