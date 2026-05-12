@@ -1,0 +1,1 @@
+import{j as g}from"./index-eqvLnNw3.js";function p({fallbackSrc:e,onError:i,...s}){const a=d=>{const t=d.currentTarget;e&&t.dataset.weddingFallbackApplied!=="true"&&t.getAttribute("src")!==e&&(t.dataset.weddingFallbackApplied="true",t.src=e),i==null||i(d)};return g.jsx("img",{...s,onError:a})}export{p as W};

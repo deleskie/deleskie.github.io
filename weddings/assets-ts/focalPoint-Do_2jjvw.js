@@ -1,0 +1,1 @@
+function m(e){const a=typeof(e==null?void 0:e.x)=="number"?e.x:.5,c=typeof(e==null?void 0:e.y)=="number"?e.y:.5,x=f=>Math.max(0,Math.min(100,f*100));return`${x(a).toFixed(1)}% ${x(c).toFixed(1)}%`}export{m as f};
