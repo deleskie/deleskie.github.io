@@ -6,6 +6,8 @@
   --bone-dim: #c9bda6;
   --copper: #b46b37;
   --blood: #8e1d27;
+  --mauve: #5b2d54;
+  --plum: #2b182f;
   --lichen: #6f846e;
   --line: rgba(241, 231, 209, 0.16);
   --line-strong: rgba(241, 231, 209, 0.32);
@@ -268,18 +270,18 @@ h1 {
   max-width: 680px;
   margin-top: 20px;
   font-size: clamp(4rem, 7.5vw, 7.2rem);
-  letter-spacing: -0.045em;
+  letter-spacing: 0;
 }
 
 h2 {
   color: var(--bone);
   font-size: clamp(2.2rem, 5vw, 5.2rem);
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 }
 
 h3 {
   font-size: clamp(1.45rem, 2.7vw, 2.3rem);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .hero-lede {
@@ -326,100 +328,85 @@ h3 {
   border: 1px solid var(--line-strong);
 }
 
-.hero-sigil {
+.hero-art {
   position: relative;
-  aspect-ratio: 1;
-  min-height: 360px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at center, rgba(142, 29, 39, 0.18), transparent 32%),
-    radial-gradient(circle at 50% 50%, rgba(241, 231, 209, 0.08), transparent 58%);
-  box-shadow: var(--shadow);
+  min-height: 560px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 0.62fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
 }
 
-.hero-sigil::before,
-.hero-sigil::after,
-.ring,
-.axis,
-.dot {
+.theme-frame {
+  --art-image: linear-gradient(135deg, rgba(91, 45, 84, 0.88), rgba(142, 29, 39, 0.64));
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-image:
+    linear-gradient(180deg, rgba(7, 6, 4, 0.08), rgba(7, 6, 4, 0.72)),
+    var(--art-image),
+    radial-gradient(circle at 30% 24%, rgba(241, 231, 209, 0.17), transparent 22rem),
+    linear-gradient(135deg, rgba(91, 45, 84, 0.72), rgba(8, 7, 6, 0.9));
+  background-position: center;
+  background-size: cover;
+  box-shadow: var(--shadow);
+  isolation: isolate;
+}
+
+.theme-frame::before,
+.theme-frame::after {
   content: "";
   position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.hero-sigil::before {
-  inset: 12%;
-  border: 1px dashed rgba(241, 231, 209, 0.22);
-  border-radius: 50%;
+.theme-frame::before {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 52% 38%, transparent 0 28%, rgba(241, 231, 209, 0.16) 29% 29.6%, transparent 30%),
+    repeating-radial-gradient(circle at 52% 38%, rgba(241, 231, 209, 0.18) 0 1px, transparent 1px 9px),
+    linear-gradient(0deg, rgba(7, 6, 4, 0.72), transparent 48%);
+  mix-blend-mode: screen;
+  opacity: 0.28;
 }
 
-.hero-sigil::after {
-  inset: 29%;
-  border: 1px solid rgba(180, 107, 55, 0.4);
-  transform: rotate(45deg);
+.theme-frame::after {
+  z-index: 2;
+  background:
+    linear-gradient(180deg, transparent 42%, rgba(7, 6, 4, 0.76)),
+    linear-gradient(90deg, rgba(7, 6, 4, 0.28), transparent 48%, rgba(7, 6, 4, 0.18));
 }
 
-.ring {
-  border-radius: 50%;
-  border: 1px solid rgba(241, 231, 209, 0.2);
+.theme-frame figcaption {
+  position: absolute;
+  z-index: 3;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  color: var(--bone);
+  font-size: 0.75rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }
 
-.ring-one {
-  inset: 20%;
+.hero-frame-primary {
+  min-height: 560px;
+  grid-row: 1 / span 2;
 }
 
-.ring-two {
-  inset: 35% 12%;
+.hero-frame-article,
+.hero-frame-mandala {
+  min-height: 0;
 }
 
-.ring-three {
-  inset: 12% 35%;
-}
-
-.axis {
-  background: linear-gradient(90deg, transparent, rgba(241, 231, 209, 0.24), transparent);
-}
-
-.axis-vertical {
-  top: 8%;
-  bottom: 8%;
-  left: 50%;
-  width: 1px;
-}
-
-.axis-horizontal {
-  left: 8%;
-  right: 8%;
-  top: 50%;
-  height: 1px;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--bone);
-  box-shadow: 0 0 26px rgba(241, 231, 209, 0.9);
-}
-
-.dot-one {
-  top: 21%;
-  left: 48%;
-}
-
-.dot-two {
-  right: 20%;
-  top: 50%;
-}
-
-.dot-three {
-  bottom: 21%;
-  left: 48%;
-}
-
-.dot-four {
-  left: 20%;
-  top: 50%;
+.hero-frame-article {
+  background-position: top center;
 }
 
 .hero-panel {
@@ -451,6 +438,7 @@ h3 {
 
 .manifesto-section,
 .work-section,
+.archive-section,
 .systems-section,
 .process-section,
 .legacy-section,
@@ -465,6 +453,7 @@ h3 {
 .manifesto-grid,
 .section-heading,
 .work-grid,
+.archive-layout,
 .systems-list,
 .process-list,
 .legacy-panel,
@@ -522,6 +511,17 @@ h3 {
   min-width: 0;
 }
 
+.work-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(7, 6, 4, 0.04), rgba(7, 6, 4, 0.84)),
+    radial-gradient(circle at 78% 10%, rgba(180, 107, 55, 0.2), transparent 18rem);
+}
+
 .work-card-tall {
   grid-column: span 2;
   grid-row: span 2;
@@ -531,51 +531,113 @@ h3 {
   grid-column: span 2;
 }
 
-.work-card h3 {
+.work-card-copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+.work-card h3 {
   max-width: 600px;
   margin-top: 8px;
 }
 
-.pattern {
+.theme-image {
+  --art-image: linear-gradient(135deg, rgba(91, 45, 84, 0.86), rgba(8, 7, 6, 0.9));
   position: absolute;
   inset: 0;
-  opacity: 0.9;
+  background-image:
+    linear-gradient(180deg, rgba(7, 6, 4, 0.1), rgba(7, 6, 4, 0.5)),
+    var(--art-image),
+    radial-gradient(circle at 50% 20%, rgba(142, 29, 39, 0.32), transparent 18rem),
+    repeating-linear-gradient(120deg, rgba(241, 231, 209, 0.08) 0 1px, transparent 1px 22px);
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.01);
+  transition: transform 280ms ease, filter 280ms ease;
 }
 
-.pattern-wave {
-  background:
-    radial-gradient(ellipse at 50% 20%, transparent 0 25%, rgba(241, 231, 209, 0.18) 26% 27%, transparent 28%),
-    radial-gradient(ellipse at 50% 48%, transparent 0 28%, rgba(180, 107, 55, 0.18) 29% 30%, transparent 31%),
-    radial-gradient(ellipse at 50% 76%, transparent 0 25%, rgba(241, 231, 209, 0.14) 26% 27%, transparent 28%),
-    repeating-radial-gradient(circle at 50% 50%, rgba(241, 231, 209, 0.1) 0 1px, transparent 1px 9px);
+.theme-image::before,
+.theme-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-.pattern-geometry {
+.theme-image::before {
   background:
-    linear-gradient(45deg, transparent 48%, rgba(241, 231, 209, 0.24) 49% 51%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(241, 231, 209, 0.16) 49% 51%, transparent 52%),
-    radial-gradient(circle at center, transparent 0 28%, rgba(180, 107, 55, 0.25) 29% 30%, transparent 31%),
-    rgba(111, 132, 110, 0.13);
+    repeating-radial-gradient(circle at 52% 36%, rgba(241, 231, 209, 0.14) 0 1px, transparent 1px 10px),
+    linear-gradient(90deg, rgba(91, 45, 84, 0.34), transparent 52%);
+  mix-blend-mode: screen;
+  opacity: 0.32;
 }
 
-.pattern-dotwork {
-  background:
-    radial-gradient(circle, rgba(241, 231, 209, 0.58) 1px, transparent 1.6px),
-    radial-gradient(circle at 50% 50%, rgba(142, 29, 39, 0.25), transparent 58%);
-  background-size: 17px 17px, auto;
+.theme-image::after {
+  background: linear-gradient(0deg, rgba(7, 6, 4, 0.78), transparent 52%);
 }
 
-.pattern-spine {
+.work-card:hover .theme-image,
+.work-card:focus-within .theme-image {
+  transform: scale(1.045);
+  filter: saturate(1.12);
+}
+
+.archive-section {
+  border-top: 1px solid var(--line);
   background:
-    linear-gradient(90deg, transparent 48%, rgba(241, 231, 209, 0.28) 49% 51%, transparent 52%),
-    radial-gradient(circle at 50% 16%, rgba(241, 231, 209, 0.35) 0 4px, transparent 5px),
-    radial-gradient(circle at 50% 32%, rgba(241, 231, 209, 0.35) 0 4px, transparent 5px),
-    radial-gradient(circle at 50% 48%, rgba(241, 231, 209, 0.35) 0 4px, transparent 5px),
-    radial-gradient(circle at 50% 64%, rgba(241, 231, 209, 0.35) 0 4px, transparent 5px),
-    radial-gradient(circle at 50% 80%, rgba(241, 231, 209, 0.35) 0 4px, transparent 5px),
-    linear-gradient(120deg, rgba(142, 29, 39, 0.28), rgba(111, 132, 110, 0.2));
+    linear-gradient(135deg, rgba(43, 24, 47, 0.82), rgba(7, 6, 4, 0.92) 54%),
+    radial-gradient(circle at 12% 20%, rgba(142, 29, 39, 0.2), transparent 24rem);
+}
+
+.archive-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.82fr);
+  gap: 56px;
+  align-items: stretch;
+}
+
+.archive-image {
+  min-height: 560px;
+  background-position: top center;
+}
+
+.archive-copy {
+  display: grid;
+  align-content: center;
+}
+
+.archive-copy h2 {
+  margin-top: 18px;
+}
+
+.archive-copy p:not(.eyebrow) {
+  margin-top: 20px;
+  color: var(--bone-dim);
+  font-size: 1.08rem;
+}
+
+.theme-cues {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.theme-cues span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--bone);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(180, 107, 55, 0.3), transparent 7rem),
+    rgba(241, 231, 209, 0.06);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .systems-section {
@@ -745,13 +807,14 @@ h3 {
 @media (max-width: 1060px) {
   .hero-grid,
   .manifesto-grid,
+  .archive-layout,
   .contact-section {
     grid-template-columns: 1fr;
   }
 
-  .hero-sigil {
-    width: min(520px, 100%);
-    min-height: auto;
+  .hero-art {
+    width: min(680px, 100%);
+    min-height: 520px;
     justify-self: center;
   }
 
@@ -823,8 +886,25 @@ h3 {
     width: 100%;
   }
 
-  .hero-sigil {
+  .hero-art {
     opacity: 0.88;
+  }
+
+  .hero-art {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    min-height: auto;
+  }
+
+  .hero-frame-primary,
+  .hero-frame-article,
+  .hero-frame-mandala {
+    min-height: 240px;
+    grid-row: auto;
+  }
+
+  .hero-frame-primary {
+    min-height: 420px;
   }
 
   .hero-panel,
@@ -856,6 +936,7 @@ h3 {
 
   .manifesto-section,
   .work-section,
+  .archive-section,
   .systems-section,
   .process-section,
   .legacy-section,
@@ -894,7 +975,11 @@ h3 {
     font-size: 2.1rem;
   }
 
-  .hero-sigil {
+  .hero-art {
     width: 100%;
+  }
+
+  .hero-frame-primary {
+    min-height: 360px;
   }
 }
