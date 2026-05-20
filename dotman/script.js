@@ -2,7 +2,7 @@ const header = document.querySelector("[data-nav]");
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelectorAll(".primary-nav a");
 const canvas = document.querySelector("#energy-field");
-const context = canvas.getContext("2d");
+const context = canvas ? canvas.getContext("2d") : null;
 
 let width = 0;
 let height = 0;
@@ -10,15 +10,27 @@ let points = [];
 let frame = 0;
 
 const setScrolledState = () => {
+  if (!header) {
+    return;
+  }
+
   header.classList.toggle("is-scrolled", window.scrollY > 16);
 };
 
 const closeMenu = () => {
+  if (!header || !menuToggle) {
+    return;
+  }
+
   header.classList.remove("is-open");
   menuToggle.setAttribute("aria-expanded", "false");
 };
 
 const resizeCanvas = () => {
+  if (!canvas || !context) {
+    return;
+  }
+
   const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
   width = window.innerWidth;
   height = window.innerHeight;
@@ -38,6 +50,10 @@ const resizeCanvas = () => {
 };
 
 const drawField = () => {
+  if (!canvas || !context) {
+    return;
+  }
+
   frame += 0.005;
   context.clearRect(0, 0, width, height);
 
@@ -72,17 +88,95 @@ const drawField = () => {
   window.requestAnimationFrame(drawField);
 };
 
+const loadImage = (source) =>
+  new Promise((resolve) => {
+    if (!source) {
+      resolve(false);
+      return;
+    }
+
+    const image = new Image();
+    image.onload = () => resolve(true);
+    image.onerror = () => resolve(false);
+    image.src = source;
+  });
+
+const setArtSource = async (element) => {
+  const source = element.dataset.artSrc;
+  const isLoaded = await loadImage(source);
+
+  if (!isLoaded) {
+    element.classList.add("missing-art");
+    return;
+  }
+
+  element.style.setProperty("--art-image", `url("${source}")`);
+  element.classList.add("has-art");
+};
+
+const setPageArt = async (property, source) => {
+  const isLoaded = await loadImage(source);
+
+  if (isLoaded) {
+    document.documentElement.style.setProperty(property, `url("${source}")`);
+  }
+};
+
+const hardenAssetLinks = async () => {
+  const links = document.querySelectorAll("[data-asset-link]");
+
+  links.forEach(async (link) => {
+    const source = link.dataset.assetHref || link.getAttribute("href");
+    const isLoaded = await loadImage(source);
+
+    if (isLoaded && source) {
+      link.setAttribute("href", source);
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener");
+      link.removeAttribute("aria-disabled");
+      link.classList.remove("is-disabled");
+
+      if (link.dataset.readyLabel) {
+        link.textContent = link.dataset.readyLabel;
+      }
+
+      return;
+    }
+
+    link.removeAttribute("href");
+    link.removeAttribute("target");
+    link.removeAttribute("rel");
+    link.setAttribute("aria-disabled", "true");
+    link.classList.add("is-disabled");
+
+    if (link.dataset.missingLabel) {
+      link.textContent = link.dataset.missingLabel;
+    }
+  });
+};
+
+const hydrateArt = () => {
+  document.querySelectorAll("[data-art-src]").forEach(setArtSource);
+  setPageArt("--hero-body-art", "assets/daemon-reference-05-body-map-sleeve.jpg");
+  setPageArt("--hero-detail-art", "assets/daemon-reference-01-energy-bird.jpg");
+  setPageArt("--archive-art", "assets/daemon-reference-02-soul-print-article.jpg");
+  hardenAssetLinks();
+};
+
 setScrolledState();
 resizeCanvas();
 drawField();
+hydrateArt();
 
 window.addEventListener("scroll", setScrolledState, { passive: true });
 window.addEventListener("resize", resizeCanvas);
 
-menuToggle.addEventListener("click", () => {
-  const isOpen = header.classList.toggle("is-open");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-});
+if (menuToggle && header) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = header.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+}
 
 navLinks.forEach((link) => {
   link.addEventListener("click", closeMenu);

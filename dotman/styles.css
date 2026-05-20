@@ -241,8 +241,8 @@ section {
   background-image:
     linear-gradient(90deg, rgba(7, 6, 4, 0.94) 0%, rgba(7, 6, 4, 0.78) 42%, rgba(7, 6, 4, 0.36) 100%),
     linear-gradient(180deg, rgba(7, 6, 4, 0.18), rgba(7, 6, 4, 0.92)),
-    url("assets/daemon-reference-05-body-map-sleeve.jpg"),
-    url("assets/daemon-reference-01-energy-bird.jpg"),
+    var(--hero-body-art, linear-gradient(135deg, rgba(91, 45, 84, 0.74), rgba(8, 7, 6, 0.92))),
+    var(--hero-detail-art, radial-gradient(circle at 70% 30%, rgba(142, 29, 39, 0.44), transparent 32rem)),
     radial-gradient(circle at 74% 18%, rgba(91, 45, 84, 0.56), transparent 34rem);
   background-position: center, center, right center, center, center;
   background-size: cover, cover, min(62vw, 900px) auto, cover, cover;
@@ -435,6 +435,10 @@ h3 {
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
 }
 
+.theme-frame:not(.has-art)::before {
+  opacity: 0.48;
+}
+
 .hero-frame-primary {
   min-height: 560px;
   grid-row: 1 / span 2;
@@ -596,6 +600,10 @@ h3 {
   transition: transform 280ms ease, filter 280ms ease;
 }
 
+.theme-image:not(.has-art) {
+  filter: saturate(1.08);
+}
+
 .theme-image::before,
 .theme-image::after {
   content: "";
@@ -637,7 +645,7 @@ h3 {
   inset: 0;
   background-image:
     linear-gradient(90deg, rgba(7, 6, 4, 0.92), rgba(7, 6, 4, 0.68)),
-    url("assets/daemon-reference-02-soul-print-article.jpg");
+    var(--archive-art, linear-gradient(135deg, rgba(43, 24, 47, 0.82), rgba(142, 29, 39, 0.28)));
   background-position: center;
   background-size: cover;
   opacity: 0.2;
@@ -676,6 +684,13 @@ h3 {
 .archive-button {
   width: fit-content;
   margin-top: 28px;
+}
+
+.button.is-disabled,
+.button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.64;
+  transform: none;
 }
 
 .theme-cues {
@@ -724,7 +739,7 @@ h3 {
 }
 
 .systems-list h3 {
-  margin-top: 42px;
+  margin-top: 34px;
 }
 
 .systems-list p {
@@ -750,19 +765,24 @@ h3 {
 }
 
 .process-list span {
-  display: inline-grid;
-  place-items: center;
-  width: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 66px;
   height: 38px;
+  padding: 0 12px;
   border: 1px solid var(--line-strong);
-  border-radius: 50%;
+  border-radius: 999px;
   color: var(--copper);
+  font-size: 0.76rem;
   font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .process-list strong {
   display: block;
-  margin-top: 50px;
+  margin-top: 42px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.7rem;
   line-height: 1.05;

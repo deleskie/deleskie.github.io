@@ -12,6 +12,6 @@ Recommended export set:
 - `daemon-reference-06-koi-lotus.jpg`: koi, lotus, wave, and color-saturation reference.
 - `portfolio-01.jpg` through `portfolio-12.jpg`: approved tattoo photos from originals or authorized exports for a fuller gallery later.
 
-The HTML/CSS already points to the six `daemon-reference-*` filenames above. The hero background uses `daemon-reference-05-body-map-sleeve.jpg`, the hero collage uses references 01, 02, and 03, and the article link opens `daemon-reference-02-soul-print-article.jpg`. Missing files fall back to styled theme panels, so the page remains usable before the exports are added.
+The page expects the six `daemon-reference-*` filenames above. JavaScript applies the image backgrounds only after each file loads, so missing files fall back to styled theme panels instead of broken visuals. The article link opens `daemon-reference-02-soul-print-article.jpg` when present and disables itself when the scan has not been added yet.
 
 Keep originals in a separate source folder and compress production copies before publishing. Good next step: identify 5 to 8 additional approved works that define Energy Wave, Daemonic Tribal, Daemonic Fusion, Daemonic Japanese, and Spiral Weaves.
