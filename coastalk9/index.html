@@ -33,8 +33,7 @@
         <a href="#foster">Foster</a>
         <a href="#donate">Donate</a>
         <a href="#events">Events</a>
-        <a href="#media">Media Upload</a>
-        <a href="https://www.facebook.com/coastalk9rescue" target="_blank" rel="noopener">Facebook</a>
+        <a class="social-link" href="https://www.facebook.com/coastalk9rescue" target="_blank" rel="noopener"><img class="social-icon" src="assets/facebook.svg" alt="" />Facebook</a>
         <a class="nav-cta" href="#apply">Apply</a>
       </nav>
     </header>
@@ -73,10 +72,10 @@
           <span>Fund urgent care</span>
           <small>Vet bills, food, transport</small>
         </a>
-        <a href="#media">
-          <i data-lucide="qr-code"></i>
-          <span>Share rescue media</span>
-          <small>Volunteer photo intake</small>
+        <a href="https://www.facebook.com/coastalk9rescue" target="_blank" rel="noopener">
+          <img class="quick-action-icon" src="assets/facebook.svg" alt="" />
+          <span>Follow rescue updates</span>
+          <small>Dogs, events, foster needs</small>
         </a>
       </section>
 
@@ -90,8 +89,8 @@
           <strong>Donations support food, medical care, shelter supplies, and transport.</strong>
         </div>
         <div>
-          <span>Review before sharing</span>
-          <strong>Volunteer uploads stay team-facing until Coastal K9 approves use.</strong>
+          <span>Community updates</span>
+          <strong>Follow their Facebook page for current dogs, foster needs, and event activity.</strong>
         </div>
       </section>
 
@@ -315,93 +314,6 @@
         </div>
       </section>
 
-      <section class="section media-section" id="media" aria-labelledby="media-title">
-        <div class="section-copy">
-          <p class="eyebrow">QR media intake</p>
-          <h2 id="media-title">A reusable photo-upload lane for volunteers, fosters, and rescue updates.</h2>
-          <p>
-            This mirrors the QR microsite pattern: scan a shelter or event link, enter the volunteer
-            access code, add the dog name and context, then send a clean intake packet to the rescue team.
-          </p>
-        </div>
-        <div class="upload-panel">
-          <div class="qr-card" aria-label="QR code placeholder for media upload">
-            <div class="qr-grid" aria-hidden="true"></div>
-            <span>coastalk9.ca/media</span>
-          </div>
-          <div class="media-workflow">
-            <form class="gate-form" data-gate-form>
-              <div>
-                <h3>Volunteer media access</h3>
-                <p>Uploads are limited to fosters, shelter volunteers, and event partners with the current code.</p>
-              </div>
-              <label>
-                Access code
-                <input name="accessCode" autocomplete="one-time-code" inputmode="text" placeholder="Ask the Coastal K9 team" required />
-              </label>
-              <div class="gate-actions">
-                <button class="button primary" type="submit"><i data-lucide="lock-keyhole-open"></i>Unlock upload</button>
-                <a class="button quiet" href="mailto:Info@coastalk9.ca?subject=Coastal%20K9%20media%20upload%20access%20request"><i data-lucide="mail"></i>Request code</a>
-              </div>
-              <output class="form-output" data-gate-output></output>
-            </form>
-            <form
-              class="upload-form locked"
-              data-upload-form
-              data-email-endpoint="https://formsubmit.co/ajax/Info@coastalk9.ca"
-              data-email-to="Info@coastalk9.ca"
-              aria-hidden="true"
-            >
-              <input type="hidden" name="_subject" value="Coastal K9 media intake" />
-              <input type="hidden" name="_captcha" value="false" />
-              <label>
-                Dog or litter name
-                <input name="dogName" placeholder="Example: Maple" required disabled />
-              </label>
-              <label>
-                Photo context
-                <select name="context" disabled>
-                  <option>Adoption profile</option>
-                  <option>Foster update</option>
-                  <option>Medical progress</option>
-                  <option>Event photos</option>
-                  <option>Transport intake</option>
-                </select>
-              </label>
-              <label>
-                Your name
-                <input name="uploaderName" autocomplete="name" required disabled />
-              </label>
-              <label>
-                Your email
-                <input type="email" name="uploaderEmail" autocomplete="email" required disabled />
-              </label>
-              <label class="bot-trap" aria-hidden="true">
-                Website
-                <input name="website" autocomplete="off" tabindex="-1" disabled />
-              </label>
-              <label class="drop-zone" data-drop-zone>
-                <input type="file" name="photos" accept="image/*" multiple required disabled />
-                <i data-lucide="upload-cloud"></i>
-                <span>Drop photos here or choose files</span>
-                <small>Use clear, recent images. The rescue team reviews before anything is published.</small>
-              </label>
-              <label>
-                Notes
-                <textarea name="mediaNotes" rows="3" placeholder="Who took the photo, permission notes, temperament notes, captions" disabled></textarea>
-              </label>
-              <label class="checkbox-line wide">
-                <input type="checkbox" name="photoPermission" required disabled />
-                I have permission to share these photos with Coastal K9 for rescue, adoption, foster, or event use.
-              </label>
-              <button class="button primary" type="submit" disabled><i data-lucide="send"></i>Send media packet</button>
-              <output class="form-output" data-media-output></output>
-            </form>
-          </div>
-          <div class="upload-status" data-upload-status aria-live="polite">No photos selected.</div>
-          <div class="preview-grid" data-preview-grid aria-live="polite"></div>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer" id="contact">
@@ -413,8 +325,7 @@
       <div>
         <a href="mailto:Info@coastalk9.ca">Info@coastalk9.ca</a>
         <a href="tel:+19023188985">(902) 318-8985</a>
-        <a href="https://www.facebook.com/coastalk9rescue" target="_blank" rel="noopener">Facebook</a>
-        <a href="#media">Volunteer media upload</a>
+        <a class="social-link" href="https://www.facebook.com/coastalk9rescue" target="_blank" rel="noopener"><img class="social-icon" src="assets/facebook.svg" alt="" />Facebook</a>
       </div>
     </footer>
   </body>

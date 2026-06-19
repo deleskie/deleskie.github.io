@@ -142,10 +142,13 @@ textarea {
 }
 
 .site-nav a {
+  align-items: center;
   border-radius: 999px;
   color: var(--forest-dark);
+  display: inline-flex;
   font-size: 0.94rem;
   font-weight: 750;
+  gap: 7px;
   padding: 10px 13px;
   text-decoration: none;
 }
@@ -282,6 +285,19 @@ h3 {
 .upload-form svg {
   height: 19px;
   width: 19px;
+}
+
+.social-icon,
+.quick-action-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 19px;
+  width: 19px;
+}
+
+.quick-action-icon {
+  height: 21px;
+  width: 21px;
 }
 
 .primary {
@@ -785,6 +801,22 @@ meter {
   display: grid;
   gap: 30px;
   grid-template-columns: minmax(280px, 0.8fr) minmax(360px, 1.2fr);
+}
+
+.media-page {
+  background: var(--panel);
+}
+
+.media-page main {
+  padding-top: 74px;
+}
+
+.media-nav {
+  display: flex;
+}
+
+.private-media-section {
+  min-height: calc(100vh - 74px);
 }
 
 .upload-panel {

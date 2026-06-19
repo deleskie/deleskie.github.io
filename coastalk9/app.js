@@ -79,6 +79,7 @@ function slugify(value) {
 }
 
 function renderDogs(filter = "all") {
+  if (!dogGrid) return;
   const visibleDogs = dogs.filter((dog) => filter === "all" || dog.tags.includes(filter));
 
   dogGrid.innerHTML = visibleDogs
@@ -140,6 +141,7 @@ function fileSummary(files) {
 }
 
 function setOutput(output, message, isError = false) {
+  if (!output) return;
   output.value = message;
   output.classList.toggle("error", isError);
 }
@@ -195,6 +197,7 @@ async function submitToEmail(form, output, successMessage, payload) {
 }
 
 function unlockUploadForm() {
+  if (!uploadForm) return;
   uploadForm.classList.remove("locked");
   uploadForm.setAttribute("aria-hidden", "false");
   uploadForm.querySelectorAll("input, select, textarea, button").forEach((field) => {
@@ -203,6 +206,7 @@ function unlockUploadForm() {
 }
 
 function updatePreview(files) {
+  if (!previewGrid || !uploadStatus) return;
   previewGrid.innerHTML = "";
   const imageFiles = Array.from(files).filter((file) => file.type.startsWith("image/"));
   uploadStatus.textContent = imageFiles.length
@@ -220,23 +224,29 @@ function updatePreview(files) {
 
 renderDogs();
 
-window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 8);
-});
+if (header) {
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("scrolled", window.scrollY > 8);
+  });
+}
 
-menuToggle.addEventListener("click", () => {
-  const isOpen = nav.classList.toggle("open");
-  menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
-});
+if (menuToggle && nav) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+    menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+}
 
-nav.addEventListener("click", (event) => {
-  if (event.target.closest("a")) {
-    nav.classList.remove("open");
-    menuToggle.setAttribute("aria-label", "Open menu");
-    menuToggle.setAttribute("aria-expanded", "false");
-  }
-});
+if (nav && menuToggle) {
+  nav.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      nav.classList.remove("open");
+      menuToggle.setAttribute("aria-label", "Open menu");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+}
 
 filterButtons.forEach((button) => {
   button.setAttribute("aria-pressed", button.classList.contains("active") ? "true" : "false");
@@ -251,98 +261,108 @@ filterButtons.forEach((button) => {
   });
 });
 
-dogGrid.addEventListener("click", (event) => {
-  const applyLink = event.target.closest("[data-dog-apply]");
-  if (!applyLink) return;
-  const dogName = applyLink.dataset.dogApply;
-  intakeForm.type.value = "Adopt";
-  intakeForm.notes.value = `I am interested in ${dogName}. `;
-});
-
-intakeForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!intakeForm.reportValidity()) return;
-
-  const data = Object.fromEntries(new FormData(intakeForm).entries());
-  data.submittedAt = new Date().toISOString();
-
-  await submitToEmail(intakeForm, formOutput, `Thanks, ${data.name}. Your ${data.type.toLowerCase()} request has been sent.`, {
-    subject: `Coastal K9 ${data.type} request`,
-    intro: "New Coastal K9 website intake:",
-    fields: data,
+if (dogGrid && intakeForm) {
+  dogGrid.addEventListener("click", (event) => {
+    const applyLink = event.target.closest("[data-dog-apply]");
+    if (!applyLink) return;
+    const dogName = applyLink.dataset.dogApply;
+    intakeForm.type.value = "Adopt";
+    intakeForm.notes.value = `I am interested in ${dogName}. `;
   });
-});
+}
 
-gateForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const code = String(new FormData(gateForm).get("accessCode") || "").trim().toLowerCase();
-  if (!allowedMediaCodes.has(code)) {
-    setOutput(gateOutput, "That code did not unlock uploads. Ask the Coastal K9 team for the current code.", true);
-    return;
-  }
-  unlockUploadForm();
-  setOutput(gateOutput, "Upload access unlocked for this session.");
-  uploadForm.querySelector('[name="dogName"]').focus();
-});
+if (intakeForm) {
+  intakeForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!intakeForm.reportValidity()) return;
 
-uploadForm.photos.addEventListener("change", () => {
-  updatePreview(uploadForm.photos.files);
-});
+    const data = Object.fromEntries(new FormData(intakeForm).entries());
+    data.submittedAt = new Date().toISOString();
+
+    await submitToEmail(intakeForm, formOutput, `Thanks, ${data.name}. Your ${data.type.toLowerCase()} request has been sent.`, {
+      subject: `Coastal K9 ${data.type} request`,
+      intro: "New Coastal K9 website intake:",
+      fields: data,
+    });
+  });
+}
+
+if (gateForm) {
+  gateForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const code = String(new FormData(gateForm).get("accessCode") || "").trim().toLowerCase();
+    if (!allowedMediaCodes.has(code)) {
+      setOutput(gateOutput, "That code did not unlock uploads. Ask the Coastal K9 team for the current code.", true);
+      return;
+    }
+    unlockUploadForm();
+    setOutput(gateOutput, "Upload access unlocked for this session.");
+    uploadForm?.querySelector('[name="dogName"]')?.focus();
+  });
+}
+
+if (uploadForm?.photos) {
+  uploadForm.photos.addEventListener("change", () => {
+    updatePreview(uploadForm.photos.files);
+  });
+}
 
 ["dragenter", "dragover"].forEach((eventName) => {
-  dropZone.addEventListener(eventName, (event) => {
+  dropZone?.addEventListener(eventName, (event) => {
     event.preventDefault();
-    if (!uploadForm.classList.contains("locked")) dropZone.classList.add("is-dragging");
+    if (!uploadForm?.classList.contains("locked")) dropZone.classList.add("is-dragging");
   });
 });
 
 ["dragleave", "drop"].forEach((eventName) => {
-  dropZone.addEventListener(eventName, (event) => {
+  dropZone?.addEventListener(eventName, (event) => {
     event.preventDefault();
     dropZone.classList.remove("is-dragging");
   });
 });
 
-dropZone.addEventListener("drop", (event) => {
-  if (uploadForm.classList.contains("locked")) return;
+dropZone?.addEventListener("drop", (event) => {
+  if (uploadForm?.classList.contains("locked")) return;
   const files = event.dataTransfer?.files;
-  if (!files?.length) return;
+  if (!files?.length || !uploadForm?.photos) return;
   uploadForm.photos.files = files;
   updatePreview(files);
 });
 
-uploadForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (!uploadForm.reportValidity()) return;
-  if (!uploadForm.photos.files.length) {
-    setOutput(uploadOutput, "Choose at least one photo before sending the media packet.", true);
-    return;
-  }
+if (uploadForm) {
+  uploadForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!uploadForm.reportValidity()) return;
+    if (!uploadForm.photos.files.length) {
+      setOutput(uploadOutput, "Choose at least one photo before sending the media packet.", true);
+      return;
+    }
 
-  const formData = new FormData(uploadForm);
-  const packet = {
-    subject: "Coastal K9 media intake",
-    dogName: formData.get("dogName"),
-    context: formData.get("context"),
-    uploaderName: formData.get("uploaderName"),
-    uploaderEmail: formData.get("uploaderEmail"),
-    notes: formData.get("mediaNotes"),
-    files: fileSummary(uploadForm.photos.files).map((file) => `${file.name} (${file.type || "unknown type"})`),
-    uploadedAt: new Date().toISOString(),
-  };
+    const formData = new FormData(uploadForm);
+    const packet = {
+      subject: "Coastal K9 media intake",
+      dogName: formData.get("dogName"),
+      context: formData.get("context"),
+      uploaderName: formData.get("uploaderName"),
+      uploaderEmail: formData.get("uploaderEmail"),
+      notes: formData.get("mediaNotes"),
+      files: fileSummary(uploadForm.photos.files).map((file) => `${file.name} (${file.type || "unknown type"})`),
+      uploadedAt: new Date().toISOString(),
+    };
 
-  const sent = await submitToEmail(uploadForm, uploadOutput, "Media packet sent. The team will review before using or publishing photos.", {
-    subject: "Coastal K9 media intake",
-    intro: "New Coastal K9 media upload packet. Photo files were selected in the browser; confirm endpoint attachment behavior before production launch.",
-    fields: packet,
+    const sent = await submitToEmail(uploadForm, uploadOutput, "Media packet sent. The team will review before using or publishing photos.", {
+      subject: "Coastal K9 media intake",
+      intro: "New Coastal K9 media upload packet. Photo files were selected in the browser; confirm endpoint attachment behavior before production launch.",
+      fields: packet,
+    });
+
+    if (sent) {
+      downloadJson(`coastal-k9-media-${slugify(packet.dogName)}-${Date.now()}.json`, packet);
+    }
   });
+}
 
-  if (sent) {
-    downloadJson(`coastal-k9-media-${slugify(packet.dogName)}-${Date.now()}.json`, packet);
-  }
-});
-
-printQrButton.addEventListener("click", () => {
+printQrButton?.addEventListener("click", () => {
   window.print();
 });
 
