@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Coastal K9 Rescue Society adoption, fostering, donations, events, and volunteer media uploads for rescue dogs in Nova Scotia."
+    />
+    <title>Coastal K9 Rescue Society</title>
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#home" aria-label="Coastal K9 Rescue Society home">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="assets/coastal-k9/coastal-k9-logo.png" alt="" onerror="this.hidden=true; this.nextElementSibling.hidden=false" />
+          <span class="brand-mark" hidden>CK9</span>
+        </span>
+        <span>
+          <strong>Coastal K9</strong>
+          <small>Rescue Society</small>
+        </span>
+      </a>
+      <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false" data-menu-toggle>
+        <i data-lucide="menu"></i>
+      </button>
+      <nav class="site-nav" id="site-nav" data-nav>
+        <a href="#dogs">Adopt</a>
+        <a href="#foster">Foster</a>
+        <a href="#donate">Donate</a>
+        <a href="#events">Events</a>
+        <a href="#media">Media Upload</a>
+        <a href="https://www.facebook.com/coastalk9rescue" target="_blank" rel="noopener">Facebook</a>
+        <a class="nav-cta" href="#apply">Apply</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-media" role="img" aria-label="Rescue dogs with volunteers outdoors"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Saint Andrews, Nova Scotia</p>
+          <h1 id="hero-title">Help rescue dogs move from urgent need to safe homes.</h1>
+          <p>
+            We rescue, foster, rehabilitate, and rehome dogs across coastal Nova Scotia with
+            student volunteers, local fosters, veterinary partners, and community support.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#dogs"><i data-lucide="heart-handshake"></i>Meet the dogs</a>
+            <a class="button secondary" href="#donate"><i data-lucide="badge-dollar-sign"></i>Fund emergency care</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-actions" aria-label="Primary rescue actions">
+        <a href="#apply">
+          <i data-lucide="clipboard-check"></i>
+          <span>Apply to adopt</span>
+          <small>Screening, home fit, references</small>
+        </a>
+        <a href="#foster">
+          <i data-lucide="home"></i>
+          <span>Become a foster</span>
+          <small>Short stays, supplies covered</small>
+        </a>
+        <a href="#donate">
+          <i data-lucide="badge-dollar-sign"></i>
+          <span>Fund urgent care</span>
+          <small>Vet bills, food, transport</small>
+        </a>
+        <a href="#media">
+          <i data-lucide="qr-code"></i>
+          <span>Share rescue media</span>
+          <small>Volunteer photo intake</small>
+        </a>
+      </section>
+
+      <section class="impact-band" aria-label="Coastal K9 impact and trust">
+        <div>
+          <span>Community-led</span>
+          <strong>Student volunteers working with local fosters and rescue partners.</strong>
+        </div>
+        <div>
+          <span>Care-first</span>
+          <strong>Donations support food, medical care, shelter supplies, and transport.</strong>
+        </div>
+        <div>
+          <span>Review before sharing</span>
+          <strong>Volunteer uploads stay team-facing until Coastal K9 approves use.</strong>
+        </div>
+      </section>
+
+      <section class="section section-split" id="dogs" aria-labelledby="dogs-title">
+        <div class="section-copy">
+          <p class="eyebrow">Available dogs</p>
+          <h2 id="dogs-title">Meet dogs who are ready for adoption or foster care.</h2>
+          <p>
+            Filter by age and foster need, then send an application with the dog you are interested
+            in already attached.
+          </p>
+          <div class="filter-row" role="group" aria-label="Filter dogs">
+            <button class="chip active" type="button" data-filter="all">All</button>
+            <button class="chip" type="button" data-filter="puppy">Puppy</button>
+            <button class="chip" type="button" data-filter="adult">Adult</button>
+            <button class="chip" type="button" data-filter="foster">Needs foster</button>
+          </div>
+        </div>
+        <div class="dog-grid" data-dog-grid></div>
+      </section>
+
+      <section class="section process-band" id="apply" aria-labelledby="apply-title">
+        <div>
+          <p class="eyebrow">Applications</p>
+          <h2 id="apply-title">Apply online and help the team match each dog with the right home.</h2>
+        </div>
+        <div class="process-grid">
+          <article>
+            <span>1</span>
+            <h3>Choose a path</h3>
+            <p>Select adoption, fostering, surrender support, event partnership, or general volunteering.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>Collect the essentials</h3>
+            <p>Share contact details, household fit, timing, pets at home, and any dog-specific notes.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Get a follow-up</h3>
+            <p>The team reviews fit, answers questions, and confirms next steps before placement.</p>
+          </article>
+        </div>
+        <form
+          class="intake-form"
+          data-intake-form
+          data-email-endpoint="https://formsubmit.co/ajax/Info@coastalk9.ca"
+          data-email-to="Info@coastalk9.ca"
+        >
+          <input type="hidden" name="_subject" value="Coastal K9 website intake" />
+          <input type="hidden" name="_captcha" value="false" />
+          <label>
+            I want to
+            <select name="type" required>
+              <option value="Adopt">Adopt a dog</option>
+              <option value="Foster">Foster a dog</option>
+              <option value="Volunteer">Volunteer</option>
+              <option value="Surrender">Ask about surrender support</option>
+              <option value="Event">Host an event</option>
+            </select>
+          </label>
+          <label>
+            Name
+            <input name="name" autocomplete="name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" autocomplete="tel" placeholder="Optional" />
+          </label>
+          <label>
+            Best follow-up window
+            <select name="followUpWindow">
+              <option value="Any time">Any time</option>
+              <option value="Morning">Morning</option>
+              <option value="Afternoon">Afternoon</option>
+              <option value="Evening">Evening</option>
+            </select>
+          </label>
+          <label class="bot-trap" aria-hidden="true">
+            Website
+            <input name="website" autocomplete="off" tabindex="-1" />
+          </label>
+          <label class="wide">
+            Notes
+            <textarea name="notes" rows="4" placeholder="Dog of interest, availability, household details, pets at home, or event idea"></textarea>
+          </label>
+          <label class="checkbox-line wide">
+            <input type="checkbox" name="permission" required />
+            I understand Coastal K9 may contact me about this request.
+          </label>
+          <button class="button primary" type="submit"><i data-lucide="send"></i>Send intake</button>
+          <output class="form-output" data-form-output></output>
+        </form>
+      </section>
+
+      <section class="section section-split reverse" id="foster" aria-labelledby="foster-title">
+        <div class="photo-stack" aria-label="Foster care photos">
+          <img src="assets/coastal-k9/foster-collage.png" alt="Coastal K9 foster and adoption collage" />
+          <img src="assets/coastal-k9/foster-puppy-couch.jpg" alt="Coastal K9 puppy resting in a foster home" />
+        </div>
+        <div class="section-copy">
+          <p class="eyebrow">Foster homes</p>
+          <h2 id="foster-title">A foster home is where healing begins.</h2>
+          <p>
+            Fosters give dogs love, safety, and a chance to decompress while they wait for their
+            forever family. Coastal K9 provides food, toys, beds, crates, leashes, poop bags, and restocks.
+          </p>
+          <ul class="check-list">
+            <li><i data-lucide="check"></i>Open to students and community members</li>
+            <li><i data-lucide="check"></i>Short-term or until adoption</li>
+            <li><i data-lucide="check"></i>Supplies and process guidance provided</li>
+          </ul>
+          <a class="button primary" href="#apply"><i data-lucide="home"></i>Start foster application</a>
+        </div>
+      </section>
+
+      <section class="section" id="donate" aria-labelledby="donate-title">
+        <div class="section-heading">
+          <p class="eyebrow">Fundraising</p>
+          <h2 id="donate-title">Help cover emergency care, safe transport, and foster supplies.</h2>
+        </div>
+        <div class="campaign-grid">
+          <article>
+            <i data-lucide="stethoscope"></i>
+            <h3>Emergency vet fund</h3>
+            <p>Cover diagnostics, surgery, vaccines, and medication for dogs arriving in poor condition.</p>
+            <meter min="0" max="100" value="68">68%</meter>
+            <div class="amount-row" aria-label="Suggested emergency vet fund donation amounts"><span>$25</span><span>$50</span><span>$100</span><span>Monthly</span></div>
+            <a href="mailto:Info@coastalk9.ca?subject=Donation%20to%20Emergency%20Vet%20Fund">Donate</a>
+          </article>
+          <article>
+            <i data-lucide="package"></i>
+            <h3>Shelter supply drive</h3>
+            <p>Blankets, towels, cleaning supplies, food dishes, crates, bowls, collars, leashes, and toys.</p>
+            <meter min="0" max="100" value="42">42%</meter>
+            <div class="amount-row" aria-label="Suggested shelter supply donation amounts"><span>Crate</span><span>Towels</span><span>Food</span><span>Toys</span></div>
+            <a href="mailto:Info@coastalk9.ca?subject=Shelter%20supply%20donation">Offer supplies</a>
+          </article>
+          <article>
+            <i data-lucide="truck"></i>
+            <h3>Transport support</h3>
+            <p>Move dogs safely between shelter, vet care, fosters, events, and adoptive homes.</p>
+            <meter min="0" max="100" value="55">55%</meter>
+            <div class="amount-row" aria-label="Suggested transport support options"><span>Drive</span><span>Fuel</span><span>Vet run</span><span>Event</span></div>
+            <a href="mailto:Info@coastalk9.ca?subject=Transport%20support">Help transport</a>
+          </article>
+        </div>
+        <div class="donate-qr-panel" id="donate-qr" aria-labelledby="donate-qr-title">
+          <div>
+            <p class="eyebrow">Printable QR</p>
+            <h3 id="donate-qr-title">Print a donate-now card for events, supply drives, and front-desk signage.</h3>
+            <p>QR target: <a href="https://coastalk9.ca/donate">https://coastalk9.ca/donate</a></p>
+            <div class="hero-actions">
+              <button class="button primary" type="button" data-print-qr><i data-lucide="printer"></i>Print donate QR</button>
+              <a class="button quiet" href="https://coastalk9.ca/donate"><i data-lucide="external-link"></i>Open donate page</a>
+            </div>
+          </div>
+          <figure class="qr-print-card">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=16&data=https%3A%2F%2Fcoastalk9.ca%2Fdonate"
+              alt="QR code linking to the Coastal K9 donate page"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Donate to Coastal K9</strong>
+              <span>Food, vet care, shelter supplies, and transport.</span>
+              <small>coastalk9.ca/donate</small>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section volunteer-section" id="volunteer" aria-labelledby="volunteer-title">
+        <div class="section-heading">
+          <p class="eyebrow">Volunteer</p>
+          <h2 id="volunteer-title">There is useful work for every comfort level.</h2>
+        </div>
+        <div class="volunteer-grid">
+          <article><i data-lucide="car"></i><h3>Transport</h3><p>Help with vet visits, foster moves, supply pickups, and event setup.</p></article>
+          <article><i data-lucide="calendar-heart"></i><h3>Events</h3><p>Support puppy yoga, campus meet-and-greets, supply drives, and partner fundraisers.</p></article>
+          <article><i data-lucide="camera"></i><h3>Media</h3><p>Capture clear, consent-approved photos that help dogs get noticed and adopted.</p></article>
+          <article><i data-lucide="clipboard-list"></i><h3>Admin</h3><p>Help organize applications, supplies, follow-ups, and foster updates.</p></article>
+        </div>
+        <a class="button primary" href="#apply"><i data-lucide="hand-heart"></i>Volunteer with Coastal K9</a>
+      </section>
+
+      <section class="section events-section" id="events" aria-labelledby="events-title">
+        <div class="section-heading">
+          <p class="eyebrow">Community</p>
+          <h2 id="events-title">Events that bring people and rescue dogs together.</h2>
+        </div>
+        <div class="event-list">
+          <article>
+            <time datetime="2026-07-12">Jul 12</time>
+            <div>
+              <h3>Puppy yoga partner event</h3>
+              <p>Partner-led fundraising class with volunteer handlers and adoption interest cards.</p>
+            </div>
+            <a href="#apply">Host one</a>
+          </article>
+          <article>
+            <time datetime="2026-08-03">Aug 03</time>
+            <div>
+              <h3>Campus meet-and-greet</h3>
+              <p>STFX student volunteer recruitment, foster education, and dog socialization.</p>
+            </div>
+            <a href="#apply">Volunteer</a>
+          </article>
+          <article>
+            <time datetime="2026-09-14">Sep 14</time>
+            <div>
+              <h3>Supply drop weekend</h3>
+              <p>Community collection for crates, food, towels, cleaning supplies, and event materials.</p>
+            </div>
+            <a href="#donate">Contribute</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section media-section" id="media" aria-labelledby="media-title">
+        <div class="section-copy">
+          <p class="eyebrow">QR media intake</p>
+          <h2 id="media-title">A reusable photo-upload lane for volunteers, fosters, and rescue updates.</h2>
+          <p>
+            This mirrors the QR microsite pattern: scan a shelter or event link, enter the volunteer
+            access code, add the dog name and context, then send a clean intake packet to the rescue team.
+          </p>
+        </div>
+        <div class="upload-panel">
+          <div class="qr-card" aria-label="QR code placeholder for media upload">
+            <div class="qr-grid" aria-hidden="true"></div>
+            <span>coastalk9.ca/media</span>
+          </div>
+          <div class="media-workflow">
+            <form class="gate-form" data-gate-form>
+              <div>
+                <h3>Volunteer media access</h3>
+                <p>Uploads are limited to fosters, shelter volunteers, and event partners with the current code.</p>
+              </div>
+              <label>
+                Access code
+                <input name="accessCode" autocomplete="one-time-code" inputmode="text" placeholder="Ask the Coastal K9 team" required />
+              </label>
+              <div class="gate-actions">
+                <button class="button primary" type="submit"><i data-lucide="lock-keyhole-open"></i>Unlock upload</button>
+                <a class="button quiet" href="mailto:Info@coastalk9.ca?subject=Coastal%20K9%20media%20upload%20access%20request"><i data-lucide="mail"></i>Request code</a>
+              </div>
+              <output class="form-output" data-gate-output></output>
+            </form>
+            <form
+              class="upload-form locked"
+              data-upload-form
+              data-email-endpoint="https://formsubmit.co/ajax/Info@coastalk9.ca"
+              data-email-to="Info@coastalk9.ca"
+              aria-hidden="true"
+            >
+              <input type="hidden" name="_subject" value="Coastal K9 media intake" />
+              <input type="hidden" name="_captcha" value="false" />
+              <label>
+                Dog or litter name
+                <input name="dogName" placeholder="Example: Maple" required disabled />
+              </label>
+              <label>
+                Photo context
+                <select name="context" disabled>
+                  <option>Adoption profile</option>
+                  <option>Foster update</option>
+                  <option>Medical progress</option>
+                  <option>Event photos</option>
+                  <option>Transport intake</option>
+                </select>
+              </label>
+              <label>
+                Your name
+                <input name="uploaderName" autocomplete="name" required disabled />
+              </label>
+              <label>
+                Your email
+                <input type="email" name="uploaderEmail" autocomplete="email" required disabled />
+              </label>
+              <label class="bot-trap" aria-hidden="true">
+                Website
+                <input name="website" autocomplete="off" tabindex="-1" disabled />
+              </label>
+              <label class="drop-zone" data-drop-zone>
+                <input type="file" name="photos" accept="image/*" multiple required disabled />
+                <i data-lucide="upload-cloud"></i>
+                <span>Drop photos here or choose files</span>
+                <small>Use clear, recent images. The rescue team reviews before anything is published.</small>
+              </label>
+              <label>
+                Notes
+                <textarea name="mediaNotes" rows="3" placeholder="Who took the photo, permission notes, temperament notes, captions" disabled></textarea>
+              </label>
+              <label class="checkbox-line wide">
+                <input type="checkbox" name="photoPermission" required disabled />
+                I have permission to share these photos with Coastal K9 for rescue, adoption, foster, or event use.
+              </label>
+              <button class="button primary" type="submit" disabled><i data-lucide="send"></i>Send media packet</button>
+              <output class="form-output" data-media-output></output>
+            </form>
+          </div>
+          <div class="upload-status" data-upload-status aria-live="polite">No photos selected.</div>
+          <div class="preview-grid" data-preview-grid aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div>
+        <strong>Coastal K9 Rescue Society</strong>
+        <p>1934 Caledonia Marydale Rd, Saint Andrews, Nova Scotia</p>
+        <p>Student volunteers, fosters, and community supporters serving nearby Nova Scotia communities.</p>
+      </div>
+      <div>
+        <a href="mailto:Info@coastalk9.ca">Info@coastalk9.ca</a>
+        <a href="tel:+19023188985">(902) 318-8985</a>
+        <a href="https://www.facebook.com/coastalk9rescue" target="_blank" rel="noopener">Facebook</a>
+        <a href="#media">Volunteer media upload</a>
+      </div>
+    </footer>
+  </body>
+</html>
