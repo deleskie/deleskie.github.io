@@ -3,52 +3,7 @@ const donateUrl = "https://coastalk9.ca/donate";
 const allowedMediaCodes = new Set(["coastal", "ck9", "ck9media", "foster"]);
 const formOpenedAt = Date.now();
 
-const dogs = [
-  {
-    name: "Maple",
-    age: "11 months",
-    sex: "Female",
-    size: "Medium",
-    tags: ["puppy", "foster"],
-    status: "Needs foster",
-    image: "assets/coastal-k9/dog-maple.jpg",
-    note: "Curious, food-motivated, and ready for a patient foster who can help build confidence.",
-    fit: "Dog-friendly home, patient routine, basic puppy training.",
-  },
-  {
-    name: "Harbour",
-    age: "3 years",
-    sex: "Male",
-    size: "Large",
-    tags: ["adult"],
-    status: "Adoptable",
-    image: "assets/coastal-k9/dog-harbour.jpg",
-    note: "A steady walking buddy who settles well after exercise and loves calm routines.",
-    fit: "Best for an active adopter who likes structure and daily walks.",
-  },
-  {
-    name: "Piper",
-    age: "7 months",
-    sex: "Female",
-    size: "Small",
-    tags: ["puppy"],
-    status: "Adoptable",
-    image: "assets/coastal-k9/dog-piper.jpg",
-    note: "Playful, bright, and looking for a home ready to continue puppy basics.",
-    fit: "Good candidate for adopters ready for puppy socialization.",
-  },
-  {
-    name: "Scout",
-    age: "5 years",
-    sex: "Male",
-    size: "Medium",
-    tags: ["adult", "foster"],
-    status: "Medical foster",
-    image: "assets/coastal-k9/dog-scout.jpg",
-    note: "Recovering well and needs a quiet place for rest, medication, and gentle walks.",
-    fit: "Quiet foster home with reliable medication routines.",
-  },
-];
+const dogs = [];
 
 const header = document.querySelector("[data-header]");
 const nav = document.querySelector("[data-nav]");
@@ -292,7 +247,7 @@ if (gateForm) {
     event.preventDefault();
     const code = String(new FormData(gateForm).get("accessCode") || "").trim().toLowerCase();
     if (!allowedMediaCodes.has(code)) {
-      setOutput(gateOutput, "That code did not unlock uploads. Ask the Coastal K9 team for the current code.", true);
+      setOutput(gateOutput, "That code did not unlock the demo workflow.", true);
       return;
     }
     unlockUploadForm();
@@ -350,9 +305,9 @@ if (uploadForm) {
       uploadedAt: new Date().toISOString(),
     };
 
-    const sent = await submitToEmail(uploadForm, uploadOutput, "Media packet sent. The team will review before using or publishing photos.", {
+    const sent = await submitToEmail(uploadForm, uploadOutput, "Media concept packet prepared. Confirm the final storage and email workflow before using this for real uploads.", {
       subject: "Coastal K9 media intake",
-      intro: "New Coastal K9 media upload packet. Photo files were selected in the browser; confirm endpoint attachment behavior before production launch.",
+      intro: "Coastal K9 media upload concept packet. Photo files were selected in the browser; confirm attachment handling, storage, privacy, and consent before any real use.",
       fields: packet,
     });
 

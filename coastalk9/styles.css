@@ -425,7 +425,14 @@ h3 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.source-card-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .dog-card,
+.source-card-grid article,
 .campaign-grid article,
 .process-grid article,
 .event-list article,
@@ -491,6 +498,20 @@ h3 {
 
 .dog-card .button {
   align-self: end;
+}
+
+.source-card-grid article {
+  display: grid;
+  gap: 14px;
+  min-height: 290px;
+  padding: 22px;
+}
+
+.source-card-grid svg,
+.source-card-icon {
+  color: var(--coral);
+  height: 28px;
+  width: 28px;
 }
 
 .process-band {
@@ -1007,6 +1028,10 @@ meter {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .source-card-grid {
+    grid-template-columns: 1fr;
+  }
+
   .section-heading {
     display: block;
   }
@@ -1040,6 +1065,7 @@ meter {
   .quick-actions,
   .impact-band,
   .dog-grid,
+  .source-card-grid,
   .intake-form,
   .upload-form,
   .preview-grid {
