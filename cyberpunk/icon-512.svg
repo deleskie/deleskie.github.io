@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Project Sable</title>
+  <rect width="512" height="512" fill="#050505"/>
+  <rect x="40.5" y="40.5" width="431" height="431" fill="none" stroke="#aeb4ba" stroke-opacity=".22"/>
+  <g fill="none" stroke="#d4d7d9" stroke-width="5" stroke-linecap="square">
+    <path d="M130 93 381 419"/>
+    <path d="M384 90 127 422"/>
+    <path d="M74 283 438 224"/>
+    <path d="M267 53 243 459"/>
+  </g>
+</svg>

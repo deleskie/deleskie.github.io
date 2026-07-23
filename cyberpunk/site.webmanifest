@@ -1,0 +1,24 @@
+{
+  "name": "PROJECT SABLE / SYSTEM 001",
+  "short_name": "PROJECT SABLE",
+  "description": "A private technical garment system for discretion, signal control, and modular resilience.",
+  "start_url": "/cyberpunk/",
+  "scope": "/cyberpunk/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/cyberpunk/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/cyberpunk/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

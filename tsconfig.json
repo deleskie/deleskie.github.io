@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowJs": false,
+    "strict": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": [
+    "api/**/*.ts",
+    "src/**/*.ts",
+    "scripts/build-cyberpunk.ts",
+    "scripts/build-sites.ts",
+    "scripts/serve-cyberpunk.ts",
+    "tests/**/*.ts",
+    "playwright.cyberpunk.config.ts"
+  ],
+  "exclude": ["node_modules", "cyberpunk"]
+}

@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+
+# PROJECT SABLE INDEXING START
+Disallow: /cyberpunk/
+# PROJECT SABLE INDEXING END
+
 Sitemap: https://deleskie.com/sitemap.xml
