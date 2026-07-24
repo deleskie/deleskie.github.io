@@ -89,6 +89,9 @@ messages live in `src/content/site.ts`. Change the working name, product
 designation, contact address fallback, or any copy there, then run
 `npm run build:cyberpunk`.
 
+The founder note is controlled by `siteContent.founderNote.enabled` in the same
+file. Set it to `false` to remove the section without changing the renderer.
+
 Environment values can override the canonical URL and contact address at build
 time. Generated files under `cyberpunk/` should not be edited directly.
 

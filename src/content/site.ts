@@ -56,7 +56,10 @@ type SiteContent = {
     eyebrow: string;
     headline: string[];
     lead: string;
+    context: string[];
+    brandStatement: string;
     supporting: string;
+    development: string;
     primaryCta: string;
     secondaryCta: string;
     visualTitle: string;
@@ -69,9 +72,29 @@ type SiteContent = {
   manifesto: {
     label: string;
     heading: string[];
-    body: string;
-    supporting: string;
-    sideNote: string;
+    body: string[];
+    closing: string[];
+  };
+  provenance: {
+    label: string;
+    heading: string[];
+    body: string[];
+    founders: {
+      name: string;
+      discipline: string;
+      description: string;
+    }[];
+    methodLabel: string;
+    method: string[];
+    closing: string[];
+  };
+  founderNote: {
+    enabled: boolean;
+    label: string;
+    railCode: string;
+    heading: string;
+    body: string[];
+    signature: string[];
   };
   principles: {
     label: string;
@@ -80,27 +103,28 @@ type SiteContent = {
       index: string;
       title: string;
       body: string;
-      detail: string;
+      detail: string[];
     }[];
   };
   architecture: {
     label: string;
     heading: string[];
-    intro: string;
+    intro: string[];
     diagramLabel: string;
     modules: {
       index: string;
       title: string;
       scope: string;
-      description: string;
       status: string;
+      heading: string[];
+      description: string[];
       diagram: string;
     }[];
   };
   signal: {
     label: string;
     heading: string[];
-    body: string;
+    body: string[];
     interactionLabel: string;
     connected: {
       label: string;
@@ -116,20 +140,28 @@ type SiteContent = {
     visualTitle: string;
     datumLabel: string;
     note: string;
+    closing: string[];
+  };
+  development: {
+    label: string;
+    heading: string[];
+    failures: string[];
+    body: string[];
+    closing: string[];
   };
   edition: {
     label: string;
-    heading: string;
+    heading: string[];
     body: string;
     statements: string[];
     cta: string;
+    supporting: string;
     registerLabel: string;
   };
   access: {
     label: string;
-    heading: string;
-    body: string;
-    privacyNote: string;
+    heading: string[];
+    body: string[];
     fields: {
       email: { label: string; hint: string };
       name: { label: string; hint: string };
@@ -155,9 +187,10 @@ type SiteContent = {
   };
   footer: {
     descriptor: string;
+    line: string[];
+    microcopy: string;
     links: { label: string; href: string }[];
     legal: string;
-    copyright: string;
   };
   privacy: {
     eyebrow: string;
@@ -204,12 +237,12 @@ export const siteContent = {
   metadata: {
     title: "PROJECT SABLE — SYSTEM 001",
     description:
-      "A private technical garment system for discretion, signal control, and modular resilience.",
+      "A private technical garment system built around discretion, intentional isolation, modular architecture, and claims that have to survive contact with evidence.",
     keywords: [
       "technical garment system",
       "private client",
       "modular design",
-      "signal isolation",
+      "intentional isolation",
       "luxury technical clothing",
     ],
     ogAlt:
@@ -225,18 +258,26 @@ export const siteContent = {
     items: [
       { label: "SYSTEM", href: "#system" },
       { label: "PRINCIPLES", href: "#principles" },
+      { label: "PROVENANCE", href: "#provenance" },
       { label: "ACCESS", href: "#access" },
     ],
-    accessLabel: "PRIVATE ACCESS",
+    accessLabel: "ENTER PRIVATE CHANNEL",
   },
   hero: {
     eyebrow: "PRIVATE DEVELOPMENT / SYSTEM 001",
-    headline: ["WEAR THE", "PERIMETER."],
-    lead: "A private technical garment system for discretion, signal control, and modular resilience.",
+    headline: ["THE FUTURE DIDN’T", "ARRIVE IN NEON."],
+    lead: "It arrived as infrastructure.",
+    context: [
+      "Dark fiber. Machine rooms. Border controls. Dead zones. Systems that fail at 03:17 and still have to be standing at sunrise.",
+      "We are building clothing for that world.",
+    ],
+    brandStatement: "WEAR THE PERIMETER.",
     supporting:
-      "Multiple configurations are in development. Availability will vary by jurisdiction.",
-    primaryCta: "REQUEST PRIVATE ACCESS",
-    secondaryCta: "EXPLORE THE SYSTEM",
+      "A private technical garment system built around discretion, intentional isolation, modular architecture, and claims that have to survive contact with evidence.",
+    development:
+      "A global non-ballistic shell and separate controlled configurations are under development. Availability will vary by jurisdiction.",
+    primaryCta: "ENTER THE PRIVATE CHANNEL",
+    secondaryCta: "SEE THE SYSTEM",
     visualTitle: "Abstract System 001 garment study",
     visualDescription:
       "A tailored hooded torso form emerges from darkness through restrained edge light, seam paths, and three conceptual architecture callouts.",
@@ -251,121 +292,258 @@ export const siteContent = {
   },
   manifesto: {
     label: "DESIGN POSITION / 001",
-    heading: ["THE EXTERIOR SAYS NOTHING.", "THE ARCHITECTURE DOES."],
-    body: "Built for people who operate critical systems, move through high-friction environments, and prefer capability without spectacle.",
-    supporting:
-      "Not armor disguised as fashion. Not fashion decorated with security language. A system in which fit, material, privacy, serviceability, and evidence are designed together.",
-    sideNote: "ORDINARY APPEARANCE / EXTRAORDINARY ARCHITECTURE",
+    heading: [
+      "NOT A HOODIE",
+      "WITH FEATURES.",
+      "",
+      "A SYSTEM",
+      "YOU CAN WEAR.",
+    ],
+    body: [
+      "We have spent our careers around systems that do not care about intention.",
+      "They care about load. Latency. Congestion. Isolation. Failure. What gets through, what stays out, and what happens next.",
+      "We are not decorating clothing with technology.",
+      "We are treating the garment as a system: separate functions, controlled interfaces, replaceable modules, documented boundaries, and a shell worth wearing even if every technical component is removed.",
+      "No tactical cosplay.",
+      "No miracle language.",
+      "No neon future.",
+      "Just clothing, architecture, and evidence brought closer to the body.",
+    ],
+    closing: ["THE OUTSIDE STAYS QUIET.", "THE INSIDE DOES THE WORK."],
+  },
+  provenance: {
+    label: "PROVENANCE / 001",
+    heading: ["BUILT BELOW", "THE APPLICATION LAYER."],
+    body: [
+      "The founders have spent decades working where isolation, latency, adversarial traffic, and failure are measurable rather than theoretical.",
+      "James and Steve have worked together at the packet level. Their shared history crosses global routing, DDoS resilience, RDMA behavior, network fabrics, and the infrastructure beneath large-scale AI systems.",
+      "Ági approaches the system from the human side.",
+      "She brings a Hungarian and Central European eye to the project: severe, precise, unsentimental, and deeply aware that the future does not need neon to feel dangerous—or beautiful.",
+      "Three disciplines.",
+      "One system.",
+    ],
+    founders: [
+      {
+        name: "ÁGI [SURNAME]",
+        discipline: "CULTURE & FORM",
+        description:
+          "Ági leads the project’s cultural direction, public voice, and private-client experience. She keeps capability subordinate to fit, discretion, and human use.",
+      },
+      {
+        name: "JAMES DELESKIE",
+        discipline: "RESILIENCE & TRUST",
+        description:
+          "Network and security architect with decades of experience designing and defending carrier-scale and hyperscale infrastructure, with deep work in global routing, BGP, DDoS, and operational resilience.",
+      },
+      {
+        name: "STEVE MANLEY",
+        discipline: "COMPUTE & NETWORK FABRICS",
+        description:
+          "Network architect focused on the high-performance infrastructure beneath accelerated computing and large-scale AI systems. His work spans RDMA, packet-level engineering, network fabrics, and resilient systems operating under extreme load.",
+      },
+    ],
+    methodLabel: "METHOD / CLAIM PATH",
+    method: [
+      "THREAT MODEL",
+      "ARCHITECTURE",
+      "SPECIALIST ENGINEERING",
+      "INDEPENDENT EVALUATION",
+      "SUPPORTED CLAIM",
+    ],
+    closing: ["CLAIMS FOLLOW EVIDENCE.", "NEVER THE REVERSE."],
+  },
+  founderNote: {
+    enabled: true,
+    label: "ORIGIN / 001",
+    railCode: "J / 001",
+    heading: "A NOTE FROM JIM",
+    body: [
+      "I have spent most of my life in the part of the world nobody sees.",
+      "Routes. Packets. Failure domains. Attacks. The machinery underneath the machinery.",
+      "Steve and I have worked together where packets stop being diagrams and start becoming consequences. He builds network fabrics beneath large-scale AI. I build and defend networks that cannot simply go dark.",
+      "Ági came at the question from the human side.",
+      "A Hungarian eye. Central European restraint. Steel, stone, memory, beauty, and consequence.",
+      "She understood something immediately: cyberpunk had been ruined by its own costume department.",
+      "So we stripped it back.",
+      "No neon.",
+      "No fake terminals.",
+      "No tactical theater.",
+      "No miracle materials.",
+      "Just a hard question:",
+      "What happens when clothing is designed with the same discipline we use for critical infrastructure?",
+      "You define the threat model.",
+      "You separate the functions.",
+      "You plan for failure.",
+      "You make the important parts replaceable.",
+      "Then you test the thing you actually built.",
+      "That is PROJECT SABLE.",
+      "The outside stays quiet.",
+      "The inside does the work.",
+    ],
+    signature: ["JIM", "SYSTEMS & RESILIENCE"],
   },
   principles: {
     label: "OPERATING PRINCIPLES",
-    heading: "CAPABILITY WITHOUT SPECTACLE.",
+    heading: "OPERATING PRINCIPLES",
     items: [
       {
         index: "01",
         title: "DISCRETION",
-        body: "Luxury construction, a restrained silhouette, and no visible tactical language.",
-        detail: "The garment reads as clothing before it reads as equipment.",
+        body: "If the garment announces its capability, the design has already failed.",
+        detail: [
+          "The exterior remains quiet. No visible tactical language. No unnecessary signaling. No costume.",
+        ],
       },
       {
         index: "02",
-        title: "ISOLATION",
-        body: "A removable device compartment designed for configuration-specific RF testing.",
-        detail:
-          "Connection and intentional isolation remain distinct device states.",
+        title: "INTENTIONAL ISOLATION",
+        body: "Connected when required. Isolated when intended.",
+        detail: [
+          "Device state should be a deliberate choice, not an accident hidden inside marketing language.",
+        ],
       },
       {
         index: "03",
-        title: "MODULARITY",
-        body: "A global non-ballistic shell and separate controlled configurations, developed as distinct products.",
-        detail:
-          "Legal scope and technical evidence follow the exact configuration.",
+        title: "SEPARATION",
+        body: "Different functions belong in separate systems.",
+        detail: [
+          "The global shell and any future controlled configuration are technically, legally, and commercially distinct products.",
+        ],
       },
       {
         index: "04",
         title: "SERVICEABILITY",
-        body: "Replaceable modules, serialized provenance, repair-first ownership, and a persistent service record.",
-        detail:
-          "Long-term care is part of the architecture, not an afterthought.",
+        body: "Everything serious has a lifecycle.",
+        detail: [
+          "Inspect it. Maintain it. Replace what wears. Preserve what remains useful. Do not turn the entire garment into waste because one module has reached the end of its life.",
+        ],
       },
     ],
   },
   architecture: {
     label: "CONFIGURATION ARCHITECTURE",
     heading: ["ONE DESIGN LANGUAGE.", "SEPARATE SYSTEMS."],
-    intro:
-      "The platform is being developed as more than one legally and technically distinct configuration.",
+    intro: [
+      "The platform is being developed as several distinct configurations.",
+      "Not one vague garment with a list of impossible promises.",
+      "Clear boundaries. Clear documentation. Clear responsibilities.",
+    ],
     diagramLabel: "Conceptual sectional study",
     modules: [
       {
         index: "01",
         title: "SHELL",
         scope: "GLOBAL",
-        description:
-          "The core garment. Non-ballistic. Technical storage, weather-conscious construction, understated hardware, and serialized provenance.",
         status: "GLOBAL CONCEPT",
+        heading: ["THE GARMENT BEFORE", "THE MACHINERY."],
+        description: [
+          "A non-ballistic technical shell built around fit, movement, secure storage, weather-conscious construction, understated hardware, and serialized provenance.",
+          "It must be desirable with every optional module removed.",
+          "Otherwise, it is not clothing. It is a demonstration.",
+        ],
         diagram: "EXTERIOR / UTILITY / PROVENANCE",
       },
       {
         index: "02",
         title: "CONTROLLED",
         scope: "PRIVATE",
-        description:
-          "A separate architecture intended for approved markets, approved users, and independently evaluated protective components.",
         status: "JURISDICTION DEPENDENT",
+        heading: ["CAPABILITY WITH", "A PAPER TRAIL."],
+        description: [
+          "A separate architecture intended for approved markets, approved users, and independently evaluated protective components.",
+          "Any future claim will belong to an exact configuration.",
+          "Not the mood.",
+          "Not the fabric alone.",
+          "Not the marketing department.",
+          "The complete system.",
+        ],
         diagram: "SEPARATE / CONTROLLED / DOCUMENTED",
       },
       {
         index: "03",
         title: "ATELIER",
         scope: "001",
-        description:
-          "Private fitting, limited materials, custom finish, configuration records, and long-term service.",
         status: "BY APPOINTMENT",
+        heading: ["FITTED.", "NUMBERED.", "MAINTAINED."],
+        description: [
+          "Private fitting, controlled materials, individual configuration records, custom finish, alterations, and long-term service.",
+          "Less product drop.",
+          "More private system.",
+        ],
         diagram: "FIT / FINISH / SERVICE",
       },
     ],
   },
   signal: {
     label: "DEVICE STATE",
-    heading: ["CONNECTED WHEN REQUIRED.", "ISOLATED WHEN INTENDED."],
-    body: "The system separates ordinary device access from a removable signal-isolation module designed for completed-assembly testing.",
+    heading: ["CONNECTED BY CHOICE.", "ISOLATED ON PURPOSE."],
+    body: [
+      "A device compartment should not make promises it cannot keep.",
+      "The signal-isolation module is being developed as a removable and replaceable component intended for completed-assembly testing.",
+      "Closure matters.",
+      "Condition matters.",
+      "Orientation matters.",
+      "Frequency matters.",
+      "Evidence matters.",
+    ],
     interactionLabel: "Select conceptual device state",
     connected: {
       label: "CONNECTED",
-      title: "ORDINARY ACCESS",
-      description:
-        "The conceptual enclosure remains open and a restrained signal field is visible.",
+      title: "CONNECTED",
+      description: "Ordinary access. Ordinary radio behavior.",
     },
     isolated: {
       label: "ISOLATED",
-      title: "INTENTIONAL STATE",
+      title: "ISOLATED",
       description:
-        "The conceptual enclosure closes and the signal field recedes.",
+        "The module is fully closed and the device is intentionally separated from ordinary radio access.",
     },
     conceptual: "CONCEPTUAL INTERFACE / NO PERFORMANCE VALUE",
     visualTitle: "Conceptual signal-isolation state",
     datumLabel: "D / 001",
-    note: "Final performance will depend on configuration, closure, condition, frequency, and completed-product test results.",
+    note: "Final performance will depend on configuration, closure, condition, frequency, device orientation, and completed-product test results.",
+    closing: ["WE DO NOT USE MAGIC WORDS", "FOR MEASURABLE PHYSICS."],
+  },
+  development: {
+    label: "DEVELOPMENT STATUS",
+    heading: ["REAL DEVELOPMENT", "HAS SCARS."],
+    failures: [
+      "Development means prototypes that fail.",
+      "Closures that leak.",
+      "Patterns that move badly.",
+      "Materials that look perfect until they are worn.",
+      "Claims that get smaller when the measurements arrive.",
+    ],
+    body: [
+      "That is not a problem.",
+      "That is the work.",
+      "We would rather say “not yet” than build a company around a sentence the product cannot defend.",
+    ],
+    closing: ["TEST THE THING", "YOU ACTUALLY BUILT."],
   },
   edition: {
     label: "INITIAL ALLOCATION",
-    heading: "NOT A PUBLIC LAUNCH.",
+    heading: ["NOT A DROP.", "NOT A PREORDER."],
     body: "The first release is planned as a small serialized edition, placed through private allocation rather than open retail distribution.",
     statements: [
-      "No public release date.",
-      "No mass-market preorder.",
+      "No countdown clock.",
+      "No artificial sellout.",
       "No open protective-product checkout.",
+      "No attempt to manufacture urgency before the product has earned trust.",
       "Access requests are reviewed individually.",
     ],
     cta: "REQUEST CONSIDERATION",
+    supporting: "WE ARE NOT BUILDING A QUEUE FOR HYPE.",
     registerLabel: "ALLOCATION REGISTER / STATUS PRIVATE",
   },
   access: {
     label: "PRIVATE ACCESS",
-    heading: "ENTER THE PRIVATE CHANNEL.",
-    body: "Request development updates, private previews, or consideration for an initial allocation.",
-    privacyNote: "Minimal data. Limited contact. No public list.",
+    heading: ["ENTER THE", "PRIVATE CHANNEL."],
+    body: [
+      "Tell us who you are and why this matters to you.",
+      "We are not collecting an audience.",
+      "We are looking for serious early clients, engineers, makers, private-client advisers, and collaborators who understand the difference between a feature and a system.",
+    ],
     fields: {
       email: { label: "EMAIL", hint: "REQUIRED" },
       name: { label: "NAME", hint: "OPTIONAL" },
@@ -387,26 +565,28 @@ export const siteContent = {
       { value: "other", label: "Other" },
     ],
     interestOptions: [
-      { value: "global-shell", label: "Global shell" },
-      { value: "private-configuration", label: "Private configuration" },
-      { value: "atelier-client", label: "Atelier client" },
-      { value: "strategic-partner", label: "Strategic partner" },
+      { value: "global-shell", label: "GLOBAL SHELL" },
+      { value: "private-configuration", label: "PRIVATE CONFIGURATION" },
+      { value: "atelier-client", label: "ATELIER CLIENT" },
+      { value: "strategic-partner", label: "STRATEGIC PARTNER" },
       {
         value: "design-creative-collaboration",
-        label: "Design or creative collaboration",
+        label: "DESIGN OR CREATIVE COLLABORATION",
       },
-      { value: "press", label: "Press" },
-      { value: "other", label: "Other" },
+      { value: "press", label: "PRESS" },
+      { value: "other", label: "OTHER" },
     ],
     consent:
       "By requesting access, you agree to receive limited project and allocation updates. We do not sell access-request data.",
-    submit: "REQUEST ACCESS",
+    submit: "TRANSMIT REQUEST",
     loading: "TRANSMITTING",
-    success: "REQUEST RECORDED",
+    success: "SIGNAL RECEIVED",
     successMessage:
-      "If the project is relevant to your request, we will make contact.",
-    unavailable: "Private channel temporarily unavailable.",
-    error: "The request could not be transmitted. Please try again later.",
+      "Your request has been recorded. If there is a reason to continue the conversation, we will make contact.",
+    unavailable:
+      "PRIVATE CHANNEL TEMPORARILY UNAVAILABLE — The request was not recorded. Try again later.",
+    error:
+      "PRIVATE CHANNEL TEMPORARILY UNAVAILABLE — The request was not recorded. Try again later.",
     validation: {
       emailRequired: "Enter an email address.",
       emailInvalid: "Enter a valid email address.",
@@ -415,6 +595,8 @@ export const siteContent = {
   },
   footer: {
     descriptor: "PRIVATE DEVELOPMENT / SYSTEM 001",
+    line: ["BUILT FOR THE WORLD", "AS IT IS BECOMING."],
+    microcopy: "NO NEON REQUIRED.",
     links: [
       { label: "Privacy", href: "/cyberpunk/privacy/" },
       { label: "Legal", href: "/cyberpunk/legal/" },
@@ -422,7 +604,6 @@ export const siteContent = {
     ],
     legal:
       "Concept under development. Nothing on this site is an offer for sale or a protective-performance claim. Any future protective configuration will be offered only where lawful and with configuration-specific testing, documentation, and disclosures.",
-    copyright: "PRIVATE DEVELOPMENT. ALL RIGHTS RESERVED.",
   },
   privacy: {
     eyebrow: "INFORMATION PRACTICE / 001",
@@ -513,9 +694,9 @@ export const siteContent = {
     backLabel: "RETURN TO SYSTEM 001",
   },
   notFound: {
-    eyebrow: "CHANNEL / 404",
-    heading: "NO RECORD AT THIS COORDINATE.",
-    body: "The requested Project Sable channel does not exist or is no longer exposed.",
+    eyebrow: "ROUTE / 404",
+    heading: "THIS ROUTE DOES NOT EXIST.",
+    body: "Return to System 001.",
     action: "RETURN TO SYSTEM 001",
   },
 } as const satisfies SiteContent;

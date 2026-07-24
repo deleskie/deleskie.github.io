@@ -8,10 +8,13 @@ test("main page renders the single supplied H1 and private metadata", async ({
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "WEAR THE PERIMETER.",
+      name: "THE FUTURE DIDN’T ARRIVE IN NEON.",
     }),
   ).toBeVisible();
   await expect(page.locator("h1")).toHaveCount(1);
+  await expect(page.getByText("CLAIMS FOLLOW EVIDENCE.")).toBeVisible();
+  await expect(page.getByText("JAMES DELESKIE", { exact: true })).toBeVisible();
+  await expect(page.getByText("STEVE MANLEY", { exact: true })).toBeVisible();
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     "content",
     /noindex, nofollow/,
@@ -22,7 +25,10 @@ test("primary CTA scrolls to access and focuses the email field", async ({
   page,
 }) => {
   await page.goto("/cyberpunk/");
-  await page.getByRole("link", { name: "REQUEST PRIVATE ACCESS" }).click();
+  await page
+    .getByRole("link", { name: "ENTER THE PRIVATE CHANNEL" })
+    .first()
+    .click();
 
   await expect(page.locator("#access-email")).toBeFocused();
 });
@@ -33,7 +39,7 @@ test("invalid email produces an accessible validation error", async ({
   await page.goto("/cyberpunk/#access");
   const email = page.locator("#access-email");
   await email.fill("invalid-address");
-  await page.getByRole("button", { name: "REQUEST ACCESS" }).click();
+  await page.getByRole("button", { name: "TRANSMIT REQUEST" }).click();
 
   await expect(email).toHaveAttribute("aria-invalid", "true");
   await expect(page.locator("#access-email-error")).toHaveText(
@@ -57,7 +63,7 @@ test("valid access data reaches the endpoint and reports generic success", async
         ok: true,
         state: "success",
         message:
-          "If the project is relevant to your request, we will make contact.",
+          "Your request has been recorded. If there is a reason to continue the conversation, we will make contact.",
       }),
     });
   });
@@ -69,10 +75,10 @@ test("valid access data reaches the endpoint and reports generic success", async
   await page.locator("#access-name").fill("Private Client");
   await page.locator("#access-region").selectOption("united-states");
   await page.locator("#access-interest").selectOption("global-shell");
-  await page.getByRole("button", { name: "REQUEST ACCESS" }).click();
+  await page.getByRole("button", { name: "TRANSMIT REQUEST" }).click();
 
   await expect(page.locator("[data-form-status]")).toContainText(
-    "REQUEST RECORDED",
+    "SIGNAL RECEIVED",
   );
   expect(capturedPayload).toMatchObject({
     email: "client@example.com",
@@ -127,7 +133,7 @@ test("privacy, legal, and custom 404 routes render intentionally", async ({
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "NO RECORD AT THIS COORDINATE.",
+      name: "THIS ROUTE DOES NOT EXIST.",
     }),
   ).toBeVisible();
 });
@@ -166,7 +172,7 @@ test("main content remains usable without JavaScript", async ({ browser }) => {
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "WEAR THE PERIMETER.",
+      name: "THE FUTURE DIDN’T ARRIVE IN NEON.",
     }),
   ).toBeVisible();
   await expect(

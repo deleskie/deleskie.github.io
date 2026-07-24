@@ -1,5 +1,5 @@
 import type { siteContent } from "../../content/site";
-import { escapeHtml } from "../../lib/utils";
+import { escapeHtml, renderLines } from "../../lib/utils";
 import type { PublicEnvironment } from "../../lib/env";
 import { renderBrandLockup, renderSigil } from "./mark";
 
@@ -107,10 +107,13 @@ export function renderFooter(content: Content): string {
         </ul>
       </nav>
     </div>
+    <div class="footer-statement">
+      <p>${renderLines(content.footer.line)}</p>
+    </div>
     <p class="footer-legal">${escapeHtml(content.footer.legal)}</p>
     <div class="site-footer__base">
       <span>© ${year} ${escapeHtml(content.brand.name)}</span>
-      <span>${escapeHtml(content.footer.copyright)}</span>
+      <span>${escapeHtml(content.footer.microcopy)}</span>
     </div>
   </footer>`;
 }

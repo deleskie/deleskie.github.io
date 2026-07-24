@@ -27,7 +27,12 @@ export function renderHero(content: Content): string {
           .join("\n")}
       </h1>
       <p class="hero__lead">${escapeHtml(hero.lead)}</p>
+      <div class="hero__context">
+        ${hero.context.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      </div>
+      <p class="hero__brand-statement">${escapeHtml(hero.brandStatement)}</p>
       <p class="hero__supporting">${escapeHtml(hero.supporting)}</p>
+      <p class="hero__development">${escapeHtml(hero.development)}</p>
       <div class="hero__actions hero-sequence hero-sequence--actions">
         <a class="button button--primary" href="#access" data-access-trigger>
           <span>${escapeHtml(hero.primaryCta)}</span>
@@ -56,11 +61,71 @@ export function renderManifesto(content: Content): string {
     <div class="manifesto__content">
       <h2 id="manifesto-heading">${renderLines(section.heading)}</h2>
       <div class="manifesto__body">
-        <p>${escapeHtml(section.body)}</p>
-        <p>${escapeHtml(section.supporting)}</p>
+        ${section.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      </div>
+      <p class="manifesto__closing">${renderLines(section.closing)}</p>
+    </div>
+  </section>`;
+}
+
+export function renderProvenance(content: Content): string {
+  const section = content.provenance;
+
+  return `<section class="provenance section-shell" id="provenance" aria-labelledby="provenance-heading">
+    <div class="provenance__intro" data-reveal>
+      ${renderSectionLabel(section.label)}
+      <div class="provenance__heading-row">
+        <h2 id="provenance-heading">${renderLines(section.heading)}</h2>
+        <div class="provenance__body">
+          ${section.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+        </div>
       </div>
     </div>
-    <p class="manifesto__note">${escapeHtml(section.sideNote)}</p>
+    <div class="founder-grid">
+      ${section.founders
+        .map(
+          (founder, index) => `<article class="founder-card" data-reveal>
+            <span class="founder-card__index">0${index + 1}</span>
+            <h3>${escapeHtml(founder.name)}</h3>
+            <p class="founder-card__discipline">${escapeHtml(founder.discipline)}</p>
+            <p class="founder-card__description">${escapeHtml(founder.description)}</p>
+          </article>`,
+        )
+        .join("")}
+    </div>
+    <div class="method-line" data-reveal>
+      <p>${escapeHtml(section.methodLabel)}</p>
+      <ol>
+        ${section.method
+          .map(
+            (stage) =>
+              `<li><span>${escapeHtml(stage)}</span><i aria-hidden="true">→</i></li>`,
+          )
+          .join("")}
+      </ol>
+    </div>
+    <p class="provenance__closing section-closing" data-reveal>${renderLines(section.closing)}</p>
+  </section>`;
+}
+
+export function renderFounderNote(content: Content): string {
+  const section = content.founderNote;
+  if (!section.enabled) {
+    return "";
+  }
+
+  return `<section class="founder-note section-shell" aria-labelledby="founder-note-heading">
+    <div class="founder-note__rail">
+      ${renderSectionLabel(section.label)}
+      <span aria-hidden="true">${escapeHtml(section.railCode)}</span>
+    </div>
+    <article class="founder-note__letter" data-reveal>
+      <h2 id="founder-note-heading">${escapeHtml(section.heading)}</h2>
+      <div class="founder-note__body">
+        ${section.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      </div>
+      <p class="founder-note__signature">${renderLines(section.signature)}</p>
+    </article>
   </section>`;
 }
 
@@ -70,7 +135,7 @@ export function renderPrinciples(content: Content): string {
   return `<section class="principles section-shell" id="principles" aria-labelledby="principles-heading">
     <div class="section-intro" data-reveal>
       ${renderSectionLabel(section.label)}
-      <h2 id="principles-heading">${escapeHtml(section.heading)}</h2>
+      <h2 id="principles-heading" class="sr-only">${escapeHtml(section.heading)}</h2>
     </div>
     <div class="principles__list">
       ${section.items
@@ -80,7 +145,9 @@ export function renderPrinciples(content: Content): string {
             <h3>${escapeHtml(item.title)}</h3>
             <div class="principle__copy">
               <p>${escapeHtml(item.body)}</p>
-              <p class="principle__detail">${escapeHtml(item.detail)}</p>
+              <div class="principle__detail">
+                ${item.detail.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+              </div>
             </div>
             <span class="principle__line" aria-hidden="true"></span>
           </article>`,
@@ -99,7 +166,9 @@ export function renderArchitecture(content: Content): string {
         ${renderSectionLabel(section.label)}
         <h2 id="architecture-heading">${renderLines(section.heading)}</h2>
       </div>
-      <p>${escapeHtml(section.intro)}</p>
+      <div class="architecture__intro-copy">
+        ${section.intro.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      </div>
     </div>
     <div class="architecture__modules">
       ${section.modules
@@ -110,9 +179,12 @@ export function renderArchitecture(content: Content): string {
           ) => `<article class="architecture-module" data-reveal>
             <div class="architecture-module__identity">
               <span>${escapeHtml(module.index)}</span>
-              <h3>${escapeHtml(module.title)} <small>/ ${escapeHtml(module.scope)}</small></h3>
+              <p class="architecture-module__name">${escapeHtml(module.title)} <small>/ ${escapeHtml(module.scope)}</small></p>
             </div>
-            <p class="architecture-module__description">${escapeHtml(module.description)}</p>
+            <h3 class="architecture-module__heading">${renderLines(module.heading)}</h3>
+            <div class="architecture-module__description">
+              ${module.description.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+            </div>
             <div class="sectional-diagram" role="img" aria-label="${escapeHtml(section.diagramLabel)}: ${escapeHtml(module.diagram)}">
               <span class="sectional-diagram__axis" aria-hidden="true"></span>
               <span class="sectional-diagram__layer sectional-diagram__layer--one" aria-hidden="true"></span>
@@ -136,7 +208,9 @@ export function renderSignalControl(content: Content): string {
     <div class="signal__copy" data-reveal>
       ${renderSectionLabel(section.label)}
       <h2 id="signal-heading">${renderLines(section.heading)}</h2>
-      <p>${escapeHtml(section.body)}</p>
+      <div class="signal__body">
+        ${section.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      </div>
     </div>
     <div class="signal-console" data-signal-state="connected" data-connected-title="${escapeHtml(section.connected.title)}" data-connected-description="${escapeHtml(section.connected.description)}" data-isolated-title="${escapeHtml(section.isolated.title)}" data-isolated-description="${escapeHtml(section.isolated.description)}" data-reveal>
       <div class="signal-console__header">
@@ -165,7 +239,28 @@ export function renderSignalControl(content: Content): string {
       </div>
       <p class="signal-console__description" aria-live="polite" data-signal-copy>${escapeHtml(section.connected.description)}</p>
     </div>
-    <p class="signal__note" data-reveal>“${escapeHtml(section.note)}”</p>
+    <p class="signal__note" data-reveal>${escapeHtml(section.note)}</p>
+    <p class="signal__closing section-closing" data-reveal>${renderLines(section.closing)}</p>
+  </section>`;
+}
+
+export function renderDevelopment(content: Content): string {
+  const section = content.development;
+
+  return `<section class="development section-shell" aria-labelledby="development-heading">
+    <div class="development__intro" data-reveal>
+      ${renderSectionLabel(section.label)}
+      <h2 id="development-heading">${renderLines(section.heading)}</h2>
+    </div>
+    <div class="development__record" data-reveal>
+      <ul>
+        ${section.failures.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
+      </ul>
+      <div class="development__body">
+        ${section.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      </div>
+      <p class="development__closing section-closing">${renderLines(section.closing)}</p>
+    </div>
   </section>`;
 }
 
@@ -182,12 +277,13 @@ export function renderEdition(content: Content): string {
     </div>
     <div class="edition__content" data-reveal>
       ${renderSectionLabel(section.label)}
-      <h2 id="edition-heading">${escapeHtml(section.heading)}</h2>
+      <h2 id="edition-heading">${renderLines(section.heading)}</h2>
       <p>${escapeHtml(section.body)}</p>
       <ul>
         ${section.statements.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}
       </ul>
       <a class="text-link" href="#access" data-access-trigger>${escapeHtml(section.cta)} <span aria-hidden="true">↘</span></a>
+      <p class="edition__supporting">${escapeHtml(section.supporting)}</p>
     </div>
   </section>`;
 }
@@ -199,9 +295,10 @@ export function renderAccessForm(content: Content): string {
   return `<section class="access section-shell" id="access" aria-labelledby="access-heading">
     <div class="access__intro" data-reveal>
       ${renderSectionLabel(section.label)}
-      <h2 id="access-heading">${escapeHtml(section.heading)}</h2>
-      <p>${escapeHtml(section.body)}</p>
-      <p class="access__privacy-note">${escapeHtml(section.privacyNote)}</p>
+      <h2 id="access-heading">${renderLines(section.heading)}</h2>
+      <div class="access__body">
+        ${section.body.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      </div>
     </div>
     <form class="access-form" data-access-form data-email-required="${escapeHtml(section.validation.emailRequired)}" data-email-invalid="${escapeHtml(section.validation.emailInvalid)}" data-form-invalid="${escapeHtml(section.validation.formInvalid)}" data-loading-label="${escapeHtml(section.loading)}" data-submit-label="${escapeHtml(section.submit)}" data-success-label="${escapeHtml(section.success)}" data-success-message="${escapeHtml(section.successMessage)}" data-unavailable-message="${escapeHtml(section.unavailable)}" data-error-message="${escapeHtml(section.error)}" novalidate data-reveal>
       <div class="form-field form-field--wide">

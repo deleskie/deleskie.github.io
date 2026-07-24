@@ -11,10 +11,13 @@ import {
 import {
   renderAccessForm,
   renderArchitecture,
+  renderDevelopment,
   renderEdition,
+  renderFounderNote,
   renderHero,
   renderManifesto,
   renderPrinciples,
+  renderProvenance,
   renderSignalControl,
 } from "./components/sections";
 import { renderSigil } from "./components/mark";
@@ -33,9 +36,12 @@ ${renderDocumentHead(siteContent, environment, { analyticsMarkup })}
   <main id="main-content">
     ${renderHero(siteContent)}
     ${renderManifesto(siteContent)}
+    ${renderProvenance(siteContent)}
+    ${renderFounderNote(siteContent)}
     ${renderPrinciples(siteContent)}
     ${renderArchitecture(siteContent)}
     ${renderSignalControl(siteContent)}
+    ${renderDevelopment(siteContent)}
     ${renderEdition(siteContent)}
     ${renderAccessForm(siteContent)}
   </main>

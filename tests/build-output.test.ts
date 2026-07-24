@@ -66,3 +66,30 @@ test("generated public copy contains none of the prohibited phrases", async () =
     }
   }
 });
+
+test("generated teaser uses the Jim voice and evidence-first copy", async () => {
+  const html = await readFile(
+    path.join(projectRoot, "cyberpunk", "index.html"),
+    "utf8",
+  );
+
+  for (const line of [
+    "THE FUTURE DIDN’T",
+    "CLAIMS FOLLOW EVIDENCE.",
+    "BUILT BELOW",
+    "REAL DEVELOPMENT",
+    "WE DO NOT USE MAGIC WORDS",
+    "SIGNAL RECEIVED",
+  ]) {
+    assert.match(html, new RegExp(line.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  for (const retiredLine of [
+    "CAPABILITY WITHOUT SPECTACLE.",
+    "NOT A PUBLIC LAUNCH.",
+    "REQUEST PRIVATE ACCESS",
+    "REQUEST RECORDED",
+  ]) {
+    assert.equal(html.includes(retiredLine), false);
+  }
+});
