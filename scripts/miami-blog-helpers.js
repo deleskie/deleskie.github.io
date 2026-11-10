@@ -1,4 +1,4 @@
-const SITE_URL = 'https://deleskie.com';
+const SITE_URL = 'https://www.deleskie.com';
 
 function getPostPath(post) {
   return post.language === 'es-US'

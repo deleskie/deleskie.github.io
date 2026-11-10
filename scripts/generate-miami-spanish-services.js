@@ -59,7 +59,7 @@ function ensureDir(dir) {
 }
 
 function page(service) {
-  const url = `https://deleskie.com/es/${service.slug}/`;
+  const url = `https://www.deleskie.com/es/${service.slug}/`;
   const relatedLinks = service.related.map((href) => `<a class="miami-link-button" href="${href}">${href.replaceAll('/', ' ').trim()}</a>`).join('');
   const pageClass = {
     'dj-para-bodas-miami': 'miami-page--wedding',
@@ -82,7 +82,7 @@ function page(service) {
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Miami en español', item: 'https://deleskie.com/es/blog/' },
+          { '@type': 'ListItem', position: 1, name: 'Miami en español', item: 'https://www.deleskie.com/es/blog/' },
           { '@type': 'ListItem', position: 2, name: service.title, item: url }
         ]
       }
@@ -98,17 +98,17 @@ function page(service) {
 <meta name="description" content="${service.description}">
 <link rel="canonical" href="${url}">
 <link rel="alternate" hreflang="es-US" href="${url}">
-<link rel="alternate" hreflang="en-US" href="https://deleskie.com${service.englishPath}">
-<link rel="alternate" hreflang="x-default" href="https://deleskie.com${service.englishPath}">
+<link rel="alternate" hreflang="en-US" href="https://www.deleskie.com${service.englishPath}">
+<link rel="alternate" hreflang="x-default" href="https://www.deleskie.com${service.englishPath}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${service.metaTitle}">
 <meta property="og:description" content="${service.description}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="https://deleskie.com/TommyC/assets/tommy-hero-bg.jpg">
+<meta property="og:image" content="https://www.deleskie.com/TommyC/assets/tommy-hero-bg.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${service.metaTitle}">
 <meta name="twitter:description" content="${service.description}">
-<meta name="twitter:image" content="https://deleskie.com/TommyC/assets/tommy-hero-bg.jpg">
+<meta name="twitter:image" content="https://www.deleskie.com/TommyC/assets/tommy-hero-bg.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
