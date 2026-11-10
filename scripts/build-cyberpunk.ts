@@ -132,7 +132,7 @@ async function updateRootRobots(indexable: boolean): Promise<void> {
   const block = indexable
     ? `${startMarker}
 Allow: /cyberpunk/
-Sitemap: https://deleskie.com/cyberpunk/sitemap.xml
+Sitemap: https://www.deleskie.com/cyberpunk/sitemap.xml
 ${endMarker}`
     : `${startMarker}
 Disallow: /cyberpunk/

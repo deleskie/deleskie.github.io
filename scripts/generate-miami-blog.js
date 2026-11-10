@@ -42,7 +42,7 @@ function jsonLd(post) {
           '@type': 'ListItem',
           position: 1,
           name: post.language === 'es-US' ? 'Blog en español' : 'Blog',
-          item: post.language === 'es-US' ? 'https://deleskie.com/es/blog/' : 'https://deleskie.com/blog/'
+          item: post.language === 'es-US' ? 'https://www.deleskie.com/es/blog/' : 'https://www.deleskie.com/blog/'
         },
         {
           '@type': 'ListItem',
@@ -229,7 +229,7 @@ function renderIndex(language) {
   </article>`).join('\n');
 
   const sectionLinks = sections.map(([label, audience]) => `<a class="miami-link-button" href="#${audience}">${label}</a>`).join('');
-  const indexUrl = `https://deleskie.com/${spanish ? 'es/blog/' : 'blog/'}`;
+  const indexUrl = `https://www.deleskie.com/${spanish ? 'es/blog/' : 'blog/'}`;
   const indexSchema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -263,15 +263,15 @@ function renderIndex(language) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${spanish ? 'Blog en español para eventos en Miami | TC Audio Productions' : 'Miami Event Planning Blog | TC Audio Productions'}</title>
 <meta name="description" content="${spanish ? 'Recursos en español para bodas latinas, bodas bilingües, quinceañeras, música, iluminación y eventos familiares en Miami.' : 'Miami event planning resources for weddings, corporate events, ceremony audio, lighting, planners, and premium private celebrations.'}">
-<link rel="canonical" href="https://deleskie.com/${spanish ? 'es/blog/' : 'blog/'}">
+<link rel="canonical" href="https://www.deleskie.com/${spanish ? 'es/blog/' : 'blog/'}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${spanish ? 'Blog en español para eventos en Miami' : 'Miami Event Planning Blog'}">
 <meta property="og:description" content="${spanish ? 'Contenido en español, latino y familiar para eventos en Miami.' : 'Premium Miami event planning resources from TC Audio Productions.'}">
-<meta property="og:image" content="https://deleskie.com/TommyC/assets/tommy-hero-bg.jpg">
+<meta property="og:image" content="https://www.deleskie.com/TommyC/assets/tommy-hero-bg.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="alternate" hreflang="${spanish ? 'en-US' : 'es-US'}" href="https://deleskie.com/${spanish ? 'blog/' : 'es/blog/'}">
-<link rel="alternate" hreflang="${spanish ? 'es-US' : 'en-US'}" href="https://deleskie.com/${spanish ? 'es/blog/' : 'blog/'}">
-<link rel="alternate" hreflang="x-default" href="https://deleskie.com/blog/">
+<link rel="alternate" hreflang="${spanish ? 'en-US' : 'es-US'}" href="https://www.deleskie.com/${spanish ? 'blog/' : 'es/blog/'}">
+<link rel="alternate" hreflang="${spanish ? 'es-US' : 'en-US'}" href="https://www.deleskie.com/${spanish ? 'es/blog/' : 'blog/'}">
+<link rel="alternate" hreflang="x-default" href="https://www.deleskie.com/blog/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">

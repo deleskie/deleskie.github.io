@@ -223,7 +223,7 @@ const configuredContact =
 
 const configuredBaseUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "") ||
-  "https://deleskie.com/cyberpunk";
+  "https://www.deleskie.com/cyberpunk";
 
 export const siteContent = {
   brand: {
