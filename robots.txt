@@ -6,4 +6,4 @@ Allow: /
 Disallow: /cyberpunk/
 # PROJECT SABLE INDEXING END
 
-Sitemap: https://deleskie.com/sitemap.xml
+Sitemap: https://www.deleskie.com/sitemap.xml
